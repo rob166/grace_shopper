@@ -48,8 +48,20 @@ const createUser = async ({ email, username, password, first_name, last_name, ad
       } catch (error) { console.warn(error) }
 }
 
+async function getUserByUsername(username) {
+      try {
+        const { rows: [user] } = await client.query(`
+    SELECT * FROM users WHERE username=$1
+    `, [username]);
+    
+        return user;
+      } catch (error) {
+        throw error;
+      }
+    }
 
 
 module.exports = {
-      createUser
+      createUser,
+      getUserByUsername
 }

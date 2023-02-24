@@ -8,7 +8,9 @@ const { getUserByUsername,
 
 router.post('/register', async (req, res, next) => {
       //Get parameters needed for the route from the client
-      const { username, password } = req.body;
+      const { email, username, password, first_name, last_name, address_line1, address_line2, city, state, zipcode, phone } = req.body;
+      
+      const is_admin = false;
 
       try {
 
@@ -22,22 +24,15 @@ router.post('/register', async (req, res, next) => {
                         name: 'UserExistsError'
                   });
             }
-            //Check to see if password too short
-            if (password.length < 8) {
-                  res.send({
-                        error: 'PasswordTooShortError',
-                        message: 'Password Too Short!',
-                        name: 'Password Too Short!'
-                  });
-            }
-            //If checks passed, create user
-            const user = await createUser({ username, password });
+            
+            //If check passed, create user
+            const user = await createUser({ email, username, password, first_name, last_name, address_line1, address_line2, city, state, zipcode, phone, is_admin });
             //Add token, attaching id and username
             const token = jwt.sign({
-                  id: user.id,
+                  id: user.user_id,
                   username
             }, process.env.JWT_SECRET, {
-                  expiresIn: '1w'
+                  expiresIn: '4w'
             });
 
             res.send({ message: "thank you for signing up", token, user });
@@ -47,7 +42,36 @@ router.post('/register', async (req, res, next) => {
       }
 });
 
+// POST /api/users/login
 
+router.post('/login', async (req, res, next) => {
+      const { username, password } = req.body;
+
+      try {
+            //Get the user
+            const user = await getUserByUsername(username);
+            //Check to see if user exists and password entered = existing user password
+            if (user && user.password == password) {
+                  //Add token, attaching id and username
+                  const token = jwt.sign({
+                        id: user.user_id,
+                        username
+                  }, process.env.JWT_SECRET, {
+                        expiresIn: '1w'
+                  });
+
+                  res.send({ user, message: "you're logged in!", token });
+            } else {
+                  next({
+                        name: 'IncorrectCredentialsError',
+                        message: 'Username or password is incorrect'
+                  });
+            }
+
+      } catch ({ name, message }) {
+            next({ name, message })
+      }
+});
 
 
 

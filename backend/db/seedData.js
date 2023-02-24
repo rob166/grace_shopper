@@ -4,7 +4,8 @@ const { createUser,
       getAllProducts,
       getProductById,
       addProductToCart,
-      getAllItemsInCart
+      getAllItemsInCart,
+      getUserByUsername
 } = require('./');
 const client = require("./client")
 
@@ -188,6 +189,18 @@ async function dropTables() {
       }
     }
 
+    const testUserFuncs = async()=>{
+      try{
+        console.log("get user by username")
+        const userName = await getUserByUsername('jessicaCHICAGO')
+        console.log(userName)
+        console.log('finished getting user by username')
+
+      }catch(error){
+        console.error(error)
+      }
+    }
+
     async function rebuildDB() {
       try {
         await dropTables()
@@ -196,6 +209,7 @@ async function dropTables() {
         await createInitialCart()
         await createInitialProduct()
         await testProductFuncs()
+        await testUserFuncs()
       } catch (error) {
         console.log("Error during rebuildDB")
         throw error
