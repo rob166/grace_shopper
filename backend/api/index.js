@@ -14,11 +14,11 @@ router.use('/users', usersRouter);
 
 // ROUTER: /api/products
 const productsRouter = require('./products');
-router.use('/activities', productsRouter);
+router.use('/products', productsRouter);
 
 // ROUTER: /api/cart
 const cartRouter = require('./cart');
-router.use('/routines', cartRouter);
+router.use('/cart', cartRouter);
 
 
 
