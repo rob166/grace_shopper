@@ -1,4 +1,8 @@
-<<<<<<< HEAD
+const client = require("./client");
+const bcrypt = require('bcrypt')
+const SALT_COUNT = 10;
+
+
 const getAllItemsInCart = async (cartId) => {
     try {
         const { rows: cart } = await client.query(`
@@ -10,11 +14,9 @@ const getAllItemsInCart = async (cartId) => {
     }
 };
 
-const updateCart = async 
-=======
-const client = require("./client");
-const bcrypt = require('bcrypt')
-const SALT_COUNT = 10;
+// const updateCart = async 
+
+
 
 
 const createCartItem = async ({ user_id, quantity, total, purchased }) => {
@@ -33,4 +35,3 @@ const createCartItem = async ({ user_id, quantity, total, purchased }) => {
 module.exports = {
       createCartItem
 }
->>>>>>> 1da2e8d38dbcd50f7a92cebece3df0a059cb4096
