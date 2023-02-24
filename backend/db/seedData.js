@@ -1,4 +1,6 @@
-const { createUser
+const { createUser,
+      createProduct,
+      createCartItem
        } = require('./');
 const client = require("./client")
 
@@ -42,7 +44,15 @@ async function dropTables() {
             "phone" varchar,
             "is_admin" boolean DEFAULT false
           );
-          
+
+          CREATE TABLE "cart" (
+            "cart_id" serial PRIMARY KEY,
+            "user_id" integer,
+            "quantity" integer NOT NULL,
+            "total" decimal,
+            "purchased" boolean DEFAULT false
+          );
+
           CREATE TABLE "product" (
             "product_id" serial PRIMARY KEY,
             "name" varchar NOT NULL,
@@ -52,21 +62,10 @@ async function dropTables() {
             "cart_id" integer
           );
           
-          CREATE TABLE "cart" (
-            "cart_id" serial PRIMARY KEY,
-            "user_id" integer,
-            "quantity" integer NOT NULL,
-            "total" decimal,
-            "price" decimal,
-            "purchased" boolean DEFAULT false
-          );
-          
           ALTER TABLE "cart" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("user_id");
           
           ALTER TABLE "product" ADD FOREIGN KEY ("cart_id") REFERENCES "cart" ("cart_id");
-          
-          ALTER TABLE "cart" ADD FOREIGN KEY ("price") REFERENCES "product" ("price");          
-          
+                   
     `);
     
         console.log("Finished building tables!");
@@ -82,9 +81,9 @@ async function dropTables() {
       console.log("Starting to create users...")
       try {
         const usersToCreate = [
-          { email: "danny@hotmail.com", username: "dannyNYC", password: "sandra123", first_name: "danny", last_name: "bonaduci", address_line1: "1 Broadway", address_line2: "Penthouse", city: "NYC", state: "NY", zipcode: "10001", phone: "8675309", is_admin: "true" },
-          { email: "caroline@hotmail.com", username: "carolineVA", password: "bertie99", first_name: "caroline", last_name: "burnett", address_line1: "1600 Pennsylvania Ave", address_line2: "Oval Office", city: "Washington", state: "DC", zipcode: "65432", phone: "4018887453", is_admin: "false" },
-          { email: "jessica@hotmail.com", username: "jessicaCHICAGO", password: "glamgal123", first_name: "jessica", last_name: "Alvarado", address_line1: "Bears Stadium", address_line2: "Near the water", city: "Chicago", state: "IL", zipcode: "12345", phone: "18006785544", is_admin: "true" },
+          { email: "danny@hotmail.com", username: "dannyNYC", password: "sandra123", first_name: "danny", last_name: "bonaduci", address_line1: "1 Broadway", address_line2: "Penthouse", city: "NYC", state: "NY", zipcode: 10001, phone: "8675309", is_admin: "true" },
+          { email: "caroline@hotmail.com", username: "carolineVA", password: "bertie99", first_name: "caroline", last_name: "burnett", address_line1: "1600 Pennsylvania Ave", address_line2: "Oval Office", city: "Washington", state: "DC", zipcode: 65432, phone: "4018887453", is_admin: "false" },
+          { email: "jessica@hotmail.com", username: "jessicaCHICAGO", password: "glamgal123", first_name: "jessica", last_name: "Alvarado", address_line1: "Bears Stadium", address_line2: "Near the water", city: "Chicago", state: "IL", zipcode: 12345, phone: "18006785544", is_admin: "true" },
         ]
         const users = await Promise.all(usersToCreate.map(createUser))
     
@@ -97,12 +96,68 @@ async function dropTables() {
       }
     }
 
+    async function createInitialCart() {
+      try {
+        console.log("Starting to create cart...")
+    
+        const cartToCreate = [
+          {
+            user_id: 1,
+            quantity: 3,
+            total: 26.50,
+            purchased: "false"
+          },
+          {
+            user_id: 1,
+            quantity: 6,
+            total: 75.46,
+            purchased: "false"
+          },
+        ]
+        const cart = await Promise.all(cartToCreate.map(createCartItem))
+    
+        console.log("cart created:")
+        console.log(cart)
+    
+        console.log("Finished creating cart!")
+      } catch (error) {
+        console.error("Error creating cart!")
+        throw error
+      }
+    }
+
+    async function createInitialProduct() {
+      try {
+        console.log("Starting to create product...")
+    
+        const productToCreate = [
+          {
+            name: "Margarita",
+            description: "Wonderful blend of hard liquors takes you to the sun",
+            price: 29.95,
+            image: "../../client/images/photo.jpg",
+            cart_id: 1
+          },
+        ]
+        const product = await Promise.all(productToCreate.map(createProduct))
+    
+        console.log("product created:")
+        console.log(product)
+    
+        console.log("Finished creating product!")
+      } catch (error) {
+        console.error("Error creating product!")
+        throw error
+      }
+    }
+
     async function rebuildDB() {
       try {
         await dropTables()
         await createTables()
         await createInitialUsers()
-        
+        await createInitialCart()
+        await createInitialProduct()
       } catch (error) {
         console.log("Error during rebuildDB")
         throw error
