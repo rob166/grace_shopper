@@ -1,7 +1,11 @@
 const { createUser,
       createProduct,
-      createCartItem
-       } = require('./');
+      createCartItem,
+      getAllProducts,
+      getProductById,
+      addProductToCart,
+      getAllItemsInCart
+} = require('./');
 const client = require("./client")
 
 async function dropTables() {
@@ -10,9 +14,11 @@ async function dropTables() {
       try {
     
         await client.query(`
-        DROP TABLE IF EXISTS users CASCADE;
-        DROP TABLE IF EXISTS product CASCADE;
+        DROP TABLE IF EXISTS products;
         DROP TABLE IF EXISTS cart;
+         DROP TABLE IF EXISTS users;
+       
+       
         `);
     
         console.log("Finished dropping tables!");
@@ -29,42 +35,38 @@ async function dropTables() {
       try {
     
         await client.query(`
-        CREATE TABLE "users" (
-            "user_id" serial PRIMARY KEY,
-            "email" varchar UNIQUE,
-            "username" varchar UNIQUE,
-            "password" varchar NOT NULL,
-            "first_name" varchar,
-            "last_name" varchar,
-            "address_line1" varchar,
-            "address_line2" varchar,
-            "city" varchar,
-            "state" varchar,
-            "zipcode" integer,
-            "phone" varchar,
-            "is_admin" boolean DEFAULT false
+        CREATE TABLE users (
+            id SERIAL PRIMARY KEY,
+            email VARCHAR(255) UNIQUE,
+            username VARCHAR(255) UNIQUE,
+            password VARCHAR(255) NOT NULL,
+            first_name VARCHAR(255),
+            last_name VARCHAR(255),
+            address_line1 VARCHAR(255),
+            address_line2 VARCHAR(255),
+            city VARCHAR(255),
+            state VARCHAR(255),
+            zipcode INTEGER,
+            phone VARCHAR(255),
+            is_admin BOOLEAN DEFAULT false
           );
 
-          CREATE TABLE "cart" (
-            "cart_id" serial PRIMARY KEY,
-            "user_id" integer,
-            "quantity" integer NOT NULL,
-            "total" decimal,
-            "purchased" boolean DEFAULT false
+          CREATE TABLE cart (
+            cart_id serial PRIMARY KEY,
+            user_id INTEGER REFERENCES users(id),
+            quantity INTEGER NOT NULL,
+            total DECIMAL,
+            purchased BOOLEAN DEFAULT false
           );
 
-          CREATE TABLE "product" (
-            "product_id" serial PRIMARY KEY,
-            "name" varchar NOT NULL,
-            "description" text,
-            "price" decimal UNIQUE NOT NULL,
-            "image" varchar,
-            "cart_id" integer
+          CREATE TABLE products (
+            product_id SERIAL PRIMARY KEY,
+            name VARCHAR(255) NOT NULL,
+            description TEXT,
+            price DECIMAL NOT NULL,
+            image VARCHAR(255),
+            cart_id INTEGER DEFAULT 0
           );
-          
-          ALTER TABLE "cart" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("user_id");
-          
-          ALTER TABLE "product" ADD FOREIGN KEY ("cart_id") REFERENCES "cart" ("cart_id");
                    
     `);
     
@@ -135,9 +137,16 @@ async function dropTables() {
             name: "Margarita",
             description: "Wonderful blend of hard liquors takes you to the sun",
             price: 29.95,
-            image: "../../client/images/photo.jpg",
-            cart_id: 1
+            image: "../../client/images/photo.jpg"
+          
           },
+          {
+            name:"Vodka_Sode",
+            description:"Strong",
+            price: 29.95,
+            image:"../../client/images/photo.jpg"
+        
+          }
         ]
         const product = await Promise.all(productToCreate.map(createProduct))
     
@@ -150,6 +159,34 @@ async function dropTables() {
         throw error
       }
     }
+    
+    const testProductFuncs = async()=>{
+      try{
+        console.log("getting all products")
+        const products = await getAllProducts()
+        console.log(products)
+        console.log('tests over')
+
+        console.log("testing get product by id")
+        const product = await getProductById(2)
+        console.log(product)
+        console.log('get product by id test over')
+
+        console.log('adding products to cart');
+        const cartProd =  await addProductToCart(2,1);
+        const cartProd2 =  await addProductToCart(2,2);
+        console.log(cartProd,cartProd2);
+        console.log('finished adding product to cart ');
+
+        console.log('getting all items in cart');
+        const cart = await getAllItemsInCart(2)
+        console.log(cart);
+        console.log('finished getting all items in cart');
+        
+      }catch(error){
+        console.error(error)
+      }
+    }
 
     async function rebuildDB() {
       try {
@@ -158,6 +195,7 @@ async function dropTables() {
         await createInitialUsers()
         await createInitialCart()
         await createInitialProduct()
+        await testProductFuncs()
       } catch (error) {
         console.log("Error during rebuildDB")
         throw error
