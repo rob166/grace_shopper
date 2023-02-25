@@ -1,3 +1,4 @@
+
 const { createUser,
       createProduct,
       createCartItem,
@@ -5,7 +6,8 @@ const { createUser,
       getProductById,
       addProductToCart,
       getAllItemsInCart,
-      getUserByUsername
+      getUserByUsername,
+      removeProductsFromCart
 } = require('./');
 const client = require("./client")
 
@@ -65,6 +67,7 @@ async function dropTables() {
             name VARCHAR(255) NOT NULL,
             description TEXT,
             price DECIMAL NOT NULL,
+            quantity INTEGER DEFAULT 0,
             image VARCHAR(255),
             cart_id INTEGER DEFAULT 0
           );
@@ -174,8 +177,8 @@ async function dropTables() {
         console.log('get product by id test over')
 
         console.log('adding products to cart');
-        const cartProd =  await addProductToCart(2,1);
-        const cartProd2 =  await addProductToCart(2,2);
+        const cartProd =  await addProductToCart(2,4,1);
+        const cartProd2 =  await addProductToCart(2,1,2);
         console.log(cartProd,cartProd2);
         console.log('finished adding product to cart ');
 
@@ -183,6 +186,17 @@ async function dropTables() {
         const cart = await getAllItemsInCart(2)
         console.log(cart);
         console.log('finished getting all items in cart');
+
+        console.log('getting ready to remove items')
+        const updatedItems1 = await removeProductsFromCart(2,2,1)
+        const updatedItems2 = await removeProductsFromCart(2,0,2)
+        console.log(updatedItems1,updatedItems2)
+        console.log('finished removing items')
+
+        console.log('getting updated cart');
+        const cart2 = await getAllItemsInCart(2)
+        console.log(cart2);
+        console.log('finished getting updated cart');
         
       }catch(error){
         console.error(error)

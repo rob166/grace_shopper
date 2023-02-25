@@ -1,7 +1,7 @@
 const client = require("./client");
 
 
-const createProduct = async ({ name, description, price, image}) => {
+const createProduct = async ({ name, description, price, image }) => {
       try {
             const { rows: [product] } = await client.query(`
           INSERT
@@ -13,61 +13,91 @@ const createProduct = async ({ name, description, price, image}) => {
       } catch (error) { console.warn(error) }
 }
 
-const getAllProducts = async()=>{
-      try{
-            const {rows:products} = await client.query(`
+const getAllProducts = async () => {
+      try {
+            const { rows: products } = await client.query(`
                   SELECT * 
                   FROM products;`
-                  );
+            );
 
             return products
 
-      }catch(error){
+      } catch (error) {
             console.error(error)
       }
 };
 
-const getProductById = async(id)=>{
-      try{
-            const {rows : [product]} = await client.query(`
+const getProductById = async (id) => {
+      try {
+            const { rows: [product] } = await client.query(`
             SELECT * 
             FROM products
-            WHERE product_id = $1`,[id]);
+            WHERE product_id = $1`, [id]);
             return product
-      }catch(error){
+      } catch (error) {
             console.error(error);
       };
 };
 
-const addProductToCart = async (cartId,productId)=>{
-      try{
-            const {rows:[product]} = await client.query(`
+const addProductToCart = async (cartId, quantity, productId) => {
+      try {
+            const { rows: [product] } = await client.query(`
             UPDATE products
-            SET cart_id = $1
-            WHERE product_id=$2
-            RETURNING *;`,[cartId,productId]);
+            SET cart_id = $1, quantity=$2
+            WHERE product_id=$3
+            RETURNING *;`, [cartId, quantity, productId]);
 
             return product
 
-      }catch(error){
+      } catch (error) {
             console.error(error)
       }
 };
 
-const getAllItemsInCart = async(cartId)=>{
-      const {rows:cart} = await client.query(`
+const removeProductsFromCart = async (cartId, quantity, productId) => {
+      try {
+            if (quantity === 0) {
+                  const { rows: [product] } = await client.query(`
+            UPDATE products
+            SET quantity = 0, cart_Id = 0
+            WHERE cart_id=$1
+            AND product_id=$2
+            RETURNING *;`, [cartId, productId])
+                  return product
+            }
+            const { rows: [product] } = await client.query(`
+      UPDATE products 
+      SET quantity = $1
+      WHERE cart_id=$2 
+      AND product_id=$3
+      RETURNING *;`, [cartId, quantity, productId])
+            return product
+      } catch (error) {
+            console.error(error)
+      }
+}
+
+
+const getAllItemsInCart = async (cartId) => {
+      try {
+            const { rows: cart } = await client.query(`
       SELECT * 
       FROM products 
       WHERE cart_id=$1;
-      `,[cartId]);
+      `, [cartId]);
 
-      return cart
+            return cart
+      } catch (error) {
+            console.error(error)
+      }
 }
 
-module.exports={
+
+module.exports = {
       createProduct,
       getAllProducts,
       getProductById,
       addProductToCart,
-      getAllItemsInCart
+      getAllItemsInCart,
+      removeProductsFromCart
 }
