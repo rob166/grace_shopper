@@ -1,10 +1,10 @@
 
-import express from "express";
-import chalk from 'chalk'
+const express = require("express")
+
 const PORT = process.env.PORT || 3001;
-import cors from 'cors'
-import morgan from "morgan";
-const router = express.Router()
+const cors = require('cors')
+const morgan = require("morgan")
+const router = require('./api')
 const app = express();
 
 app.use(cors());
@@ -17,10 +17,11 @@ app.use((req,res,next)=>{
     next()
 })
 
-app.use("/api",router);
+app.use("/api",router)
+
 app.listen(PORT, () => {
     console.log(
-        chalk.blueBright("Server is listening on PORT:"),
-        chalk.yellow(PORT),);
+        `Server is listening on:${PORT}`,
+        );
 });
 
