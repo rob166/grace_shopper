@@ -8,7 +8,7 @@ const Landing = () =>{
         <div className={LandingCss.body}> 
         <div><h1 className={LandingCss.header}>Grace Shopper buzzed</h1></div>
         <div className={LandingCss.answerBox}>
-        <h1>Are you 21 or older?</h1>
+        <h1 className={LandingCss.answerBoxText}>Are you 21 or older?</h1>
             <div className={LandingCss.buttons}>
                 <button className={LandingCss.button} onClick={()=>setAdult(true)}>Yes</button>
                 <button className={LandingCss.button}>NO</button>
