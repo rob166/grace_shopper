@@ -5,7 +5,8 @@ const { createUser,
       getProductById,
       addProductToCart,
       getAllItemsInCart,
-      getUserByUsername
+      getUserByUsername,
+      getUser
 } = require('./');
 const client = require("./client")
 
@@ -192,9 +193,14 @@ async function dropTables() {
     const testUserFuncs = async()=>{
       try{
         console.log("get user by username")
-        const userName = await getUserByUsername('jessicaCHICAGO')
+        const userName = await getUserByUsername('carolineVA');
         console.log(userName)
         console.log('finished getting user by username')
+
+        console.log("get user")
+        const getUserTest = await getUser("dannyNYC", "sandra123");
+        console.log(getUserTest)
+        console.log('finished getting user')
 
       }catch(error){
         console.error(error)
