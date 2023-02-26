@@ -1,11 +1,4 @@
 import { Route, Routes } from 'react-router-dom';
-import Navbar from './components/Navbar.js'
-import Product from './routes/Product.js';
-import Landing from './routes/Landing.js';
-import Home from './routes/Home.js'
-import React, { useState } from 'react';
-import Signup from './routes/Signup';
-import Login from './routes/Login';
 
 function App() {
   const BASE_URL = 'https://localhost:5432/grace-shopper/api';
