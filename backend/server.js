@@ -23,4 +23,3 @@ app.listen(PORT, () => {
         chalk.blueBright("Server is listening on PORT:"),
         chalk.yellow(PORT),);
 });
-
