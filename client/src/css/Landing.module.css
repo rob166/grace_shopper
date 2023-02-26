@@ -1,0 +1,39 @@
+.body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('../img/backgroundLand.jpg');
+    background-color: #cccccc;
+    flex-direction: column;
+
+}
+
+.answerBox{
+    background-color: rgb(245, 135, 67);
+    padding: 1em;
+    
+}
+
+.buttons{
+display: flex;
+justify-content: space-around;
+padding-bottom: .5em;
+}
+
+.button{
+    background-color: rgb(244, 158, 127);
+    width: 40%;
+    border:none;
+    color: white;
+}
+
+.button:hover{
+    background-color: rgb(242, 186, 166);
+
+}
+
+.header{
+    font-size: 5em;
+    font-family: 'Gloock', serif;
+}
