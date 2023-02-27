@@ -9,38 +9,39 @@
 
 }
 
-.answerBox{
+.answerBox {
     background-color: rgb(30, 76, 78);
     padding: 1em;
     font-family: 'Gloock', serif;
     color: aliceblue;
-    
+
 }
-.answerBoxText{
+
+.answerBoxText {
     font-family: 'Gloock', serif;
     color: aliceblue;
 }
 
-.buttons{
-display: flex;
-justify-content: space-around;
-padding-bottom: .5em;
+.buttons {
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: .5em;
 }
 
-.button{
+.button {
     background-color: rgb(240, 102, 51);
     width: 40%;
     font-family: 'Gloock', serif;
-    border:none;
+    border: none;
     color: white;
 }
 
-.button:hover{
+.button:hover {
     background-color: rgb(242, 186, 166);
 
 }
 
-.header{
+.header {
     font-size: 5em;
     font-family: 'Gloock', serif;
     color: rgb(30, 76, 78);
