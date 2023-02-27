@@ -4,6 +4,7 @@ const router = express.Router();
 
 router.use((req,res,next)=>{
     console.log('sending somthing from products')
+    next()
 })
 
 router.get('/',async(req,res,next)=>{
@@ -18,3 +19,5 @@ router.get('/',async(req,res,next)=>{
         console.error(error)
     }
 })
+
+module.exports = router 
