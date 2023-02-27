@@ -9,7 +9,7 @@ import { useState } from 'react';
 
 
 function App() {
-  const BASE_URL = 'https://localhost:5432/grace-shopper/api';
+  const BASE_URL = 'http://localhost:3001/api';
   const jwt = localStorage.getItem('jwt');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
