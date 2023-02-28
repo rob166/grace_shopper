@@ -9,15 +9,22 @@ const { getUserByUsername,
 } = require("../db");
 
 router.post('/register', async (req, res, next) => {
-      //Get parameters needed for the route from the client
       const { email, username, password, first_name, last_name, address_line1, address_line2, city, state, zipcode, phone } = req.body;
 
-      //const is_admin = false;
+      const is_admin = false;
 
+      if (!email || !username || !password || !first_name || !last_name || !address_line1 || !city || !state || !zipcode || !phone) {
+            res.send({
+                  name: 'MissingInfo',
+                  message: 'Address line 2 optional, must fill out all other fields',
+                  error: 'error'
+            });
+      }
+      
       try {
             //Check to see if user exists
             const _user = await getUserByUsername(username);
-
+console.log(_user);
             if (_user) {
                   res.send({
                         error: 'UserExistsError',
@@ -35,22 +42,23 @@ router.post('/register', async (req, res, next) => {
                   last_name,
                   address_line1,
                   address_line2,
-                  city, state,
+                  city, 
+                  state,
                   zipcode,
                   phone,
                   is_admin,
             });
-
+console.log(user);
             //Add token, attaching id and username
             const token = jwt.sign({
                   id: user.id,
                   username
-            }, process.env.JWT_SECRET, {
+            }, SECRET, {
                   expiresIn: '4w'
             });
             res.send({ message: "Thank you for signing up", token, user });
-      } catch ({ name, message }) {
-            next({ name, message })
+      } catch (err) {
+            console.log('err', err)
       }
 });
 
