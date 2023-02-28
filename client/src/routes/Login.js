@@ -2,7 +2,6 @@ import { React, useState } from 'react';
 import { Link } from "react-router-dom";
 
 const Login = () => {
-  //const BASE_URL = 'http://localhost:3001/api';
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -22,15 +21,11 @@ const Login = () => {
         );
 
       const json = await response.json();
-
       console.log(json)
 
       if (json === null) {
-
         alert(json.message);
-
       } else {
-
         localStorage.setItem('jwt', json.token);
         alert(json.message);
       }
@@ -55,10 +50,10 @@ const Login = () => {
         <div>
           <h2>Login/Logout</h2>
 
-          <input required="required" placeholder='Username' value={username}
+          <input placeholder='Username' value={username}
             onChange={(e) => setUsername(e.target.value)} />
 
-          <input required="required" placeholder='Password' value={password}
+          <input placeholder='Password' value={password}
             onChange={(e) => setPassword(e.target.value)} />
 
           <button onClick={loginButton}>Enter username and password</button>
