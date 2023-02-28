@@ -10,7 +10,7 @@ import { useState } from 'react';
 
 function App() {
   const BASE_URL = 'http://localhost:3001/api';
-  const jwt = localStorage.getItem('jwt');
+  // const jwt = localStorage.getItem('jwt');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -22,7 +22,7 @@ function App() {
           <Landing />}
         />
 
-        <Route path='home' element={
+        <Route path='/home' element={
           <>
             <Navbar />
             <Home />
