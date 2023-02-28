@@ -42,7 +42,7 @@ router.post('/register', async (req, res, next) => {
 
             //Add token, attaching id and username
             const token = jwt.sign({
-                  id: user.user_id,
+                  id: user.id,
                   username
             }, process.env.JWT_SECRET, {
                   expiresIn: '4w'
@@ -65,20 +65,21 @@ router.post('/login', async (req, res, next) => {
       }
       try {
             //Get the user
-            const user = await getUser(username, password);
-            //Check to see if user exists
+           const user = await getUser(username, password);
+           console.log(user);
+           //const user = await getUserByUsername(username);
             if (user) {
                   //Add token, attaching id and username
                   const token = jwt.sign({
-                        id: user.user_id,
+                        id: user.id,
                         username
                   }, process.env.JWT_SECRET, {
                         expiresIn: '4w'
                   });
 
-                  res.send({ user, message: "you're logged in!", token, user });
+                  res.send({ user, message: "you're logged in!", token });
             } else {
-                  next({
+                  res.send({
                         name: 'IncorrectCredentialsError',
                         message: 'Username or password is incorrect'
                   });
