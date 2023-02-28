@@ -5,6 +5,7 @@ import Landing from './routes/Landing.js';
 import Home from './routes/Home.js'
 import Signup from './routes/Signup'
 import Login from './routes/Login.js'
+import SingleProduct from './routes/SingleProduct.js';
 import { useState } from 'react';
 
 
@@ -13,6 +14,7 @@ function App() {
   // const jwt = localStorage.getItem('jwt');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [prodId, setProdId] = useState(null)
 
   return (
     <div className="App">
@@ -25,7 +27,7 @@ function App() {
         <Route path='/home' element={
           <>
             <Navbar />
-            <Home />
+            <Home prodId={prodId} setProdId={setProdId}/>
           </>
         } />
         <Route path='/products' element={
@@ -34,6 +36,13 @@ function App() {
             <Product />
           </>
         } />
+
+<Route path='/product-view' element={
+          <>
+            <Navbar/>
+            <SingleProduct prodId={prodId}/>
+          </>
+}/>
         <Route exact path={"/login"} element={
           <>
           <Navbar />

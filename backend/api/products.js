@@ -1,5 +1,5 @@
 const express = require('express');
-const { getAllProducts } = require('../db');
+const { getAllProducts, getProductById } = require('../db');
 const router = express.Router();
 
 router.use((req,res,next)=>{
@@ -20,6 +20,19 @@ router.get('/',async(req,res,next)=>{
     }
 })
 
-
+router.get('/:prodId',async(req,res,next)=>{
+    try{
+        const prod = req.params.prodId 
+        console.log(prod)
+        const singleProduct = await getProductById(prod)
+        if(singleProduct){
+            res.send(singleProduct)
+        }else{
+           res.send({name:"no product",message:"there is no product"})
+        }
+    }catch(error){
+        console.error(error)
+    }
+})
 
 module.exports = router 
