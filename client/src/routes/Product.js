@@ -1,27 +1,36 @@
 import React, { useState, useEffect } from "react";
 import { showProducts } from "../Api.fetches";
 
-const Product = (props) => {
+const Product = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
         const fetchProducts = async () => {
-            const data = await showProducts(props.BASE_URL);
-            setProducts(data);
+            try {
+                const data = await showProducts(process.env.BASE_URL);
+                setProducts(data);
+            }
+            catch (error) {
+                console.error(error);
+            }
         };
         fetchProducts();
-    }, [props.BASE_URL]);
+    }, []);
 
-    return(
+    return (
         <div>
-            {products.map((product) => (
-                <div key={product.product_id}>
-                    <h2>{product.name}</h2>
-                    <p>{product.description}</p>
-                    <p>{product.price}</p>
-                    <img src={product.image} alt={product.name} />
-                </div>
-            ))}
+            {products.length > 0 ? (
+                products.map((product) => (
+                    <div key={product.product_id}>
+                        <h2>{product.name}</h2>
+                        <p>{product.description}</p>
+                        <p>{product.price}</p>
+                        <img src={product.image} alt={product.name} />
+                    </div>
+                ))
+            ) : (
+                <p>No products to display.</p>
+            )}
         </div>
     );
 };

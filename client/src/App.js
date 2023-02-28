@@ -31,9 +31,7 @@ function App() {
         <Route exact path={'/products'} element={
           <>
             <Navbar />
-            <Product
-            BASE_URL={BASE_URL}
-            />
+            <Product />
           </>
         } />
         <Route exact path={"/login"} element={
