@@ -2,14 +2,22 @@ import {showSingleProd} from "../Api.fetches"
 import { useEffect, useState } from "react";
 
 
-const SingleProduct =({prodId})=>{
-    console.log(prodId)
-    const [product,setProduct] = useState({})
 
+const SingleProduct =({prodId})=>{
+ // eslint-disable-next-line
+
+
+   
+
+    const [product,setProduct] = useState({})
+    
+ // eslint-disable-next-line
     const getProd = async()=>{
         const prod = await showSingleProd(prodId)
+        
         setProduct(prod)
     }
+    
     useEffect(()=>{
         getProd()
     },[])

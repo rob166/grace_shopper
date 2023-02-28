@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react"
 import { showProducts } from "../Api.fetches";
 import { Link } from "react-router-dom";
+
 import HomeCss from '../css/Home.module.css'
+
 const Home = ({ prodId, setProdId }) => {
     const [products, setProducts] = useState([]);
+  
     const showProd = async () => {
         const resp = await showProducts()
         setProducts(resp)
     }
+    // eslint-disable-next-line
     useEffect(() => {
         showProd()
     }, [])
@@ -16,7 +20,7 @@ const Home = ({ prodId, setProdId }) => {
         {products ? products.map(p =>
             <Link to='/product-view'>
                 <div
-                    onMouseDown={() =>  setProdId(p.product_id) }
+                    onMouseOver={() =>  setProdId(p.product_id) }
                     className={HomeCss.product}
                     key={crypto.randomUUID()}>
                     <h2> {p.name}</h2>
