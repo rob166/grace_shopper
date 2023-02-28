@@ -7,6 +7,7 @@ import Signup from './routes/Signup'
 import Login from './routes/Login.js'
 import SingleProduct from './routes/SingleProduct.js';
 import { useState } from 'react';
+import Cookies from 'universal-cookie';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [prodId, setProdId] = useState(null)
+  const cookie = new Cookies()
 
   return (
     <div className="App">
@@ -26,8 +28,8 @@ function App() {
 
         <Route path='/home' element={
           <>
-            <Navbar />
-            <Home prodId={prodId} setProdId={setProdId}/>
+            <Navbar/>
+            <Home prodId={prodId} setProdId={setProdId} cookie={cookie}/>
           </>
         } />
         <Route path='/products' element={
@@ -40,7 +42,7 @@ function App() {
 <Route path='/product-view' element={
           <>
             <Navbar/>
-            <SingleProduct prodId={prodId}/>
+            <SingleProduct cookie={cookie}/>
           </>
 }/>
         <Route exact path={"/login"} element={

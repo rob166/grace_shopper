@@ -2,11 +2,12 @@ import { useEffect, useState } from "react"
 import { showProducts } from "../Api.fetches";
 import { Link } from "react-router-dom";
 
-import HomeCss from '../css/Home.module.css'
+import HomeCss from '../css/Home.module.css';
 
-const Home = ({ prodId, setProdId }) => {
+const Home = ({ cookie }) => {
+
     const [products, setProducts] = useState([]);
-  
+
     const showProd = async () => {
         const resp = await showProducts()
         setProducts(resp)
@@ -18,9 +19,10 @@ const Home = ({ prodId, setProdId }) => {
 
     return (<div className={HomeCss.body}>
         {products ? products.map(p =>
-            <Link to='/product-view'>
+            <Link to='/product-view' className={HomeCss.link}
+                onMouseDown={() => { cookie.set('productId', p.product_id) }}>
                 <div
-                    onMouseOver={() =>  setProdId(p.product_id) }
+
                     className={HomeCss.product}
                     key={crypto.randomUUID()}>
                     <h2> {p.name}</h2>
@@ -29,7 +31,9 @@ const Home = ({ prodId, setProdId }) => {
                         <img
                             className={HomeCss.img}
                             src={require(`../img/${p.image}`)}
-                            alt='drink'></img>
+                            alt='drink'>
+
+                        </img>
                     </div>
                 </div>
             </Link>)

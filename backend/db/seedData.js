@@ -146,11 +146,17 @@ async function createInitialProduct() {
 
       },
       {
-        name: "Vodka_Sode",
+        name: "Vodka Sode",
         description: "Strong",
         price: 29.95,
         image: 'vodkaSoda.png'
 
+      },
+      {
+        name:"Moscow Mule",
+        description:"Refreshing citrus with a spicey finish",
+        price:29.95,
+        image:'moscowMule.png'
       }
     ]
     const product = await Promise.all(productToCreate.map(createProduct))
