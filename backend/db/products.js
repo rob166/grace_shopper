@@ -1,103 +1,127 @@
-const client = require("./client");
-
+const client = require('./client');
 
 const createProduct = async ({ name, description, price, image }) => {
-      try {
-            const { rows: [product] } = await client.query(`
+  try {
+    const {
+      rows: [product],
+    } = await client.query(
+      `
           INSERT
           INTO
           products(name, description, price, image)
           VALUES($1,$2,$3,$4)  
-          RETURNING *;`, [name, description, price, image]);
-            return product;
-      } catch (error) { console.warn(error) }
-}
+          RETURNING *;`,
+      [name, description, price, image]
+    );
+    return product;
+  } catch (error) {
+    console.warn(error);
+  }
+};
 
 const getAllProducts = async () => {
-      try {
-            const { rows: products } = await client.query(`
+  try {
+    const { rows: products } = await client.query(`
                   SELECT * 
-                  FROM products;`
-            );
+                  FROM products;`);
 
-            return products
-
-      } catch (error) {
-            console.error(error)
-      }
+    return products;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 const getProductById = async (id) => {
-      try {
-            const { rows: [product] } = await client.query(`
+  try {
+    const {
+      rows: [product],
+    } = await client.query(
+      `
             SELECT * 
             FROM products
-            WHERE product_id = $1`, [id]);
-            return product
-      } catch (error) {
-            console.error(error);
-      };
+            WHERE product_id = $1`,
+      [id]
+    );
+    return product;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 const addProductToCart = async (cartId, quantity, productId) => {
-      try {
-            const { rows: [product] } = await client.query(`
+  try {
+    const {
+      rows: [product],
+    } = await client.query(
+      `
             UPDATE products
             SET cart_id = $1, quantity=$2
             WHERE product_id=$3
-            RETURNING *;`, [cartId, quantity, productId]);
+            RETURNING *;`,
+      [cartId, quantity, productId]
+    );
 
-            return product
-
-      } catch (error) {
-            console.error(error)
-      }
+    return product;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 const removeProductsFromCart = async (cartId, quantity, productId) => {
-      try {
-            if (quantity === 0) {
-                  const { rows: [product] } = await client.query(`
+  try {
+    if (quantity === 0) {
+      const {
+        rows: [product],
+      } = await client.query(
+        `
             UPDATE products
             SET quantity = 0, cart_Id = 0
             WHERE cart_id=$1
             AND product_id=$2
-            RETURNING *;`, [cartId, productId])
-                  return product
-            }
-            const { rows: [product] } = await client.query(`
+            RETURNING *;`,
+        [cartId, productId]
+      );
+      return product;
+    }
+    const {
+      rows: [product],
+    } = await client.query(
+      `
       UPDATE products 
       SET quantity = $1
       WHERE cart_id=$2 
       AND product_id=$3
-      RETURNING *;`, [cartId, quantity, productId])
-            return product
-      } catch (error) {
-            console.error(error)
-      }
-}
-
+      RETURNING *;`,
+      [cartId, quantity, productId]
+    );
+    return product;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 const getAllItemsInCart = async (cartId) => {
-      try {
-            const { rows: cart } = await client.query(`
+  try {
+    const { rows: cart } = await client.query(
+      `
       SELECT * 
       FROM products 
       WHERE cart_id=$1;
-      `, [cartId]);
+      `,
+      [cartId]
+    );
 
-            return cart
-      } catch (error) {
-            console.error(error)
-      }
-}
-
+    return cart;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 module.exports = {
-      createProduct,
-      getAllProducts,
-      getProductById,
-      addProductToCart,
-      getAllItemsInCart,
-      removeProductsFromCart
-}
+  createProduct,
+  getAllProducts,
+  getProductById,
+  addProductToCart,
+  getAllItemsInCart,
+  removeProductsFromCart,
+};
