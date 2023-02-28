@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const jwt = require('jsonwebtoken');
-const { JWT_SECRET } = process.env;
+require('dotenv').config()
+const SECRET = process.env.JWT_SECRET;
 const { getUserByUsername,
       createUser,
       getUser,
@@ -64,29 +65,33 @@ router.post('/login', async (req, res, next) => {
             });
       }
       try {
-            //Get the user
-           const user = await getUser(username, password);
-           console.log(user);
-           //const user = await getUserByUsername(username);
-            if (user) {
-                  //Add token, attaching id and username
+            //Check if user exists
+            const _user = await getUserByUsername(username);
+            if (!_user) {
+                  res.send({
+                        name: 'IncorrectCredentialsError',
+                        message: 'Username is incorrect'
+                  });
+            }
+            //If user exists check if password correct, if so login
+            const user = await getUser(username, password);
+            if (!user) {
+                  res.send({
+                        name: 'IncorrectCredentialsError',
+                        message: 'Password is incorrect'
+                  });
+            } else {
                   const token = jwt.sign({
                         id: user.id,
                         username
-                  }, process.env.JWT_SECRET, {
+                  }, SECRET, {
                         expiresIn: '4w'
                   });
 
                   res.send({ user, message: "you're logged in!", token });
-            } else {
-                  res.send({
-                        name: 'IncorrectCredentialsError',
-                        message: 'Username or password is incorrect'
-                  });
             }
-
-      } catch ({ name, message }) {
-            next({ name, message })
+      } catch (err) {
+            console.log('err', err)
       }
 });
 
