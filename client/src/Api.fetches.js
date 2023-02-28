@@ -2,14 +2,13 @@
 
 export const showProducts = async () => {
     try {
-        const resp = await fetch('http://localhost:3001/api/products', {
+        const resp = await fetch('http://localhost:3000/api/products', {
             headers: {
                 'Content-Type': 'application/json',
             },
         })
 
         const data = await resp.json()
-
       
         console.log(data)
         return data
@@ -17,3 +16,4 @@ export const showProducts = async () => {
         console.error(error)
     }
 };
+

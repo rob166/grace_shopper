@@ -28,10 +28,12 @@ function App() {
             <Home />
           </>
         } />
-        <Route path='/products' element={
+        <Route exact path={'/products'} element={
           <>
             <Navbar />
-            <Product />
+            <Product
+            BASE_URL={BASE_URL}
+            />
           </>
         } />
         <Route exact path={"/login"} element={
