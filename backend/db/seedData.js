@@ -142,14 +142,14 @@ async function dropTables() {
             name: "Margarita",
             description: "Wonderful blend of hard liquors takes you to the sun",
             price: 29.95,
-            image: "../../client/images/photo.jpg"
+            image: "margarita.png"
           
           },
           {
             name:"Vodka_Sode",
             description:"Strong",
             price: 29.95,
-            image:"../../client/images/photo.jpg"
+            image:'vodkaSoda.png'
         
           }
         ]
