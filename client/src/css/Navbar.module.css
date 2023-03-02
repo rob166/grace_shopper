@@ -1,6 +1,27 @@
 .body{
-    
+    position: top;
     height: 10vh;
     background-color: rgb(30, 76, 78);
     margin: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0.3em 0.3em 3em rgba(0, 0, 0, 0.3);
+}
+.title{
+    margin-left:1em;
+    font-family: 'Gloock', serif;
+    color: coral;
+}
+
+.links{
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.link{
+    font-size: larger;
+    text-decoration: none;
+    color: coral;
 }

@@ -27,7 +27,7 @@ const createCartItem = async ({ quantity, total, purchased }) => {
           INSERT
           INTO
           cart(quantity, total, purchased)
-          VALUES($1,$2,$3)  
+          VALUES($2,$3,$4)  
           RETURNING *;`,
       [quantity, total, purchased]
     );
@@ -37,7 +37,21 @@ const createCartItem = async ({ quantity, total, purchased }) => {
   }
 };
 
+const newCart = async(sessionId)=>{
+  try{
+    const {rows:[cart]} = await client.query(`
+    INSERT INTO cart(session_id)
+    VALUES($1)
+    RETURNING *`,[sessionId])
+
+    return cart
+  }catch(error){
+
+  }
+}
+
 module.exports = {
   getAllItemsInCart,
   createCartItem,
+  newCart
 };
