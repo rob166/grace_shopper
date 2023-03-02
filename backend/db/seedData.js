@@ -9,7 +9,10 @@ const { createUser,
   getUserByUsername,
   getUser,
   removeProductsFromCart,
-  newCart
+  createNewCart,
+  getUserByEmail,
+  getAllUsers,
+  deleteUser,
 } = require('./');
 const client = require("./client")
 
@@ -250,7 +253,7 @@ const testUserFuncs = async () => {
 testCartFuncs = async ()=>{
   try{
     console.log('creating new cart')
-    const newCar = await newCart(3)
+    const newCar = await createNewCart(3)
     console.log('this the new cart',newCar)
     console.log('finished creating new cart')
   }catch(error){
