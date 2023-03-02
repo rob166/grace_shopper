@@ -14,10 +14,10 @@ const SingleProduct = ({ cookie }) => {
     }
 
     const minusFromQuantity = () => {
-        if(quantity == 0 ){
+        if (quantity == 0) {
             setQuantity(0)
-        }else{
-        setQuantity(quantity - 1)
+        } else {
+            setQuantity(quantity - 1)
         }
     }
 
@@ -57,11 +57,20 @@ const SingleProduct = ({ cookie }) => {
                             {product.price}
                         </div>
 
-                        <div className={SingleProductCss.quantity}>
-                            <button onClick={()=>addToQuantity()}>+</button><div className={SingleProductCss.num}>{quantity}</div><button className={SingleProductCss.minus} onClick={()=>minusFromQuantity()}>-</button>
+                        <div
+                            className={SingleProductCss.quantity}>
+                            <button
+                                onClick={() => addToQuantity()}>+</button>
+                            <div className={SingleProductCss.num}>{quantity}</div>
+                            <button className={SingleProductCss.minus} onClick={() => minusFromQuantity()}>-</button>
                         </div>
 
-                        <button className={SingleProductCss.button}>Add to Cart</button>
+                        <button
+                            className={SingleProductCss.button}
+                            onClick={() => {
+
+                            }
+                            }>Add to Cart</button>
 
                     </div>
                 </div>

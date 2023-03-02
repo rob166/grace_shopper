@@ -8,7 +8,8 @@ const { createUser,
   getAllItemsInCart,
   getUserByUsername,
   getUser,
-  removeProductsFromCart
+  removeProductsFromCart,
+  newCart
 } = require('./');
 const client = require("./client")
 
@@ -58,7 +59,8 @@ async function createTables() {
           CREATE TABLE cart (
             cart_id serial PRIMARY KEY,
             user_id INTEGER REFERENCES users(id),
-            quantity INTEGER NOT NULL,
+            quantity INTEGER,
+            session_id INTEGER,
             total DECIMAL,
             purchased BOOLEAN DEFAULT false
           );
@@ -227,6 +229,17 @@ const testUserFuncs = async () => {
   }
 }
 
+testCartFuncs = async ()=>{
+  try{
+    console.log('creating new cart')
+    const newCar = await newCart(3)
+    console.log('this the new cart',newCar)
+    console.log('finished creating new cart')
+  }catch(error){
+    console.error(error)
+  }
+}
+
 async function rebuildDB() {
   try {
     await dropTables()
@@ -236,6 +249,7 @@ async function rebuildDB() {
     await createInitialProduct()
     await testProductFuncs()
     await testUserFuncs()
+    await testCartFuncs()
   } catch (error) {
     console.log("Error during rebuildDB")
     throw error
