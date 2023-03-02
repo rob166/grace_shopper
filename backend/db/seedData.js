@@ -9,7 +9,8 @@ const { createUser,
   getUserByUsername,
   getUser,
   removeProductsFromCart,
-  newCart
+  newCart,
+  getCartBySessionId
 } = require('./');
 const client = require("./client")
 
@@ -60,7 +61,7 @@ async function createTables() {
             cart_id serial PRIMARY KEY,
             user_id INTEGER REFERENCES users(id),
             quantity INTEGER,
-            session_id INTEGER,
+            session_id TEXT,
             total DECIMAL,
             purchased BOOLEAN DEFAULT false
           );
@@ -231,12 +232,17 @@ const testUserFuncs = async () => {
 
 testCartFuncs = async ()=>{
   try{
-    console.log('creating new cart')
-    const newCar = await newCart(3)
-    console.log('this the new cart',newCar)
-    console.log('finished creating new cart')
+    console.log('creating new cart');
+    const newCar = await newCart(3);
+    console.log('this the new cart',newCar);
+    console.log('finished creating new cart');
+
+    console.log('getting cart by session id');
+    const cart = await getCartBySessionId(3);
+    console.log('cart from sessonId is',cart);
+    console.log("finished getting cart from session id ");
   }catch(error){
-    console.error(error)
+    console.error(error);
   }
 }
 
