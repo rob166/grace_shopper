@@ -9,22 +9,24 @@ const { getUserByUsername,
 } = require("../db");
 
 router.post('/register', async (req, res, next) => {
-      const { email, username, password, first_name, last_name, address_line1, address_line2, city, state, zipcode, phone } = req.body;
+      const { email, username, password, first_name, last_name, address_line1, city, state, zipcode, phone } = req.body;
 
       const is_admin = false;
 
       if (!email || !username || !password || !first_name || !last_name || !address_line1 || !city || !state || !zipcode || !phone) {
             res.send({
                   name: 'MissingInfo',
-                  message: 'Address line 2 optional, must fill out all other fields',
+                  message: 'Must fill out all fields',
                   error: 'error'
             });
       }
       
       try {
-            //Check to see if user exists
+            //Check to see if user exists or email exists
             const _user = await getUserByUsername(username);
 console.log(_user);
+
+//console.log(email);
             if (_user) {
                   res.send({
                         error: 'UserExistsError',
@@ -32,6 +34,13 @@ console.log(_user);
                         name: 'UserExistsError'
                   });
             }
+            // if (_user.email === email) {
+            //       res.send({
+            //             error: 'EmailExistsError',
+            //             message: 'Email ' + email + ' is already taken.',
+            //             name: 'EmailExistsError'
+            //       });
+            // }
 
             //If check passed, create user
             const user = await createUser({
@@ -41,7 +50,6 @@ console.log(_user);
                   first_name,
                   last_name,
                   address_line1,
-                  address_line2,
                   city, 
                   state,
                   zipcode,

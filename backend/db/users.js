@@ -16,14 +16,13 @@ const createUser = async ({ email, username, password, first_name, last_name, ad
             first_name,
             last_name,
             address_line1,
-            address_line2,
             city,
             state,
             zipcode,
             phone,
             is_admin
             )
-          VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12) 
+          VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11) 
           ON CONFLICT (username) DO NOTHING 
           RETURNING *;`,
                   [
@@ -33,7 +32,6 @@ const createUser = async ({ email, username, password, first_name, last_name, ad
                         first_name,
                         last_name,
                         address_line1,
-                        address_line2,
                         city,
                         state,
                         zipcode,
