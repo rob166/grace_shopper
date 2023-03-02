@@ -23,7 +23,7 @@ function App() {
 
       <Routes>
         <Route exact path={'/'} element={
-          <Landing />}
+          <Landing cookie={cookie}/>}
         />
 
         <Route path='/home' element={

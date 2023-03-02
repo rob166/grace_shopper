@@ -18,7 +18,7 @@ const getAllItemsInCart = async (cartId) => {
 
 // const updateCart = async
 
-const createCartItem = async ({ user_id, quantity, total, purchased }) => {
+const createCartItem = async ({ quantity, total, purchased }) => {
   try {
     const {
       rows: [cart],
@@ -29,7 +29,7 @@ const createCartItem = async ({ user_id, quantity, total, purchased }) => {
           cart(quantity, total, purchased)
           VALUES($2,$3,$4)  
           RETURNING *;`,
-      [user_id, quantity, total, purchased]
+      [quantity, total, purchased]
     );
     return cart;
   } catch (error) {
@@ -37,12 +37,26 @@ const createCartItem = async ({ user_id, quantity, total, purchased }) => {
   }
 };
 
-const newCart = async(sessionId)=>{
+const getCartBySessionId = async(sessionId)=>{
+  try{
+    const {rows:[cart]} = await client.query(`
+    SELECT *
+    FROM cart 
+    WHERE session_id = $1`,[sessionId]);
+
+    return cart
+  }catch(error){
+    console.error(error)
+  }
+}
+
+const createNewCart = async(sessionId)=>{
+  console.log(sessionId)
   try{
     const {rows:[cart]} = await client.query(`
     INSERT INTO cart(session_id)
     VALUES($1)
-    RETURNING *`,[sessionId])
+    RETURNING *;`,[sessionId])
 
     return cart
   }catch(error){
@@ -53,5 +67,6 @@ const newCart = async(sessionId)=>{
 module.exports = {
   getAllItemsInCart,
   createCartItem,
-  newCart
+  createNewCart,
+  getCartBySessionId
 };

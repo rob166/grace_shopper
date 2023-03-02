@@ -39,9 +39,12 @@ router.get('/:prodId',async(req,res,next)=>{
 
 router.patch('/:prodId',async(req,res,next)=>{
     try{
-        const pId = req.params.prodId
-        console.log(req.body)
-        // const addedProduct = addProductToCart(cartId, quantity, pId)
+        const pId = parseInt(req.params.prodId)
+        const {cart,quantity} = req.body
+        console.log(pId,cart,quantity)
+   
+        const addedProduct = await addProductToCart(cart, quantity, pId)
+        console.log(addedProduct)
     }catch(error){
         console.error(error)
     }

@@ -16,14 +16,13 @@ const createUser = async ({ email, username, password, first_name, last_name, ad
             first_name,
             last_name,
             address_line1,
-            address_line2,
             city,
             state,
             zipcode,
             phone,
             is_admin
             )
-          VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12) 
+          VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11) 
           ON CONFLICT (username) DO NOTHING 
           RETURNING *;`,
                   [
@@ -33,13 +32,12 @@ const createUser = async ({ email, username, password, first_name, last_name, ad
                         first_name,
                         last_name,
                         address_line1,
-                        address_line2,
                         city,
                         state,
                         zipcode,
                         phone,
                         is_admin]);
-      
+
             return user;
 
       } catch (error) {
@@ -58,7 +56,17 @@ async function getUserByUsername(username) {
             throw error;
       }
 }
+async function getUserByEmail(email) {
+      try {
+            const { rows: [user] } = await client.query(`
+    SELECT * FROM users WHERE email=$1
+    `, [email]);
 
+            return user;
+      } catch (error) {
+            throw error;
+      }
+}
 async function getUser(username, password) {
 
       try {
@@ -73,8 +81,34 @@ async function getUser(username, password) {
       }
 }
 
+async function getAllUsers() {
+      // select and return an array of all users
+      try {
+            const { rows } = await client.query(`SELECT * FROM users;`);
+            return rows;
+      } catch (error) {
+            throw error;
+      }
+}
+
+async function deleteUser(id) {
+      try {
+            const { rows: [user] } = await client.query(`
+          DELETE FROM users
+          WHERE id = $1
+          `, [id]);
+
+            return user;
+      } catch (error) {
+            throw error;
+      }
+}
+
 module.exports = {
       createUser,
       getUserByUsername,
-      getUser
+      getUser,
+      getUserByEmail,
+      getAllUsers,
+      deleteUser
 }
