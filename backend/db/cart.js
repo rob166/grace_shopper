@@ -26,8 +26,8 @@ const createCartItem = async ({ user_id, quantity, total, purchased }) => {
       `
           INSERT
           INTO
-          cart(user_id, quantity, total, purchased)
-          VALUES($1,$2,$3,$4)  
+          cart(quantity, total, purchased)
+          VALUES($2,$3,$4)  
           RETURNING *;`,
       [user_id, quantity, total, purchased]
     );
@@ -36,6 +36,8 @@ const createCartItem = async ({ user_id, quantity, total, purchased }) => {
     console.warn(error);
   }
 };
+
+const newCart = as
 
 module.exports = {
   getAllItemsInCart,
