@@ -39,13 +39,12 @@ const createUser = async ({ email, username, password, first_name, last_name, ad
                         zipcode,
                         phone,
                         is_admin]);
-            if (user) {
-                  delete user.password;
-                  return user;
-            } else {
-                  console.error('name aleady used')
-            }
-      } catch (error) { console.warn(error) }
+      
+            return user;
+
+      } catch (error) {
+            throw error;
+      }
 }
 
 async function getUserByUsername(username) {
@@ -53,21 +52,20 @@ async function getUserByUsername(username) {
             const { rows: [user] } = await client.query(`
     SELECT * FROM users WHERE username=$1
     `, [username]);
-            
+
             return user;
       } catch (error) {
             throw error;
       }
 }
 
-async function getUser( username, password ) {
+async function getUser(username, password) {
 
       try {
             const user = await getUserByUsername(username);
             const hashedPassword = user.password;
             let passwordsMatch = await bcrypt.compare(password, hashedPassword)
             if (passwordsMatch) {
-                  delete user.password;
                   return user;
             }
       } catch (error) {
