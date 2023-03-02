@@ -18,7 +18,7 @@ const getAllItemsInCart = async (cartId) => {
 
 // const updateCart = async
 
-const createCartItem = async ({ user_id, quantity, total, purchased }) => {
+const createCartItem = async ({ quantity, total, purchased }) => {
   try {
     const {
       rows: [cart],
@@ -29,7 +29,7 @@ const createCartItem = async ({ user_id, quantity, total, purchased }) => {
           cart(quantity, total, purchased)
           VALUES($2,$3,$4)  
           RETURNING *;`,
-      [user_id, quantity, total, purchased]
+      [quantity, total, purchased]
     );
     return cart;
   } catch (error) {

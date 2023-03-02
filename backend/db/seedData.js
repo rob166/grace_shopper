@@ -9,8 +9,7 @@ const { createUser,
   getUserByUsername,
   getUser,
   removeProductsFromCart,
-  newCart,
-  getCartBySessionId
+  newCart
 } = require('./');
 const client = require("./client")
 
@@ -43,13 +42,12 @@ async function createTables() {
     await client.query(`
         CREATE TABLE users (
             id SERIAL PRIMARY KEY,
-            email VARCHAR(255) UNIQUE,
+            email VARCHAR(255),
             username VARCHAR(255) UNIQUE,
             password VARCHAR(255) NOT NULL,
             first_name VARCHAR(255),
             last_name VARCHAR(255),
             address_line1 VARCHAR(255),
-            address_line2 VARCHAR(255),
             city VARCHAR(255),
             state VARCHAR(255),
             zipcode INTEGER,
@@ -73,7 +71,8 @@ async function createTables() {
             price DECIMAL NOT NULL,
             quantity INTEGER DEFAULT 0,
             image VARCHAR(255),
-            cart_id INTEGER DEFAULT 0
+            cart_id INTEGER DEFAULT 0,
+            category VARCHAR(255)
           );
                    
     `);
@@ -91,6 +90,7 @@ async function createInitialUsers() {
   console.log("Starting to create users...")
   try {
     const usersToCreate = [
+      { email: "admin@hotmail.com", username: "admin098", password: "admin890", first_name: "admin", last_name: "superuser", address_line1: "1 run the site", city: "Provo", state: "UT", zipcode: 12345, phone: "6789012", is_admin: "true" },
       { email: "danny@hotmail.com", username: "dannyNYC", password: "sandra123", first_name: "danny", last_name: "bonaduci", address_line1: "1 Broadway", address_line2: "Penthouse", city: "NYC", state: "NY", zipcode: 10001, phone: "8675309", is_admin: "true" },
       { email: "caroline@hotmail.com", username: "carolineVA", password: "bertie99", first_name: "caroline", last_name: "burnett", address_line1: "1600 Pennsylvania Ave", address_line2: "Oval Office", city: "Washington", state: "DC", zipcode: 65432, phone: "4018887453", is_admin: "false" },
       { email: "jessica@hotmail.com", username: "jessicaCHICAGO", password: "glamgal123", first_name: "jessica", last_name: "Alvarado", address_line1: "Bears Stadium", address_line2: "Near the water", city: "Chicago", state: "IL", zipcode: 12345, phone: "18006785544", is_admin: "true" },
@@ -156,10 +156,11 @@ async function createInitialProduct() {
 
       },
       {
-        name:"Moscow Mule",
-        description:"Refreshing citrus with a spicey finish",
-        price:29.95,
-        image:'moscowMule.png'
+        name: "Moscow Mule",
+        description: "Refreshing citrus with a spicey finish",
+        price: 29.95,
+        image: 'moscowMule.png'
+
       }
     ]
     const product = await Promise.all(productToCreate.map(createProduct))
@@ -225,6 +226,22 @@ const testUserFuncs = async () => {
     console.log(getUserTest)
     console.log('finished getting user')
 
+    console.log("get user by email")
+    const getUserEmailTest = await getUserByEmail("jessica@hotmail.com");
+    console.log(getUserEmailTest)
+    console.log('finished getting user by email')
+
+    console.log("get all users")
+    const getUsers = await getAllUsers();
+    console.log(getUsers)
+    console.log('finished getting all users')
+
+    console.log("delete a user")
+    const deleteAUser = await deleteUser(4);
+    const getUsers2 = await getAllUsers();
+    console.log(getUsers2)
+    console.log('finished deleting a user')
+
   } catch (error) {
     console.error(error)
   }
@@ -232,17 +249,12 @@ const testUserFuncs = async () => {
 
 testCartFuncs = async ()=>{
   try{
-    console.log('creating new cart');
-    const newCar = await newCart(3);
-    console.log('this the new cart',newCar);
-    console.log('finished creating new cart');
-
-    console.log('getting cart by session id');
-    const cart = await getCartBySessionId(3);
-    console.log('cart from sessonId is',cart);
-    console.log("finished getting cart from session id ");
+    console.log('creating new cart')
+    const newCar = await newCart(3)
+    console.log('this the new cart',newCar)
+    console.log('finished creating new cart')
   }catch(error){
-    console.error(error);
+    console.error(error)
   }
 }
 
