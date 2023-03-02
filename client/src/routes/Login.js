@@ -23,7 +23,7 @@ const Login = () => {
       const json = await response.json();
       console.log(json)
 
-      if (json === null) {
+      if (json.error) {
         alert(json.message);
       } else {
         localStorage.setItem('jwt', json.token);
@@ -35,9 +35,14 @@ const Login = () => {
   }
 
   function logOutButton() {
+    const jwt = localStorage.getItem('jwt');
+    if (!jwt){
+      alert('Already logged out');
+    }else{
     localStorage.clear('jwt');
     alert('Logged out');
     window.location.reload(false);
+  }
   }
 
   return (
