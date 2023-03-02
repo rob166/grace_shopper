@@ -29,11 +29,14 @@ const getAllProducts = async () => {
 
 const getProductById = async (id) => {
       try {
-            const { rows: [product] } = await client.query(`
-            SELECT * 
-            FROM products
-            WHERE product_id = $1`, [id]);
-            return product
+            // const { rows: [product] } = await client.query(`
+            // SELECT * 
+            // FROM products
+            // WHERE product_id = $1`, [id]);
+            const product = await getAllProducts()
+            const productWeGetting = product.filter(p => p.product_id == id)
+            console.log('THIS THE PRODUCT WE GETTING',productWeGetting)
+            return productWeGetting[0]
       } catch (error) {
             console.error(error);
       };
