@@ -9,7 +9,7 @@ const { createUser,
   getUserByUsername,
   getUser,
   removeProductsFromCart,
-  newCart,
+  createNewCart,
   getUserByEmail,
   getAllUsers,
   deleteUser,
@@ -62,7 +62,7 @@ async function createTables() {
             cart_id serial PRIMARY KEY,
             user_id INTEGER REFERENCES users(id),
             quantity INTEGER,
-            session_id INTEGER,
+            session_id TEXT,
             total DECIMAL,
             purchased BOOLEAN DEFAULT false
           );
@@ -250,13 +250,13 @@ const testUserFuncs = async () => {
   }
 }
 
-testCartFuncs = async () => {
-  try {
+testCartFuncs = async ()=>{
+  try{
     console.log('creating new cart')
-    const newCar = await newCart(3)
-    console.log('this the new cart', newCar)
+    const newCar = await createNewCart(3)
+    console.log('this the new cart',newCar)
     console.log('finished creating new cart')
-  } catch (error) {
+  }catch(error){
     console.error(error)
   }
 }

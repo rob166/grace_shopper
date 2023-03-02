@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import SingleProductCss from "../css/SingleProduct.module.css"
-
+import { addProduct } from "../Api.fetches";
 
 const SingleProduct = ({ cookie }) => {
     const [quantity, setQuantity] = useState(0)
@@ -68,7 +68,7 @@ const SingleProduct = ({ cookie }) => {
                         <button
                             className={SingleProductCss.button}
                             onClick={() => {
-
+                                addProduct(cookie.get('cartId'),quantity,cookie.get('productId'))
                             }
                             }>Add to Cart</button>
 
