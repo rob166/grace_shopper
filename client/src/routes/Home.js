@@ -20,7 +20,8 @@ const Home = ({ cookie }) => {
     return (<div className={HomeCss.body}>
         {products ? products.map(p =>
             <Link to='/product-view' className={HomeCss.link}
-                onMouseDown={() => { cookie.set('productId', p.product_id) }}>
+                onMouseDown={() => { cookie.set('productId', p.product_id)
+                                    cookie.set('product',p) }}>
                 <div
 
                     className={HomeCss.product}

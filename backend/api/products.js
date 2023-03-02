@@ -23,8 +23,9 @@ router.get('/',async(req,res,next)=>{
 router.get('/:prodId',async(req,res,next)=>{
     try{
         const prod = req.params.prodId 
-        console.log(prod)
+        // console.log(prod)
         const singleProduct = await getProductById(prod)
+        console.log(singleProduct)
         if(singleProduct){
             res.send(singleProduct)
         }else{
