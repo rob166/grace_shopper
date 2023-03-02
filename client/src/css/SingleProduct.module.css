@@ -1,8 +1,108 @@
-
-.body{
+.body {
     display: flex;
+    justify-content: center;
     height: 90vh;
     background-image: url('../img/backgroundLand.jpg');
     background-color: #cccccc;
     margin: none;
+}
+
+.titleImgDiv {
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titleImgDesc {
+    display: flex;
+    width: 100%;
+}
+
+.imgDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 500px;
+    overflow: hidden;
+
+
+}
+
+.img {
+    height: 500px;
+
+}
+
+.container {
+    border-style: solid;
+    border-color: black;
+    width: 60%;
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(247, 230, 223);
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+}
+
+.num{
+  
+    margin:none;
+    display: flex;
+    justify-content: center;
+}
+.descDiv {
+    margin-top: 1em;
+    padding: 1em;
+    width: 70%;
+    background-color: bisque;
+    height: fit-content;
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+
+}
+
+.priceDesc{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+   
+    align-items: center;
+}
+.price{
+    margin-top: 1em;
+}
+.button{
+    width: 80%;
+    padding: 6px;
+}
+.button:hover{
+    background-color: rgb(203, 181, 153);
+}
+.buttons{
+    margin-top: 2em;
+    background-color: bisque;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    padding: 1em;
+    align-items: center;
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+}
+.buttonPosition{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.quantity {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+}
+.minus{
+    font-size: large;
 }
