@@ -9,7 +9,10 @@ const { createUser,
   getUserByUsername,
   getUser,
   removeProductsFromCart,
-  newCart
+  newCart,
+  getUserByEmail,
+  getAllUsers,
+  deleteUser,
 } = require('./');
 const client = require("./client")
 
@@ -156,10 +159,10 @@ async function createInitialProduct() {
 
       },
       {
-        name:"Moscow Mule",
-        description:"Refreshing citrus with a spicey finish",
-        price:29.95,
-        image:'moscowMule.png'
+        name: "Moscow Mule",
+        description: "Refreshing citrus with a spicey finish",
+        price: 29.95,
+        image: 'moscowMule.png'
 
       }
     ]
@@ -226,18 +229,34 @@ const testUserFuncs = async () => {
     console.log(getUserTest)
     console.log('finished getting user')
 
+    console.log("get user by email")
+    const getUserEmailTest = await getUserByEmail("jessica@hotmail.com");
+    console.log(getUserEmailTest)
+    console.log('finished getting user by email')
+
+    console.log("get all users")
+    const getUsers = await getAllUsers();
+    console.log(getUsers)
+    console.log('finished getting all users')
+
+    console.log("delete a user")
+    const deleteAUser = await deleteUser(4);
+    const getUsers2 = await getAllUsers();
+    console.log(getUsers2)
+    console.log('finished deleting a user')
+
   } catch (error) {
     console.error(error)
   }
 }
 
-testCartFuncs = async ()=>{
-  try{
+testCartFuncs = async () => {
+  try {
     console.log('creating new cart')
     const newCar = await newCart(3)
-    console.log('this the new cart',newCar)
+    console.log('this the new cart', newCar)
     console.log('finished creating new cart')
-  }catch(error){
+  } catch (error) {
     console.error(error)
   }
 }
