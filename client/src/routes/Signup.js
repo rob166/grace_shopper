@@ -1,20 +1,36 @@
-import React from 'react';
+import { React, useState } from 'react';
 import { Link } from "react-router-dom";
 
-const Signup = (props) => {
-  
-  const BASE_URL = props.BASE_URL;
-
-  //const setMyUserName = props.setMyUserName
+const Signup = () => {
+  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [first_name, setFirstName] = useState('');
+  const [last_name, setLastName] = useState('');
+  const [address_line1, setAddress1] = useState('');
+  const [address_line2, setAddress2] = useState('');
+  const [city, setCity] = useState('');
+  const [state, setState] = useState('');
+  const [zipcode, setZipcode] = useState('');
+  const [phone, setPhone] = useState('');
 
   async function signupButton() {
     try {
       const body = JSON.stringify({
-        username: props.username,
-        password: props.password
+        email: email,
+        username: username,
+        password: password,
+        first_name: first_name,
+        last_name: last_name,
+        address_line1: address_line1,
+        address_line2: address_line2,
+        city: city,
+        state: state,
+        zipcode: zipcode,
+        phone: phone
       });
       const response = await
-        fetch(`${BASE_URL}/users/register`, {
+        fetch('http://localhost:3001/api/users/register', {
           method: "POST",
           headers: {
             'Content-Type': 'application/json',
@@ -26,18 +42,11 @@ const Signup = (props) => {
       const json = await response.json();
       console.log(json);
 
-
       if (json.error) {
-
         alert(json.message);
-
       } else {
-
         localStorage.setItem('jwt', json.token);
-        //setMyUserName(props.username)
         alert(json.message);
-        //history.push("/home")
-
       }
     } catch (error) {
       console.error(error);
@@ -47,21 +56,57 @@ const Signup = (props) => {
   return (
     <div>
       <form onSubmit={(e) => {
-        props.setUsername('');
-        props.setPassword('');
+        setEmail('');
+        setUsername('');
+        setPassword('');
+        setFirstName('');
+        setLastName('');
+        setAddress1('');
+        setAddress2('');
+        setCity('');
+        setState('');
+        setZipcode('');
+        setPhone('');
         e.preventDefault();
       }
       }>
         <div>
           <h2>Signup</h2>
 
-          <input required placeholder='Username' value={props.username}
-            onChange={(e) => props.setUsername(e.target.value)} />
+          <input placeholder='Email' value={email}
+            onChange={(e) => setEmail(e.target.value)} />
 
-          <input required placeholder='Password' type={'password'} value={props.password}
-            onChange={(e) => props.setPassword(e.target.value)} />
+          <input placeholder='Username' value={username}
+            onChange={(e) => setUsername(e.target.value)} />
 
-          <button onClick={signupButton}>Enter new username and password</button>
+          <input placeholder='Password' value={password}
+            onChange={(e) => setPassword(e.target.value)} />
+
+          <input placeholder='First Name' value={first_name}
+            onChange={(e) => setFirstName(e.target.value)} />
+
+          <input placeholder='Last Name' value={last_name}
+            onChange={(e) => setLastName(e.target.value)} />
+
+          <input placeholder='Address line 1' value={address_line1}
+            onChange={(e) => setAddress1(e.target.value)} />
+
+          <input placeholder='Address line 2 optional' value={address_line2}
+            onChange={(e) => setAddress2(e.target.value)} />
+
+          <input placeholder='City' value={city}
+            onChange={(e) => setCity(e.target.value)} />
+
+          <input placeholder='State Code' type="text" minLength="2" maxLength="2" value={state}
+            onChange={(e) => setState(e.target.value)} />
+
+          <input placeholder='Zipcode (0-9 only)' minLength="5" maxLength="5" value={zipcode}
+            onChange={(e) => setZipcode(parseInt(e.target.value, 10))} />
+
+          <input placeholder='Phone' value={phone}
+            onChange={(e) => setPhone(e.target.value)} />
+
+          <button onClick={signupButton}>Enter your information</button>
 
           <h3>If user already exists, log in:</h3>
           <Link to="/login"><button>Log In</button></Link>

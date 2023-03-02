@@ -9,16 +9,28 @@
 }
 
 .imgDiv{
-    width: 400px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px; 
     height: 500px; 
     overflow: hidden;
+  
+   
     }
     
-   
+   .link{
+    text-decoration: none;
+    color: rgb(29, 74, 69);
+    background-color: rgba(99, 219, 223, 0.7);
+    margin: 1em;
+    height: 500px;
+   }
 
 .body{
     display: flex;
-    height: 100vh;
+    height: 90vh;
     background-image: url('../img/backgroundLand.jpg');
     background-color: #cccccc;
+    margin: none;
 }

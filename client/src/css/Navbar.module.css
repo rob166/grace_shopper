@@ -1,6 +1,25 @@
 .body{
-    
+    position: top;
     height: 10vh;
     background-color: rgb(30, 76, 78);
     margin: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.title{
+    font-family: 'Gloock', serif;
+    color: coral;
+}
+
+.links{
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.link{
+    font-size: larger;
+    text-decoration: none;
+    color: coral;
 }
