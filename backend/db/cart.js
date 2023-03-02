@@ -37,7 +37,7 @@ const createCartItem = async ({ user_id, quantity, total, purchased }) => {
   }
 };
 
-const newCart = as
+// const newCart = as
 
 module.exports = {
   getAllItemsInCart,
