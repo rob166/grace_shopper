@@ -6,6 +6,7 @@ const SECRET = process.env.JWT_SECRET;
 const { getUserByUsername,
       createUser,
       getUser,
+      getUserByEmail,
 } = require("../db");
 
 router.post('/register', async (req, res, next) => {
@@ -20,51 +21,43 @@ router.post('/register', async (req, res, next) => {
                   error: 'error'
             });
       }
-      
+
       try {
-            //Check to see if user exists or email exists
+            //Check to see if username or email already exists 
             const _user = await getUserByUsername(username);
-console.log(_user);
 
-//console.log(email);
-            if (_user) {
+            const user_ = await getUserByEmail(email);
+
+            if (user_ || _user) {
                   res.send({
-                        error: 'UserExistsError',
-                        message: 'User ' + username + ' is already taken.',
-                        name: 'UserExistsError'
+                        error: 'EmailUsernameExistsError',
+                        message: 'Email ' + email + ' or user ' + username + ' is already taken.',
+                        name: 'EmailUsernameExistsError'
                   });
+            } else {
+                  //If check passed, create user
+                  const user = await createUser({
+                        email,
+                        username,
+                        password,
+                        first_name,
+                        last_name,
+                        address_line1,
+                        city,
+                        state,
+                        zipcode,
+                        phone,
+                        is_admin,
+                  });
+                  //Add token, attaching id and username
+                  const token = jwt.sign({
+                        id: user.id,
+                        username
+                  }, SECRET, {
+                        expiresIn: '4w'
+                  });
+                  res.send({ message: "Thank you for signing up", token, user });
             }
-            // if (_user.email === email) {
-            //       res.send({
-            //             error: 'EmailExistsError',
-            //             message: 'Email ' + email + ' is already taken.',
-            //             name: 'EmailExistsError'
-            //       });
-            // }
-
-            //If check passed, create user
-            const user = await createUser({
-                  email,
-                  username,
-                  password,
-                  first_name,
-                  last_name,
-                  address_line1,
-                  city, 
-                  state,
-                  zipcode,
-                  phone,
-                  is_admin,
-            });
-console.log(user);
-            //Add token, attaching id and username
-            const token = jwt.sign({
-                  id: user.id,
-                  username
-            }, SECRET, {
-                  expiresIn: '4w'
-            });
-            res.send({ message: "Thank you for signing up", token, user });
       } catch (err) {
             console.log('err', err)
       }

@@ -8,7 +8,10 @@ const { createUser,
       getAllItemsInCart,
       getUserByUsername,
       getUser,
-      removeProductsFromCart
+      removeProductsFromCart,
+      getUserByEmail,
+      getAllUsers,
+      deleteUser
 } = require('./');
 const client = require("./client")
 
@@ -216,6 +219,22 @@ async function dropTables() {
         const getUserTest = await getUser("dannyNYC", "sandra123");
         console.log(getUserTest)
         console.log('finished getting user')
+
+        console.log("get user by email")
+        const getUserEmailTest = await getUserByEmail("jessica@hotmail.com");
+        console.log(getUserEmailTest)
+        console.log('finished getting user by email')
+
+        console.log("get all users")
+        const getUsers = await getAllUsers();
+        console.log(getUsers)
+        console.log('finished getting all users')
+
+        console.log("delete a user")
+        const deleteAUser = await deleteUser(4);
+        const getUsers2 = await getAllUsers();
+        console.log(getUsers2)
+        console.log('finished deleting a user')
 
       }catch(error){
         console.error(error)

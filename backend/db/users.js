@@ -37,7 +37,7 @@ const createUser = async ({ email, username, password, first_name, last_name, ad
                         zipcode,
                         phone,
                         is_admin]);
-      
+
             return user;
 
       } catch (error) {
@@ -56,7 +56,17 @@ async function getUserByUsername(username) {
             throw error;
       }
 }
+async function getUserByEmail(email) {
+      try {
+            const { rows: [user] } = await client.query(`
+    SELECT * FROM users WHERE email=$1
+    `, [email]);
 
+            return user;
+      } catch (error) {
+            throw error;
+      }
+}
 async function getUser(username, password) {
 
       try {
@@ -71,8 +81,34 @@ async function getUser(username, password) {
       }
 }
 
+async function getAllUsers() {
+      // select and return an array of all users
+      try {
+            const { rows } = await client.query(`SELECT * FROM users;`);
+            return rows;
+      } catch (error) {
+            throw error;
+      }
+}
+
+async function deleteUser(id) {
+      try {
+            const { rows: [user] } = await client.query(`
+          DELETE FROM users
+          WHERE id = $1
+          `, [id]);
+
+            return user;
+      } catch (error) {
+            throw error;
+      }
+}
+
 module.exports = {
       createUser,
       getUserByUsername,
-      getUser
+      getUser,
+      getUserByEmail,
+      getAllUsers,
+      deleteUser
 }
