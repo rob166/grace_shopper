@@ -14,7 +14,7 @@ const SingleProduct = ({ cookie }) => {
     }
 
     const minusFromQuantity = () => {
-        if (quantity == 0) {
+        if (quantity === 0) {
             setQuantity(0)
         } else {
             setQuantity(quantity - 1)
@@ -29,8 +29,8 @@ const SingleProduct = ({ cookie }) => {
 
                 <div className={SingleProductCss.titleImgDiv}>
 
-                    <div>
-                        <h1>{product.name}</h1>
+                    <div className={SingleProductCss.title}>
+                        {product.name}
                     </div>
 
                     <div
@@ -48,7 +48,7 @@ const SingleProduct = ({ cookie }) => {
                 <div className={SingleProductCss.priceDesc}>
 
                     <div className={SingleProductCss.descDiv}>
-                        <h2>{product.description}</h2>
+                        {product.description}
                     </div>
 
                     <div className={SingleProductCss.buttons}>

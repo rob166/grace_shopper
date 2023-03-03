@@ -1,5 +1,6 @@
 
 
+
 export const showProducts = async () => {
     try {
         const resp = await fetch('http://localhost:3001/api/products', {
@@ -79,3 +80,21 @@ export const makeNewCart = async (sessionId) => {
     }
 }
 
+export const showItemsInCart = async(cartId)=>{
+    try{
+        const resp = await fetch(`http://localhost:3001/api/cart/${cartId}`,{
+        headers: {
+            'Content-Type': 'application/json',
+        },
+     })
+
+     const json = await resp.json()
+
+     console.log(json)
+
+     return json
+
+    }catch(error){
+        console.error(error)
+    }
+}

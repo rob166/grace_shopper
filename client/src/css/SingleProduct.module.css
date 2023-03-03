@@ -6,7 +6,10 @@
     background-color: #cccccc;
     margin: none;
 }
-
+.title{
+    font-size: 2em;
+    font-family: 'Gloock', serif;
+}
 .titleImgDiv {
     margin-top: 1em;
     display: flex;
@@ -54,6 +57,8 @@
     justify-content: center;
 }
 .descDiv {
+    font-family: 'Gloock', serif;
+    font-size: 1.5em;
     margin-top: 1em;
     padding: 1em;
     width: 70%;
