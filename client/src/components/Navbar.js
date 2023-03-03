@@ -1,10 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import NavbarCss from '../css/Navbar.module.css'
-const jwt = localStorage.getItem('jwt');
 
 const Navbar = () => {
-
+const jwt = localStorage.getItem('jwt');
   return (
     <div className={NavbarCss.body}>
      
@@ -20,12 +19,12 @@ const Navbar = () => {
          Login/Logout
         </Link>
         {jwt &&
-        <>
+        <> 
         <Link className={NavbarCss.link} to="/profile">
          My Profile
         </Link>
         </>
-        }
+        } 
         </div>
      
     </div>
