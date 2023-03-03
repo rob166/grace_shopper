@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import NavbarCss from '../css/Navbar.module.css'
+const jwt = localStorage.getItem('jwt');
 
 const Navbar = () => {
 
@@ -16,8 +17,15 @@ const Navbar = () => {
           Cart
         </Link>
         <Link className={NavbarCss.link} to="/login">
-         login
+         Login/Logout
         </Link>
+        {jwt &&
+        <>
+        <Link className={NavbarCss.link} to="/profile">
+         My Profile
+        </Link>
+        </>
+        }
         </div>
      
     </div>

@@ -1,5 +1,5 @@
 import { React, useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [email, setEmail] = useState('');
@@ -12,6 +12,7 @@ const Signup = () => {
   const [state, setState] = useState('');
   const [zipcode, setZipcode] = useState('');
   const [phone, setPhone] = useState('');
+  const navigate = useNavigate();
 
   async function signupButton() {
     try {
@@ -45,6 +46,7 @@ const Signup = () => {
       } else {
         localStorage.setItem('jwt', json.token);
         alert(json.message);
+        navigate("/home");
       }
     } catch (error) {
       console.error(error);
