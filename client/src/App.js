@@ -19,7 +19,7 @@ function App() {
   return (
     <div className="App">
 
-      <Routes>
+      <Routes> 
         <Route exact path={'/'} element={
           <Landing cookie={cookie} />}
         />
