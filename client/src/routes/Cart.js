@@ -29,16 +29,17 @@ const Cart = ({ cookie }) => {
 
     useEffect(() => {
         getCartItems()
+        // eslint-disable-next-line
     }, [])
 
     return (
         <div className={CartCss.body}>
             <form className={CartCss.container}>
                 {cart ? cart.map(p => p.quantity > 0 ?
-                    <div 
-                    className={CartCss.productDiv} 
-                    key={crypto.randomUUID()}
-                    value={p.quantity}>
+                    <div
+                        className={CartCss.productDiv}
+                        key={crypto.randomUUID()}
+                        value={p.quantity}>
                         <div className={CartCss.name}>{p.name}</div>
 
                         <div className={CartCss.buttonImg}>
@@ -55,7 +56,7 @@ const Cart = ({ cookie }) => {
                                     <div
                                         className={CartCss.quantity}>
                                         <button onClick={() => { addToQuantity() }}>+</button>
-                                        <div className={CartCss.num}>{quantity + p.quantity >= 0 ? quantity + p.quantity : 0}</div>
+                                        <div className={CartCss.num}> {quantity + p.quantity >= 0 ? quantity + p.quantity : 0} </div>
                                         <button className={CartCss.minus} onClick={() => { minusFromQuantity() }}>-</button>
                                     </div>
 
