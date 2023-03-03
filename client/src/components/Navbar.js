@@ -16,7 +16,7 @@ const Navbar = () => {
           Cart
         </Link>
         <Link className={NavbarCss.link} to="/login">
-         login
+         Login
         </Link>
         </div>
      
@@ -25,4 +25,3 @@ const Navbar = () => {
 }
 
 export default Navbar;
-
