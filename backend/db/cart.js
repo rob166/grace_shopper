@@ -16,8 +16,6 @@ const getAllItemsInCart = async (cartId) => {
   }
 };
 
-// const updateCart = async
-
 const createCartItem = async ({ quantity, total, purchased }) => {
   try {
     const {
@@ -33,40 +31,50 @@ const createCartItem = async ({ quantity, total, purchased }) => {
     );
     return cart;
   } catch (error) {
-    console.warn(error);
+    console.error(error);
   }
 };
 
-const getCartBySessionId = async(sessionId)=>{
-  try{
-    const {rows:[cart]} = await client.query(`
+const getCartBySessionId = async (sessionId) => {
+  try {
+    const {
+      rows: [cart],
+    } = await client.query(
+      `
     SELECT *
     FROM cart 
-    WHERE session_id = $1`,[sessionId]);
+    WHERE session_id = $1`,
+      [sessionId]
+    );
 
-    return cart
-  }catch(error){
-    console.error(error)
+    return cart;
+  } catch (error) {
+    console.error(error);
   }
-}
+};
 
-const createNewCart = async(sessionId)=>{
-  console.log(sessionId)
-  try{
-    const {rows:[cart]} = await client.query(`
+const createNewCart = async (sessionId) => {
+  console.log(sessionId);
+  try {
+    const {
+      rows: [cart],
+    } = await client.query(
+      `
     INSERT INTO cart(session_id)
     VALUES($1)
-    RETURNING *;`,[sessionId])
+    RETURNING *;`,
+      [sessionId]
+    );
 
-    return cart
-  }catch(error){
-
+    return cart;
+  } catch (error) {
+    console.error(error);
   }
-}
+};
 
 module.exports = {
   getAllItemsInCart,
   createCartItem,
   createNewCart,
-  getCartBySessionId
+  getCartBySessionId,
 };

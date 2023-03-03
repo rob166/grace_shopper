@@ -6,37 +6,31 @@
     background-image: url('../img/backgroundLand.jpg');
     background-color: #cccccc;
     flex-direction: column;
-
 }
 
 .answerBox {
     background-color: rgb(30, 76, 78);
     padding: 1em;
-    font-family: 'Gloock', serif;
     color: aliceblue;
-
 }
 
-
-
-
 .answerBoxText {
-    font-family: 'Gloock', serif;
     color: aliceblue;
+    font-size: 2em;
 }
 
 .buttons {
     display: flex;
     justify-content: space-around;
-    padding-bottom: .5em;
+    padding: .5em;
 }
 
 .button {
     background-color: rgb(240, 102, 51);
     width: 40%;
-    font-family: 'Gloock', serif;
     border: none;
     color: white;
+    font-size: 1.5em;
 }
 
 .button:hover {
@@ -46,6 +40,5 @@
 
 .header {
     font-size: 5em;
-    font-family: 'Gloock', serif;
     color: rgb(30, 76, 78);
 }

@@ -1,21 +1,24 @@
-const express = require('express')
+const express = require('express');
 const router = express.Router();
-const jwt = require('jsonwebtoken');
-const { JWT_SECRET } = process.env;
-const { getAllItemsInCart, createCartItem, getCartBySessionId, createNewCart } = require("../db");
+const {
+  getAllItemsInCart,
+  createCartItem,
+  getCartBySessionId,
+  createNewCart,
+} = require('../db');
 
 // GET
 
 router.get('/:cartId', async (req, res, next) => {
-    const { cartId } = req.params;
+  const { cartId } = req.params;
 
-    try {
-        const cart = await getAllItemsInCart(cartId);
-        res.send(cart);
-    } catch ({name, message}) {
-        next({name, message})
-    }
-})
+  try {
+    const cart = await getAllItemsInCart(cartId);
+    res.send(cart);
+  } catch (error) {
+    console.error(error);
+  }
+});
 
 // router.get('/cart/:sessionId', async(req,res,next)=>{
 //     try{
@@ -27,21 +30,19 @@ router.get('/:cartId', async (req, res, next) => {
 //         console.error(error)
 //     }
 // })
+
 // POST
 
 router.post('/', async (req, res, next) => {
-    try {
-        const  sessId  = req.body
-        console.log('session id',sessId.session)
-        const newCart = await createNewCart(sessId.session);
-       console.log(newCart)
-        res.send(newCart);
-    } catch ({name, message}) {
-        next({name, message})
-    }
+  try {
+    const sessId = req.body;
+    //console.log('session id', sessId.session);
+    const newCart = await createNewCart(sessId.session);
+    //console.log(newCart);
+    res.send(newCart);
+  } catch (error) {
+    console.error(error);
+  }
 });
-
-
-
 
 module.exports = router;

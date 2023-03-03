@@ -1,16 +1,13 @@
-.img{
- height: 500px;
+.img {
+  height: 500px;
+}
 
+.product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.product{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.title{
-    font-size: 2em;
-    font-family: 'Gloock', serif;
-}
+
 .imgDiv{
     display: flex;
     justify-content: center;
@@ -31,12 +28,12 @@
     height: 500px;
     box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
     0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
-   }
+}
 
-.body{
-    display: flex;
-    height: 90vh;
-    background-image: url('../img/backgroundLand.jpg');
-    background-color: #cccccc;
-    margin: none;
+.body {
+  display: flex;
+  height: 90vh;
+  background-image: url('../img/backgroundLand.jpg');
+  background-color: #cccccc;
+  margin: none;
 }
