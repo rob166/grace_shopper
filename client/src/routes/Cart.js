@@ -1,12 +1,13 @@
 import CartCss from "../css/Cart.module.css"
 import { showItemsInCart } from "../Api.fetches"
 import { useState, useEffect } from 'react'
+import PriceChanger from "../components/PriceChanger"
 
 const Cart = ({ cookie }) => {
 
     const [cart, setCart] = useState([])
-
-    const [quantity, setQuantity] = useState(0)
+    const [edit, setEdit] = useState(false)
+    const [render,setRender]=useState(null)
 
     const getCartItems = async () => {
 
@@ -15,55 +16,35 @@ const Cart = ({ cookie }) => {
         setCart(cartItems)
     }
 
-    const addToQuantity = () => {
-
-        setQuantity(quantity + 1)
-
-    }
-
-    const minusFromQuantity = () => {
-
-        setQuantity(quantity - 1)
-
-    }
+   
 
     useEffect(() => {
         getCartItems()
-    }, [])
+        // eslint-disable-next-line
+    }, [render])
 
     return (
         <div className={CartCss.body}>
+            {edit ? <div className={CartCss.editPage}>  <PriceChanger setEdit={setEdit} setRender={setRender} cookie={cookie}/></div> : null}
             <form className={CartCss.container}>
                 {cart ? cart.map(p => p.quantity > 0 ?
                     <div 
-                    className={CartCss.productDiv} 
-                    key={crypto.randomUUID()}
-                    value={p.quantity}>
-                        <div className={CartCss.name}>{p.name}</div>
+                        className={CartCss.productDiv}
+                        key={crypto.randomUUID()}
+                    >
+                        <div className={CartCss.name}>{p.name}<div>
+
+                            <button className={CartCss.editButton} onMouseOver={()=>cookie.set('product',p)} onClick={() => setEdit(true)}>edit</button>
+                        </div></div>
 
                         <div className={CartCss.buttonImg}>
                             <div className={CartCss.imgDiv}>
                                 <img src={require(`../img/${p.image}`)} alt={'drink'} className={CartCss.img}></img>
                             </div>
                             <div>
-                                <div className={CartCss.buttons}>
 
-                                    <div className={CartCss.price}>
-                                        {p.price * p.quantity}
-                                    </div>
-
-                                    <div
-                                        className={CartCss.quantity}>
-                                        <button onClick={() => { addToQuantity() }}>+</button>
-                                        <div className={CartCss.num}>{quantity + p.quantity >= 0 ? quantity + p.quantity : 0}</div>
-                                        <button className={CartCss.minus} onClick={() => { minusFromQuantity() }}>-</button>
-                                    </div>
-
-                                    <button
-                                        className={CartCss.button}
-                                    >Change Amount</button>
-
-                                </div>
+                                <div>price: $ {Number.parseFloat(p.price * p.quantity).toFixed(2)}</div>
+                                <div>quantity: {p.quantity}</div>
                             </div>
                         </div>
                     </div> : null

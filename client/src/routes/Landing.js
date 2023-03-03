@@ -18,7 +18,7 @@ const Landing = ({ cookie }) => {
             <div className={LandingCss.answerBox}>
                 <h1 className={LandingCss.answerBoxText}>Are you 21 or older?</h1>
                 <div className={LandingCss.buttons}>
-                    <button className={LandingCss.button} onClick={() => { saveNewCart().then(()=>setAdult(true)) }
+                    <button className={LandingCss.button} onClick={() => { saveNewCart().then(() => setAdult(true)) }
                     }>Yes</button>
                     <button className={LandingCss.button}>NO</button>
                 </div>
