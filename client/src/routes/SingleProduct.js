@@ -14,7 +14,7 @@ const SingleProduct = ({ cookie }) => {
     }
 
     const minusFromQuantity = () => {
-        if (quantity == 0) {
+        if (quantity === 0) {
             setQuantity(0)
         } else {
             setQuantity(quantity - 1)
