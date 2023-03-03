@@ -1,11 +1,14 @@
 import { React, useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+
 
   async function loginButton() {
+
     try {
       const response = await
         fetch('http://localhost:3001/api/users/login', {
@@ -22,12 +25,11 @@ const Login = () => {
 
       const json = await response.json();
       console.log(json)
-
-      if (json.error) {
-        alert(json.message);
-      } else {
+      
+      alert(json.message);
+      if (json.token) {
         localStorage.setItem('jwt', json.token);
-        alert(json.message);
+        navigate("/home");
       }
     } catch (error) {
       console.error(error);
@@ -36,13 +38,14 @@ const Login = () => {
 
   function logOutButton() {
     const jwt = localStorage.getItem('jwt');
-    if (!jwt){
+    if (!jwt) {
       alert('Already logged out');
-    }else{
-    localStorage.clear('jwt');
-    alert('Logged out');
-    window.location.reload(false);
-  }
+    } else {
+      localStorage.clear('jwt');
+      alert('Logged out');
+      //window.location.reload(false);
+      navigate("/home");
+    }
   }
 
   return (

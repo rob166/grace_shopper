@@ -77,33 +77,36 @@ router.post('/login', async (req, res, next) => {
             return;
       }
       try {
-            //Check if user exists
+            
             const _user = await getUserByUsername(username);
-            if (!_user) {
-                  res.send({
-                        name: 'IncorrectCredentialsError',
-                        message: 'Username is incorrect'
-                  });
-                  return;
-            }
-            //If user exists check if password correct, if so login
+console.log(_user);
+if (_user) {
             const user = await getUser(username, password);
-            if (!user) {
-                  res.send({
-                        name: 'IncorrectCredentialsError',
-                        message: 'Password is incorrect'
-                  });
-                  return;
-            } else {
+console.log(user);
+            if (user) {
                   const token = jwt.sign({
                         id: user.id,
                         username
                   }, SECRET, {
                         expiresIn: '4w'
                   });
-
                   res.send({ user, message: "you're logged in!", token });
             }
+            else {
+            
+                  res.send({
+                        name: 'IncorrectCredentialsError',
+                        message: 'Password is incorrect'
+                  });
+                  
+            }   
+      }   else {
+            res.send({
+                  name: 'IncorrectCredentialsError',
+                  message: 'Username is incorrect'
+            });
+      }
+            
       } catch (err) {
             console.log('err', err)
       }
