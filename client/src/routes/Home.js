@@ -20,13 +20,16 @@ const Home = ({ cookie }) => {
     return (<div className={HomeCss.body}>
         {products ? products.map(p =>
             <Link to='/product-view' className={HomeCss.link}
-                onMouseDown={() => { cookie.set('productId', p.product_id)
-                                    cookie.set('product',p) }}>
+                key={crypto.randomUUID()}
+                onMouseDown={() => {
+                    cookie.set('productId', p.product_id)
+                    cookie.set('product', p)
+                }}>
                 <div
 
                     className={HomeCss.product}
                     key={crypto.randomUUID()}>
-                    <h2> {p.name}</h2>
+                    <div className={HomeCss.title}> {p.name}</div>
                     <div
                         className={HomeCss.imgDiv}>
                         <img

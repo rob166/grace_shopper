@@ -15,12 +15,14 @@
 }
 
 .links{
+    font-family: 'Gloock', serif;
     width: 50%;
     display: flex;
     justify-content: space-around;
 }
 
 .link{
+    font-family: 'Gloock', serif;
     font-size: larger;
     text-decoration: none;
     color: coral;

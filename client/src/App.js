@@ -5,6 +5,7 @@ import Landing from './routes/Landing.js';
 import Home from './routes/Home.js'
 import Signup from './routes/Signup'
 import Login from './routes/Login.js'
+import Cart from './routes/Cart.js'
 import SingleProduct from './routes/SingleProduct.js';
 import { useState } from 'react';
 import Cookies from 'universal-cookie';
@@ -69,6 +70,13 @@ function App() {
           />
         </>}
         />
+
+        <Route path={'/cart'} element={
+          <>
+            <Navbar/>
+            <Cart cookie={cookie}/>
+          </>
+        }/>
       </Routes>
     </div>
   );
