@@ -13,6 +13,7 @@ const { createUser,
   getUserByEmail,
   getAllUsers,
   deleteUser,
+  updateUser
 } = require('./');
 const client = require("./client")
 
@@ -53,7 +54,7 @@ async function createTables() {
             address_line1 VARCHAR(255),
             city VARCHAR(255),
             state VARCHAR(255),
-            zipcode INTEGER,
+            zipcode VARCHAR(255),
             phone VARCHAR(255),
             is_admin BOOLEAN DEFAULT false
           );

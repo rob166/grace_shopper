@@ -7,6 +7,7 @@ import Signup from './routes/Signup'
 import Login from './routes/Login.js'
 import Cart from './routes/Cart.js'
 import Profile from './routes/Profile.js'
+import ProfileEdit from './routes/ProfileEdit.js'
 import SingleProduct from './routes/SingleProduct.js';
 import { useState } from 'react';
 import Cookies from 'universal-cookie';
@@ -70,6 +71,13 @@ function App() {
             <Cart cookie={cookie} />
           </>
         } />
+        <Route exact path={"/profile/edit"} element={
+          <>
+            <Navbar/>
+            <ProfileEdit
+            />
+          </>}
+        />
       </Routes>
     </div>
   );
