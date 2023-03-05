@@ -97,7 +97,7 @@ const Signup = () => {
             onChange={(e) => setState(e.target.value)} />
 
           <input placeholder='Zipcode (0-9 only)' minLength="5" maxLength="5" value={zipcode}
-            onChange={(e) => setZipcode(parseInt(e.target.value, 10))} />
+            onChange={(e) => setZipcode(e.target.value)} />
 
           <input placeholder='Phone' value={phone}
             onChange={(e) => setPhone(e.target.value)} />

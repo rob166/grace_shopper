@@ -7,6 +7,7 @@ const { getUserByUsername,
       createUser,
       getUser,
       getUserByEmail,
+      updateUser
 } = require("../db");
 
 router.post('/register', async (req, res, next) => {
@@ -77,42 +78,82 @@ router.post('/login', async (req, res, next) => {
             return;
       }
       try {
-            
+
             const _user = await getUserByUsername(username);
-console.log(_user);
-if (_user) {
-            const user = await getUser(username, password);
-console.log(user);
-            if (user) {
-                  const token = jwt.sign({
-                        id: user.id,
-                        username
-                  }, SECRET, {
-                        expiresIn: '4w'
-                  });
-                  res.send({ user, message: "you're logged in!", token });
-            }
-            else {
-            
+            console.log(_user);
+            if (_user) {
+                  const user = await getUser(username, password);
+                  console.log(user);
+                  if (user) {
+                        const token = jwt.sign({
+                              id: user.id,
+                              username
+                        }, SECRET, {
+                              expiresIn: '4w'
+                        });
+                        res.send({ user, message: "you're logged in!", token });
+                  }
+                  else {
+
+                        res.send({
+                              name: 'IncorrectCredentialsError',
+                              message: 'Password is incorrect'
+                        });
+
+                  }
+            } else {
                   res.send({
                         name: 'IncorrectCredentialsError',
-                        message: 'Password is incorrect'
+                        message: 'Username is incorrect'
                   });
-                  
-            }   
-      }   else {
-            res.send({
-                  name: 'IncorrectCredentialsError',
-                  message: 'Username is incorrect'
-            });
-      }
-            
+            }
+
       } catch (err) {
             console.log('err', err)
       }
 });
 
+router.get('/user', async (req, res, next) => {
 
+      try {
+            const usertoken = req.headers.authorization;
+            const token = usertoken.split(' ');
+            const decoded = jwt.verify(token[1], SECRET);
+            const user = await getUserByUsername(decoded.username);
+
+            res.send(user);
+
+      } catch (err) {
+            console.log('err', err)
+      }
+});
+
+router.patch('/user/edit', async (req, res, next) => {
+      const { email, first_name, last_name, address_line1, city, state, zipcode, phone } = req.body;
+
+      try {
+            const usertoken = req.headers.authorization;
+            const token = usertoken.split(' ');
+            const decoded = jwt.verify(token[1], SECRET);
+            const id = decoded.id;
+            const updatedUser = await updateUser({
+                  id,
+                  email,
+                  first_name,
+                  last_name,
+                  address_line1,
+                  city,
+                  state,
+                  zipcode,
+                  phone,
+            });
+
+            res.send(updatedUser);
+
+      } catch (err) {
+            console.log('err', err)
+      }
+});
 
 
 module.exports = router;
