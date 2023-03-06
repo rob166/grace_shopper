@@ -44,8 +44,8 @@ export const addProduct = async (cartId, quantity, pId) => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                cart:parseInt(cartId),
-                quantity:quantity
+                cart: parseInt(cartId),
+                quantity: quantity
             })
         });
         const data = await resp.json();
@@ -80,21 +80,43 @@ export const makeNewCart = async (sessionId) => {
     }
 }
 
-export const showItemsInCart = async(cartId)=>{
-    try{
-        const resp = await fetch(`http://localhost:3001/api/cart/${cartId}`,{
-        headers: {
-            'Content-Type': 'application/json',
-        },
-     })
+export const showItemsInCart = async (cartId) => {
+    try {
+        const resp = await fetch(`http://localhost:3001/api/cart/${cartId}`, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
 
-     const json = await resp.json()
+        const json = await resp.json()
 
-     console.log(json)
+        console.log(json)
 
-     return json
+        return json
 
-    }catch(error){
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+export const makePurchase = async (quantity, total, cartId) => {
+    try {
+        const resp = await fetch(`http://localhost:3001/api/cart/${cartId}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                quantity: quantity,
+                total: total,
+            
+
+            }),
+        })
+        const data = await resp.json()
+        console.log(data)
+        return data
+    } catch (error) {
         console.error(error)
     }
 }

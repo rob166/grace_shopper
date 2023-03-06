@@ -5,9 +5,12 @@
     background-image: url('../img/backgroundLand.jpg');
     background-color: #cccccc;
     margin: none;
+    overflow-y: scroll;
+    padding-bottom: 2em;
 }
 
 .container {
+    height: 85vw;
     padding: 1em;
     border-style: solid;
     border-color: black;
@@ -23,6 +26,26 @@
 .img {
     height: 100px;
 
+}
+
+.checkOutDiv{
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+}
+.checkOutButton{
+    padding: .5em;
+    margin-top: 1em;
+    background-color: bisque;
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+
+}
+.checkOutButton:hover{
+    background-color: coral;
+    color: aliceblue;
+    cursor: pointer;
+    box-shadow: none;
 }
 
 .editPage {
@@ -93,7 +116,9 @@
 .editButton {
     color: coral;
 }
-
+.editButton:hover{
+    cursor: pointer;
+}
 .productDiv {
     margin-bottom: 1em;
     box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
@@ -108,4 +133,17 @@
 
 .minusPlus:hover {
     background-color: rgb(202, 168, 127);
+}
+.totalDiv{
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    background-color: coral;
+    height: 2em;
+    align-items: center;
+   
+}
+
+.total{
+    margin-right: .5em;
 }

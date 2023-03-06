@@ -5,6 +5,7 @@ const {
   createCartItem,
   getCartBySessionId,
   createNewCart,
+  checkout
 } = require('../db');
 
 // GET
@@ -44,5 +45,19 @@ router.post('/', async (req, res, next) => {
     console.error(error);
   }
 });
+
+router.patch('/:cartId', async (req, res, next) => {
+  try {
+    const cartId = req.params.cartId
+    const { quantity, total } = req.body
+
+    console.log(quantity, parseInt(total), parseInt(cartId))
+    const finishedCart = await checkout(parseInt(quantity), total, parseInt(cartId))
+    console.log(finishedCart)
+    res.send(finishedCart)
+  } catch (error) {
+    console.error(error)
+  }
+})
 
 module.exports = router;

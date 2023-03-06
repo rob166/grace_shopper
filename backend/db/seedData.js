@@ -23,6 +23,8 @@ async function dropTables() {
   try {
 
     await client.query(`
+        DROP TABLE IF EXISTS previous_products;
+        DROP TABLE IF EXISTS previous_orders;
         DROP TABLE IF EXISTS products;
         DROP TABLE IF EXISTS cart;
         DROP TABLE IF EXISTS users;
@@ -78,6 +80,8 @@ async function createTables() {
             cart_id INTEGER DEFAULT 0,
             category VARCHAR(255)
           );
+
+     
                    
     `);
 
