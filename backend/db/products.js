@@ -32,18 +32,18 @@ const getAllProducts = async () => {
 };
 
 const getProductById = async (id) => {
-      try {
-            // const { rows: [product] } = await client.query(`
-            // SELECT * 
-            // FROM products
-            // WHERE product_id = $1`, [id]);
-            const product = await getAllProducts()
-            const productWeGetting = product.filter(p => p.product_id == id)
-            console.log('THIS THE PRODUCT WE GETTING',productWeGetting)
-            return productWeGetting[0]
-      } catch (error) {
-            console.error(error);
-      };
+  try {
+    // const { rows: [product] } = await client.query(`
+    // SELECT * 
+    // FROM products
+    // WHERE product_id = $1`, [id]);
+    const product = await getAllProducts()
+    const productWeGetting = product.filter(p => p.product_id == id)
+    console.log('THIS THE PRODUCT WE GETTING', productWeGetting)
+    return productWeGetting[0]
+  } catch (error) {
+    console.error(error);
+  };
 };
 
 const addProductToCart = async (cartId, quantity, productId) => {
@@ -65,34 +65,21 @@ const addProductToCart = async (cartId, quantity, productId) => {
   }
 };
 
-const removeProductsFromCart = async (cartId, quantity, productId) => {
+const removeProductsFromCart = async (cartId, productId) => {
   try {
-    if (quantity === 0) {
-      const {
-        rows: [product],
-      } = await client.query(
-        `
+    const {
+      rows: [product],
+    } = await client.query(
+      `
             UPDATE products
             SET quantity = 0, cart_Id = 0
             WHERE cart_id=$1
             AND product_id=$2
             RETURNING *;`,
-        [cartId, productId]
-      );
-      return product;
-    }
-    const {
-      rows: [product],
-    } = await client.query(
-      `
-      UPDATE products 
-      SET quantity = $1
-      WHERE cart_id=$2 
-      AND product_id=$3
-      RETURNING *;`,
-      [cartId, quantity, productId]
+      [cartId, productId]
     );
     return product;
+
   } catch (error) {
     console.error(error);
   }

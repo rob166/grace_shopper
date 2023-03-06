@@ -2,8 +2,6 @@ const express = require('express');
 const router = express.Router();
 const {
   getAllItemsInCart,
-  createCartItem,
-  getCartBySessionId,
   createNewCart,
   checkout
 } = require('../db');

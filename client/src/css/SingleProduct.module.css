@@ -5,6 +5,8 @@
     background-image: url('../img/backgroundLand.jpg');
     background-color: #cccccc;
     margin: none;
+    overflow-y: scroll;
+    padding-bottom: 2em;
 }
 .title{
     font-size: 2em;
@@ -41,9 +43,12 @@
 .container {
     border-style: solid;
     border-color: black;
-    width: 60%;
+    width: 70%;
+    height: 90vh;
+    overflow-y: scroll;
     margin-top: 1em;
     display: flex;
+    padding-bottom: 1em;
     flex-direction: column;
     background-color: rgb(247, 230, 223);
     box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
@@ -62,6 +67,7 @@
     margin-top: 1em;
     padding: 1em;
     width: 70%;
+    font-weight: lighter;
     background-color: bisque;
     height: fit-content;
     box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
