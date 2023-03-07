@@ -1,6 +1,7 @@
 import { React, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import SignupCss from '../css/Signup.module.css'
+import { NotificationManager } from 'react-notifications';
 
 const Signup = ({ cookie }) => {
   const [email, setEmail] = useState('');
@@ -43,12 +44,12 @@ const Signup = ({ cookie }) => {
       console.log(json);
 
       if (json.error) {
-        alert(json.message);
+        NotificationManager.error(json.message);
       } else {
         localStorage.setItem('jwt', json.token);
         cookie.set('userId', json.user.id);
         cookie.set('isAdmin', json.user.is_admin);
-        alert(json.message);
+        NotificationManager.info(json.message);
         navigate("/home");
       }
     } catch (error) {

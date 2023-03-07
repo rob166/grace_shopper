@@ -11,6 +11,8 @@ import ProfileEdit from './routes/ProfileEdit.js'
 import SingleProduct from './routes/SingleProduct.js';
 import { useState } from 'react';
 import Cookies from 'universal-cookie';
+import 'react-notifications/lib/notifications.css';
+import { NotificationContainer } from 'react-notifications';
 
 
 function App() {
@@ -79,6 +81,7 @@ function App() {
           </>}
         />
       </Routes>
+      <NotificationContainer />
     </div>
   );
 }
