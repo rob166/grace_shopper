@@ -2,7 +2,7 @@ import CartCss from "../css/Cart.module.css"
 import { showItemsInCart } from "../Api.fetches"
 import { useState, useEffect } from 'react'
 import PriceChanger from "../components/PriceChanger"
-import { makePurchase } from "../Api.fetches"
+import { makePurchase,userPurchase } from "../Api.fetches"
 const Cart = ({ cookie }) => {
 
     const [cart, setCart] = useState([])
@@ -94,7 +94,10 @@ const Cart = ({ cookie }) => {
                 <div className={CartCss.checkOutDiv}>
                     <buttion
                         className={CartCss.checkOutButton}
-                        onClick={() => { makePurchase(cartQuantity, cartTotal, cartId) }}
+                        onClick={() => { 
+                            makePurchase(cartQuantity, cartTotal, cartId).then(()=> userPurchase(cartId,2))
+                           
+                            }}
                     >Check Out</buttion>
                 </div>
             </form>
