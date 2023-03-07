@@ -202,7 +202,7 @@ async function createInitialProduct() {
         price:29.95,
         image:"colt45.png",
         category: "malt liquor"
-      }
+      },
       {
         name:"Shirley Temple",
         description:"Ah, the Shirley Temple, the perfect drink for those who want to feel like they're sipping on a fancy cocktail, but still need to wake up for their 9am meeting tomorrow. It's like the non-alcoholic version of a fancy ball gown - sure, you could go to the party in sweats, but where's the fun in that? So take a sip, close your eyes, and let the grenadine transport you to a world of class and sophistication, without any of the pesky hangovers. Who needs champagne when you have a Shirley Temple, am I right?",
