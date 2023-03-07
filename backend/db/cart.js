@@ -136,6 +136,18 @@ const inserIntoBoughtItems = async(item)=>{
   }
 }
 
+const getAllPreviousUserCarts = async(userId)=>{
+  try{
+    const {rows : carts} = await client.query(`
+    SELECT * 
+    FROM previous_products 
+    WHERE user_id=$1`,[userId])
+
+    carts.map
+  }catch(error){
+    console.error(error)
+  }
+}
 // const attachPprodToPorder = async()=>{
 
 // }
