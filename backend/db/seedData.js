@@ -23,6 +23,7 @@ async function dropTables() {
   try {
 
     await client.query(`
+      
         DROP TABLE IF EXISTS previous_products;
         DROP TABLE IF EXISTS previous_orders;
         DROP TABLE IF EXISTS products;
@@ -63,10 +64,10 @@ async function createTables() {
 
           CREATE TABLE cart (
             cart_id serial PRIMARY KEY,
-            user_id INTEGER REFERENCES users(id),
+            user_id INTEGER,
             quantity INTEGER,
             session_id TEXT,
-            total DECIMAL,
+            total VARCHAR(255),
             purchased BOOLEAN DEFAULT false
           );
 
@@ -80,6 +81,23 @@ async function createTables() {
             cart_id INTEGER DEFAULT 0,
             category VARCHAR(255)
           );
+
+          CREATE TABLE previous_orders(
+            user_id INTEGER,
+            cart_id INTEGER,
+            date VARCHAR(255),
+            total DECIMAL
+
+          );
+
+         CREATE TABLE previous_products(
+           product_id SERIAL PRIMARY KEY,
+           name VARCHAR(255),
+           quantity INTEGER,
+           cart_id INTEGER,
+           image VARCHAR(255)
+         );
+
             
     `);
 
@@ -295,13 +313,13 @@ const testUserFuncs = async () => {
   }
 }
 
-testCartFuncs = async ()=>{
-  try{
+testCartFuncs = async () => {
+  try {
     console.log('creating new cart')
     const newCar = await createNewCart(3)
-    console.log('this the new cart',newCar)
+    console.log('this the new cart', newCar)
     console.log('finished creating new cart')
-  }catch(error){
+  } catch (error) {
     console.error(error)
   }
 }

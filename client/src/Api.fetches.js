@@ -109,15 +109,33 @@ export const makePurchase = async (quantity, total, cartId) => {
             },
             body: JSON.stringify({
                 quantity: quantity,
-                total: total,
-            
-
+                total: total
             }),
         })
         const data = await resp.json()
         console.log(data)
-        return data
+        // return data
     } catch (error) {
+        console.error(error)
+    }
+}
+
+export const userPurchase = async(cartId,userId)=>{
+    try{
+        const resp = await fetch(`http://localhost:3001/api/cart/${cartId}`,{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json",
+            },
+            body:JSON.stringify({
+               userId:userId 
+            })
+           
+        })
+        const data = await resp.json()
+        console.log(data)
+
+    }catch(error){
         console.error(error)
     }
 }
