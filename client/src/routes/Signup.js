@@ -1,7 +1,8 @@
 import { React, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
+import SignupCss from '../css/Signup.module.css'
 
-const Signup = ({cookie}) => {
+const Signup = ({ cookie }) => {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -56,7 +57,7 @@ const Signup = ({cookie}) => {
   }
 
   return (
-    <div>
+    <div className={SignupCss.body}>
       <form onSubmit={(e) => {
         setEmail('');
         setUsername('');
@@ -71,47 +72,53 @@ const Signup = ({cookie}) => {
         e.preventDefault();
       }
       }>
-        <div>
-          <h2>Signup</h2>
+        <div className={SignupCss.answerBox}>
 
-          <input placeholder='Email' value={email}
+          <h2 className={SignupCss.answerBoxText}>Signup</h2>
+          <div className={SignupCss.input}>
+            <div className={SignupCss.inputColumn}>
+          <input className={SignupCss.inputBox} placeholder='Email' value={email}
             onChange={(e) => setEmail(e.target.value)} />
 
-          <input placeholder='Username' value={username}
+          <input className={SignupCss.inputBox} placeholder='Username' value={username}
             onChange={(e) => setUsername(e.target.value)} />
 
-          <input placeholder='Password' value={password}
+          <input className={SignupCss.inputBox} placeholder='Password' value={password}
             onChange={(e) => setPassword(e.target.value)} />
 
-          <input placeholder='First Name' value={first_name}
+          <input className={SignupCss.inputBox} placeholder='First Name' value={first_name}
             onChange={(e) => setFirstName(e.target.value)} />
 
-          <input placeholder='Last Name' value={last_name}
+          <input className={SignupCss.inputBox} placeholder='Last Name' value={last_name}
             onChange={(e) => setLastName(e.target.value)} />
-
-          <input placeholder='Address' value={address_line1}
+</div>
+<div className={SignupCss.inputColumn}>
+          <input className={SignupCss.inputBox} placeholder='Address' value={address_line1}
             onChange={(e) => setAddress1(e.target.value)} />
 
-          <input placeholder='City' value={city}
+          <input className={SignupCss.inputBox} placeholder='City' value={city}
             onChange={(e) => setCity(e.target.value)} />
 
-          <input placeholder='State Code' type="text" minLength="2" maxLength="2" value={state}
+          <input className={SignupCss.inputBox} placeholder='State Code' type="text" minLength="2" maxLength="2" value={state}
             onChange={(e) => setState(e.target.value)} />
 
-          <input placeholder='Zipcode (0-9 only)' minLength="5" maxLength="5" value={zipcode}
+          <input className={SignupCss.inputBox} placeholder='Zipcode (0-9 only)' minLength="5" maxLength="5" value={zipcode}
             onChange={(e) => setZipcode(e.target.value)} />
 
-          <input placeholder='Phone' value={phone}
+          <input className={SignupCss.inputBox} placeholder='Phone' value={phone}
             onChange={(e) => setPhone(e.target.value)} />
-
-          <button onClick={signupButton}>Enter your information</button>
-
-          <h3>Username already exists? Log in here:</h3>
-          <Link to="/login"><button>Log In</button></Link>
-
+            </div>
+            </div>
+          <div className={SignupCss.buttons}>
+          <button className={SignupCss.button} onClick={signupButton}>Enter your information</button>
         </div>
-      </form>
+        <h3 className={SignupCss.answerBoxText}>Username already exists? Log in here:</h3>
+        <div lassName={SignupCss.buttons}>
+          <Link className={SignupCss.buttonLink} to="/login"><button className={SignupCss.buttonLink}>Log In</button></Link>
+        </div>
     </div>
+      </form >
+    </div >
   );
 }
 
