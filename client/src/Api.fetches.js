@@ -138,3 +138,22 @@ export const userPurchase = async(cartId,userId)=>{
         console.error(error)
     }
 }
+
+export const previousUserOrders = async(userId)=>{
+    try{
+
+        const resp = await fetch(`http://localhost:3001/api/cart/user/${userId}`,{
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+    const data = await resp.json()
+
+    console.log(data);
+    return data
+
+    }catch(error){
+        console.error(error)
+    }
+}

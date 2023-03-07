@@ -1,10 +1,12 @@
 import { React, useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
+import { previousUserOrders } from '../Api.fetches';
 
-const Profile = () => {
+const Profile = ({cookie}) => {
   const [user, setUser] = useState('');
+  const [userOrders,setUserOrders] = useState([])
   const jwt = localStorage.getItem('jwt');
-
+  const userId = cookie.get('userId')
   useEffect(() => {
     async function showMyUser() {
       try {
@@ -14,6 +16,8 @@ const Profile = () => {
             'Authorization': `Bearer ${jwt}`
           },
         });
+
+ 
 
         const json = await response.json();
         setUser(json);
@@ -26,6 +30,11 @@ const Profile = () => {
     showMyUser();
   }, [jwt]);
 
+
+  const getUserOrders = async ()=>{
+    const resp = await previousUserOrders(userId)
+    setUserOrders()
+  }
   return (
 
     <div>

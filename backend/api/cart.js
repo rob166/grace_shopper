@@ -4,10 +4,21 @@ const {
   getAllItemsInCart,
   createNewCart,
   checkout,
-  userCheckOut
+  userCheckOut,
+  getAllPreviousUserCarts
 } = require('../db');
 
 // GET
+router.get('/user/:userId', async (req, res, next) => {
+  const userId = req.params.userId;
+  try {
+    const previousOrders = await getAllPreviousUserCarts(userId);
+    res.send(previousOrders);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
 
 router.get('/:cartId', async (req, res, next) => {
   const { cartId } = req.params;
@@ -59,15 +70,15 @@ router.patch('/:cartId', async (req, res, next) => {
   }
 })
 
-router.post('/:cartId',async(req,res,next)=>{
-  try{
+router.post('/:cartId', async (req, res, next) => {
+  try {
     const cartId = req.params.cartId
-    const {userId} = req.body
+    const { userId } = req.body
 
-    const checkedOutCart = await userCheckOut(parseInt(cartId),userId)
-    console.log("this be checked out",checkedOutCart)
+    const checkedOutCart = await userCheckOut(parseInt(cartId), userId)
+    console.log("this be checked out", checkedOutCart)
     res.send(checkedOutCart)
-  }catch(error){
+  } catch (error) {
     console.error(error)
   }
 })
