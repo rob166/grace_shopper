@@ -3,7 +3,8 @@ const router = express.Router();
 const {
   getAllItemsInCart,
   createNewCart,
-  checkout
+  checkout,
+  userCheckOut
 } = require('../db');
 
 // GET
@@ -54,6 +55,19 @@ router.patch('/:cartId', async (req, res, next) => {
     console.log(finishedCart)
     res.send(finishedCart)
   } catch (error) {
+    console.error(error)
+  }
+})
+
+router.post('/:cartId',async(req,res,next)=>{
+  try{
+    const cartId = req.params.cartId
+    const {userId} = req.body
+
+    const checkedOutCart = await userCheckOut(parseInt(cartId),userId)
+    console.log("this be checked out",checkedOutCart)
+    res.send(checkedOutCart)
+  }catch(error){
     console.error(error)
   }
 })

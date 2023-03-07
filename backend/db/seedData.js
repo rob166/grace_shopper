@@ -23,6 +23,7 @@ async function dropTables() {
   try {
 
     await client.query(`
+      
         DROP TABLE IF EXISTS previous_products;
         DROP TABLE IF EXISTS previous_orders;
         DROP TABLE IF EXISTS products;
@@ -63,10 +64,10 @@ async function createTables() {
 
           CREATE TABLE cart (
             cart_id serial PRIMARY KEY,
-            user_id INTEGER REFERENCES users(id),
+            user_id INTEGER,
             quantity INTEGER,
             session_id TEXT,
-            total DECIMAL,
+            total VARCHAR(255),
             purchased BOOLEAN DEFAULT false
           );
 
@@ -80,6 +81,23 @@ async function createTables() {
             cart_id INTEGER DEFAULT 0,
             category VARCHAR(255)
           );
+
+          CREATE TABLE previous_orders(
+            user_id INTEGER,
+            cart_id INTEGER,
+            date VARCHAR(255),
+            total DECIMAL
+
+          );
+
+         CREATE TABLE previous_products(
+           product_id SERIAL PRIMARY KEY,
+           name VARCHAR(255),
+           quantity INTEGER,
+           cart_id INTEGER,
+           image VARCHAR(255)
+         );
+
             
     `);
 
@@ -169,35 +187,35 @@ async function createInitialProduct() {
 
       },
       {
-        name:"Pina Colada",
-        description:"The pinnacle of fruity perfection, Canned Pina Colada is a bold and intense experience like no other. Fragrant undertones of pineapple and coconut swirl together to create a wholly unique beverage that is delicately crisp yet sublimely sweet. It has an exceptional scent with hints of tart citrus and tropical fruits combined with traditional rum flavors that are both complex and delightful in nature. The naturally creamy texture results in the perfect cocktail companion for any pool party or summer get-together. Don't miss out on trying this one-of-a-kind potion - it's like drinking a piece of paradise made up of only the most tantalizing ingredients!",
-        price:29.95,
-        image:'pinaColada.png'
-        
+        name: "Pina Colada",
+        description: "The pinnacle of fruity perfection, Canned Pina Colada is a bold and intense experience like no other. Fragrant undertones of pineapple and coconut swirl together to create a wholly unique beverage that is delicately crisp yet sublimely sweet. It has an exceptional scent with hints of tart citrus and tropical fruits combined with traditional rum flavors that are both complex and delightful in nature. The naturally creamy texture results in the perfect cocktail companion for any pool party or summer get-together. Don't miss out on trying this one-of-a-kind potion - it's like drinking a piece of paradise made up of only the most tantalizing ingredients!",
+        price: 29.95,
+        image: 'pinaColada.png'
+
       },
       {
-        name:"Old Fashioned",
-        description:"A canned old-fashioned—secretly tucked away in a shadowy corner of the counter and known only to those who seek it—is a delightful surprise. Crafted with the utmost care, this unique experience is made with premium ingredients resulted in an incomparable flavor profile. Rich sweetness and tartness meld together to tantalize the senses and balance out both aromas and taste. Those who try it will enjoy its complexity, warmth, and smooth finish that truly evokes the classic old-fashioned cocktail.",
-        price:29.95,
-        image:"oldFashioned.png"
+        name: "Old Fashioned",
+        description: "A canned old-fashioned—secretly tucked away in a shadowy corner of the counter and known only to those who seek it—is a delightful surprise. Crafted with the utmost care, this unique experience is made with premium ingredients resulted in an incomparable flavor profile. Rich sweetness and tartness meld together to tantalize the senses and balance out both aromas and taste. Those who try it will enjoy its complexity, warmth, and smooth finish that truly evokes the classic old-fashioned cocktail.",
+        price: 29.95,
+        image: "oldFashioned.png"
       },
       {
-        name:"Bloody Mary",
-        description:"This canned Bloody Mary is the least exciting thing imaginable. The ingredients list reads like something that could be found in a vending machine, and you'd think that someone would have put some more effort into making it taste better than lukewarm tomato juice with an extra pinch of salt. Despite its name, there's no real hint of anything remotely sweet or spicy, so don't let yourself get your hopes up. To top it off, the texture is watery and thick at the same time – it's really hard to stomach! Don't waste your hard-earned money on this canned disappointment; make one from scratch instead.",
-        price:29.95,
-        image:"bloodyMary.png"
+        name: "Bloody Mary",
+        description: "This canned Bloody Mary is the least exciting thing imaginable. The ingredients list reads like something that could be found in a vending machine, and you'd think that someone would have put some more effort into making it taste better than lukewarm tomato juice with an extra pinch of salt. Despite its name, there's no real hint of anything remotely sweet or spicy, so don't let yourself get your hopes up. To top it off, the texture is watery and thick at the same time – it's really hard to stomach! Don't waste your hard-earned money on this canned disappointment; make one from scratch instead.",
+        price: 29.95,
+        image: "bloodyMary.png"
       },
       {
-        name:"Bahama Mama",
-        description:"Ah, the sublime nectar of a Bahama Mama! This tropical tropicana is a combination of pineapple juice, orange juice, coconut cream, grenadine syrup, and rum. There's nothing more refreshing or delicious to enjoy after a long day in the sun! If you're looking for that taste of paradise without going on a getaway, this canned version provides all the same goodness. Perfect for a barbecue or pool party–just chill and enjoy! The sweetness and lightness of this refresher will have you hooked and begging for more. Sip it straight or as an ingredient in one of your favorite cocktails–it'll bring instant relaxation while leaving behind lots of fruity flavor! So go ahead–indulge yourself with this paradise-in-a-can beverage!",
-        price:29.95,
-        image:"bahamaMama.png"
+        name: "Bahama Mama",
+        description: "Ah, the sublime nectar of a Bahama Mama! This tropical tropicana is a combination of pineapple juice, orange juice, coconut cream, grenadine syrup, and rum. There's nothing more refreshing or delicious to enjoy after a long day in the sun! If you're looking for that taste of paradise without going on a getaway, this canned version provides all the same goodness. Perfect for a barbecue or pool party–just chill and enjoy! The sweetness and lightness of this refresher will have you hooked and begging for more. Sip it straight or as an ingredient in one of your favorite cocktails–it'll bring instant relaxation while leaving behind lots of fruity flavor! So go ahead–indulge yourself with this paradise-in-a-can beverage!",
+        price: 29.95,
+        image: "bahamaMama.png"
       },
       {
-        name:"Colt 45",
-        description:"The delicious, bitter taste of Colt 45 Malt Liquor lingers for what feels like an eternity on your tongue. Accompanied by a robust bouquet of distinctive fresh scents, it is pleasure unlike any other. Its deep, dark and velvety texture is the perfect compliment to its smooth and silky sensation in beer form. As you savour each sip and let the liquid slide down your throat, you know that this particular malt liquor will remain ingrained in your mind forever. Drink as a guilty pleasure or indulge in an evening alone – if only all beverages could deliver such joy!",
-        price:29.95,
-        image:"colt45.png"
+        name: "Colt 45",
+        description: "The delicious, bitter taste of Colt 45 Malt Liquor lingers for what feels like an eternity on your tongue. Accompanied by a robust bouquet of distinctive fresh scents, it is pleasure unlike any other. Its deep, dark and velvety texture is the perfect compliment to its smooth and silky sensation in beer form. As you savour each sip and let the liquid slide down your throat, you know that this particular malt liquor will remain ingrained in your mind forever. Drink as a guilty pleasure or indulge in an evening alone – if only all beverages could deliver such joy!",
+        price: 29.95,
+        image: "colt45.png"
       }
     ]
     const product = await Promise.all(productToCreate.map(createProduct))
@@ -284,13 +302,13 @@ const testUserFuncs = async () => {
   }
 }
 
-testCartFuncs = async ()=>{
-  try{
+testCartFuncs = async () => {
+  try {
     console.log('creating new cart')
     const newCar = await createNewCart(3)
-    console.log('this the new cart',newCar)
+    console.log('this the new cart', newCar)
     console.log('finished creating new cart')
-  }catch(error){
+  } catch (error) {
     console.error(error)
   }
 }

@@ -78,8 +78,8 @@ const checkout = async (quantity, total, cartId) => {
 
     const { rows: [cart] } = await client.query(`
     UPDATE cart
-    SET quantity =$1, total =$2, purchased= true
-    WHERE cart_id = $3 
+    SET quantity=$1, total=$2, purchased=true
+    WHERE cart_id =$3 
     RETURNING *;`, [quantity, total, cartId])
     console.log(cart)
     return cart
@@ -87,10 +87,70 @@ const checkout = async (quantity, total, cartId) => {
     console.error(error)
   }
 }
+
+const userCheckOut = async(cartId,userId)=>{
+  try{
+    console.log(cartId)
+    await addBoughtItems(cartId)
+    const {rows : [cart]} = await client.query(`
+    SELECT * 
+    FROM cart 
+    WHERE cart_id = $1;`,[cartId]);
+    console.log('this is the cart!!!',cart);
+    const date = new Date();
+    const total = cart.total;
+
+    const {rows:[userCart]} = await client.query(`
+    INSERT INTO 
+    previous_orders(user_id,cart_id,date,total)
+    VALUES($1,$2,$3,$4)
+    RETURNING *;
+    `,[userId,cartId,date,total])
+
+    console.log(userCart)
+    return userCart
+
+  }catch(error){
+    console.error(error)
+  }
+};
+
+const addBoughtItems = async(cartId)=>{
+  try{
+    const items = await getAllItemsInCart(cartId);
+    await Promise.all(items.map(i=> inserIntoBoughtItems(i)));
+  }catch(error){
+    console.error(error);
+  }
+};
+
+const inserIntoBoughtItems = async(item)=>{
+  try{
+  const{rows:[product]} = await client.query(`
+  INSERT INTO previous_products(name,quantity,cart_id,image)
+  VAlUES($1,$2,$3,$4)
+  RETURNING *;`,[item.name, item.quantity, item["cart_id"], item.image])
+  console.log("INSTER IN TO BROUGHT ITEMS",product)
+  }catch(error){
+    console.error(error)
+  }
+}
+
+// const attachPprodToPorder = async()=>{
+
+// }
+
+// const getAllPreviousOrders = async()=>{
+
+// }
+
+
 module.exports = {
   getAllItemsInCart,
   createCartItem,
   createNewCart,
   getCartBySessionId,
-  checkout
+  checkout,
+  userCheckOut
+
 };
