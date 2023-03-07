@@ -1,36 +1,88 @@
-import {showSingleProd} from "../Api.fetches"
-import { useEffect, useState } from "react";
+
+import { useState } from "react";
 import SingleProductCss from "../css/SingleProduct.module.css"
+import { addProduct } from "../Api.fetches";
+
+const SingleProduct = ({ cookie }) => {
+    const [quantity, setQuantity] = useState(0)
+
+    const productId = cookie.get('productId')
+    const product = cookie.get('product')
+    console.log(productId)
+    const addToQuantity = () => {
+        setQuantity(quantity + 1)
+    }
+
+    const minusFromQuantity = () => {
+        if (quantity === 0) {
+            setQuantity(0)
+        } else {
+            setQuantity(quantity - 1)
+        }
+    }
+
+    return (product ? <div className={SingleProductCss.body}>
+
+        <div className={SingleProductCss.container}>
+
+            <div className={SingleProductCss.titleImgDesc}>
+
+                <div className={SingleProductCss.titleImgDiv}>
+
+                    <div className={SingleProductCss.title}>
+                        {product.name}
+                    </div>
+
+                    <div
+                        className={SingleProductCss.imgDiv}
+                    >
+                        <img
+                            className={SingleProductCss.img}
+                            src={require(`../img/${product.image}`)}
+                            alt='drink' />
+                    </div>
 
 
-const SingleProduct =({cookie})=>{
+
+                </div>
+                <div className={SingleProductCss.priceDesc}>
+
+                    <div className={SingleProductCss.descDiv}>
+                        {product.description}
+                    </div>
+
+                    <div className={SingleProductCss.buttons}>
+
+                        <div className={SingleProductCss.price}>
+                            {product.price}
+                        </div>
+
+                        <div
+                            className={SingleProductCss.quantity}>
+                            <button
+                                onClick={() => addToQuantity()}>+</button>
+                            <div className={SingleProductCss.num}>{quantity}</div>
+                            <button className={SingleProductCss.minus} onClick={() => minusFromQuantity()}>-</button>
+                        </div>
+
+                        <button
+                            className={SingleProductCss.button}
+                            onClick={() => {
+                                addProduct(cookie.get('cartId'),quantity,cookie.get('productId'))
+                            }
+                            }>Add to Cart</button>
+
+                    </div>
+                </div>
+            </div>
 
 
- const [product,setProduct] = useState({})
- 
+        </div>
+    </div> : <div>no prod</div>
 
- const getProd = async()=>{
-     const prod = await showSingleProd(cookie.get("productId"))
-     
-     setProduct(prod)
- }
- // eslint-disable-next-line
- useEffect(()=>{
-     getProd()
- },[])
-
-
- return(
-     <div className={SingleProductCss.body}>
-     {product?<div >
-     <div>
-         <h2>{product.name}</h2>
-    </div>
-     </div>:<div>no prod</div>}
-     </div>
- )
+    )
 };
 
 export default SingleProduct
 
-   
+

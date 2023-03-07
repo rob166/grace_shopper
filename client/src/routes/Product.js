@@ -3,6 +3,7 @@ import { showProducts } from "../Api.fetches";
 
 const Product = () => {
     const [products, setProducts] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState(null);
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -17,10 +18,18 @@ const Product = () => {
         fetchProducts();
     }, []);
 
+    const filteredProducts = selectedCategory ? products.filter((product) => product.category === selectedCategory) : products;
+
     return (
         <div>
+            <select onChange={(e) => setSelectedCategory(e.target.value)}>
+                <option value="">All Categories</option>
+                <option value="vodka">Vodka</option>
+                <option value="tequila">Tequila</option>
+                <option value="non">Non-Alcoholic</option>
+            </select>
             {products.length > 0 ? (
-                products.map((product) => (
+                filteredProducts.map((product) => (
                     <div key={product.product_id}>
                         <h2>{product.name}</h2>
                         <p>{product.description}</p>

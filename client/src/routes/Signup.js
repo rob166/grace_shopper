@@ -1,5 +1,5 @@
 import { React, useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [email, setEmail] = useState('');
@@ -8,11 +8,11 @@ const Signup = () => {
   const [first_name, setFirstName] = useState('');
   const [last_name, setLastName] = useState('');
   const [address_line1, setAddress1] = useState('');
-  const [address_line2, setAddress2] = useState('');
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
   const [zipcode, setZipcode] = useState('');
   const [phone, setPhone] = useState('');
+  const navigate = useNavigate();
 
   async function signupButton() {
     try {
@@ -23,7 +23,6 @@ const Signup = () => {
         first_name: first_name,
         last_name: last_name,
         address_line1: address_line1,
-        address_line2: address_line2,
         city: city,
         state: state,
         zipcode: zipcode,
@@ -47,6 +46,7 @@ const Signup = () => {
       } else {
         localStorage.setItem('jwt', json.token);
         alert(json.message);
+        navigate("/home");
       }
     } catch (error) {
       console.error(error);
@@ -62,7 +62,6 @@ const Signup = () => {
         setFirstName('');
         setLastName('');
         setAddress1('');
-        setAddress2('');
         setCity('');
         setState('');
         setZipcode('');
@@ -88,11 +87,8 @@ const Signup = () => {
           <input placeholder='Last Name' value={last_name}
             onChange={(e) => setLastName(e.target.value)} />
 
-          <input placeholder='Address line 1' value={address_line1}
+          <input placeholder='Address' value={address_line1}
             onChange={(e) => setAddress1(e.target.value)} />
-
-          <input placeholder='Address line 2 optional' value={address_line2}
-            onChange={(e) => setAddress2(e.target.value)} />
 
           <input placeholder='City' value={city}
             onChange={(e) => setCity(e.target.value)} />
@@ -101,7 +97,7 @@ const Signup = () => {
             onChange={(e) => setState(e.target.value)} />
 
           <input placeholder='Zipcode (0-9 only)' minLength="5" maxLength="5" value={zipcode}
-            onChange={(e) => setZipcode(parseInt(e.target.value, 10))} />
+            onChange={(e) => setZipcode(e.target.value)} />
 
           <input placeholder='Phone' value={phone}
             onChange={(e) => setPhone(e.target.value)} />
