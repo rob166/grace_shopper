@@ -1,7 +1,8 @@
 import { React, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
+import LoginCss from '../css/Login.module.css'
 
-const Login = ({cookie}) => {
+const Login = ({ cookie }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ const Login = ({cookie}) => {
 
       const json = await response.json();
       //console.log(json)
-      
+
       alert(json.message);
       if (json.token) {
         localStorage.setItem('jwt', json.token);
@@ -52,33 +53,37 @@ const Login = ({cookie}) => {
   }
 
   return (
-    <div>
+    <div className={LoginCss.body}>
       <form onSubmit={(e) => {
         setUsername('');
         setPassword('');
         e.preventDefault();
       }}>
-        <div>
-          <h2>Login/Logout</h2>
+        <div className={LoginCss.answerBox}>
+          <h2 className={LoginCss.answerBoxText}>Login</h2>
+          <div className={LoginCss.input}>
+            <input className={LoginCss.inputBox} placeholder='Username' value={username}
+              onChange={(e) => setUsername(e.target.value)} />
 
-          <input placeholder='Username' value={username}
-            onChange={(e) => setUsername(e.target.value)} />
-
-          <input placeholder='Password' value={password}
-            onChange={(e) => setPassword(e.target.value)} />
-
-          <button onClick={loginButton}>Enter username and password</button>
-
-          <div>
-            <button onClick={logOutButton}>Log Out</button>
+            <input className={LoginCss.inputBox} placeholder='Password' value={password}
+              onChange={(e) => setPassword(e.target.value)} />
+          </div>
+          <div className={LoginCss.buttons}>
+            <button className={LoginCss.button} onClick={loginButton}>Enter username and password</button>
           </div>
 
-          <h3>If user not found, create one:</h3>
-          <Link to="/signup"><button>Sign Up</button></Link>
+          <div className={LoginCss.buttons}>
+            <button className={LoginCss.buttonLogOut} onClick={logOutButton}>Log Out</button>
+          </div>
 
+
+          <h3 className={LoginCss.answerBoxText}>Username doesn't exist?  Register here:</h3>
+          <div className={LoginCss.buttons}>
+            <Link className={LoginCss.buttonLink} to="/signup"><button className={LoginCss.buttonLink}>Sign Up</button></Link>
+          </div>
         </div>
-      </form>
-    </div>
+      </form >
+    </div >
   );
 }
 

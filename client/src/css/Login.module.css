@@ -1,0 +1,107 @@
+.body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-image: url('../img/backgroundLand.jpg');
+      background-color: #cccccc;
+      flex-direction: column;
+}
+
+.input {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 90%;
+      padding: 1em;
+      font-size: 20px;
+}
+
+.inputBox {
+      padding-left: 10px;
+      height: 40px;
+      width: 70%;
+      font-size: 20px;
+      border: 2px solid rgb(240, 102, 51);
+      ;
+      border-radius: 4px;
+      color: white;
+
+}
+
+.answerBox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background-color: rgb(30, 76, 78);
+      padding: 1em;
+      color: aliceblue;
+}
+
+.answerBoxText {
+      color: aliceblue;
+      font-size: 2em;
+}
+
+.buttons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: .5em;
+}
+
+.button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgb(240, 102, 51);
+      width: 260px;
+      height: 58px;
+      border: none;
+      color: white;
+      font-size: 20px;
+}
+
+.buttonLogOut {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgb(240, 102, 51);
+      height: 35px;
+      width: 130px;
+      border: none;
+      color: white;
+      font-size: 20px;
+}
+
+.buttonLink {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgb(240, 102, 51);
+      height: 35px;
+      width: 130px;
+      border: none;
+      color: white;
+      font-size: 20px;
+      text-decoration: none;
+}
+
+.button:hover {
+      background-color: rgb(242, 186, 166);
+}
+
+.buttonLink:hover {
+      background-color: rgb(242, 186, 166);
+}
+
+.buttonLogOut:hover {
+      background-color: rgb(242, 186, 166);
+}
+
+.header {
+      font-size: 5em;
+      color: rgb(30, 76, 78);
+      margin-bottom: 1em;
+}

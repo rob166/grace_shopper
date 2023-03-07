@@ -106,7 +106,7 @@ const Signup = ({cookie}) => {
 
           <button onClick={signupButton}>Enter your information</button>
 
-          <h3>If user already exists, log in:</h3>
+          <h3>Username already exists? Log in here:</h3>
           <Link to="/login"><button>Log In</button></Link>
 
         </div>
