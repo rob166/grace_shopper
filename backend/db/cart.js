@@ -140,11 +140,11 @@ const getAllPreviousUserCarts = async (userId) => {
   try {
     const { rows: carts } = await client.query(`
     SELECT * 
-    FROM previous_products 
+    FROM previous_orders 
     WHERE user_id=$1`, [userId])
 
     for (let cart of carts) {
-      cart.products = await attachPprodToPorder(cart.id)
+      cart.products = await attachPprodToPorder(cart["cart_id"])
     }
     console.log(carts)
     return carts

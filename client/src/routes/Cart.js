@@ -16,7 +16,7 @@ const Cart = ({ cookie }) => {
     const cartQuantity = cart.reduce((a, p) => a + p.quantity, 0)
 
     const cartId = cookie.get('cartId')
-    
+    const userId = cookie.get('userId')
    
     const getCartItems = async () => {
 
@@ -95,7 +95,7 @@ const Cart = ({ cookie }) => {
                     <buttion
                         className={CartCss.checkOutButton}
                         onClick={() => { 
-                            makePurchase(cartQuantity, cartTotal, cartId).then(()=> userPurchase(cartId,2))
+                            makePurchase(cartQuantity, cartTotal, cartId).then(()=> userPurchase(cartId,userId))
                            
                             }}
                     >Check Out</buttion>

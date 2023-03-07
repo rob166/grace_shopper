@@ -75,7 +75,7 @@ router.post('/:cartId', async (req, res, next) => {
     const cartId = req.params.cartId
     const { userId } = req.body
 
-    const checkedOutCart = await userCheckOut(parseInt(cartId), userId)
+    const checkedOutCart = await userCheckOut(parseInt(cartId), parseInt(userId))
     console.log("this be checked out", checkedOutCart)
     res.send(checkedOutCart)
   } catch (error) {
