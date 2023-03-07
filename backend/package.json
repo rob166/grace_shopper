@@ -1,7 +1,6 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "seed:dev": "nodemon ./db/seed.js",
@@ -20,9 +19,11 @@
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
     "morgan": "^1.10.0",
-    "pg": "^8.9.0"
+    "pg": "^8.9.0",
+    "start": "^5.1.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
-  }
+  },
+  "description": ""
 }
