@@ -11,23 +11,26 @@
 .input {
       display: flex;
       flex-direction: row;
-      justify-content: space-around;
+      justify-content: center;
       align-items: center;
-      width: 95%;
-      padding: 1em;
+      
+      padding: .9em;
       font-size: 20px;
 }
 .inputColumn {
       display: flex;
       flex-direction: column;
       align-items: center;
+      width: 100%;
+      margin-left: 1.5px;
+      margin-right: 1.5px;
      
       
 }
 .inputBox {
       padding-left: 10px;
-      height: 35px;
-      width: 108%;
+      height: 30px;
+      width: 13em;
       font-size: 20px;
       border: 2px solid rgb(240, 102, 51);
       margin-bottom: 3px;
@@ -42,7 +45,7 @@
       align-items: center;
       flex-direction: column;
       background-color: rgb(30, 76, 78);
-      padding: 1em;
+      padding: .2em;
       color: aliceblue;
 }
 

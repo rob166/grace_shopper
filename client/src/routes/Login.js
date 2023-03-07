@@ -1,6 +1,7 @@
 import { React, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import LoginCss from '../css/Login.module.css'
+import { NotificationManager } from 'react-notifications';
 
 const Login = ({ cookie }) => {
   const [username, setUsername] = useState('');
@@ -27,7 +28,7 @@ const Login = ({ cookie }) => {
       const json = await response.json();
       //console.log(json)
 
-      alert(json.message);
+      NotificationManager.error(json.message);
       if (json.token) {
         localStorage.setItem('jwt', json.token);
         cookie.set('userId', json.user.id);
@@ -42,12 +43,12 @@ const Login = ({ cookie }) => {
   function logOutButton() {
     const jwt = localStorage.getItem('jwt');
     if (!jwt) {
-      alert('Already logged out');
+      NotificationManager.info('Already logged out');
     } else {
       localStorage.clear('jwt');
       cookie.remove('userId');
       cookie.remove('isAdmin');
-      alert('Logged out');
+      NotificationManager.success('Logged out');
       navigate("/home");
     }
   }
