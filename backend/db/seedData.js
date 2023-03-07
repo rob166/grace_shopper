@@ -11,9 +11,7 @@ const { createUser,
   removeProductsFromCart,
   createNewCart,
   getUserByEmail,
-  getAllUsers,
-  deleteUser,
-  updateUser
+  getAllUsers
 } = require('./');
 const client = require("./client")
 
@@ -96,7 +94,7 @@ async function createInitialUsers() {
     const usersToCreate = [
       { email: "admin@hotmail.com", username: "admin098", password: "admin890", first_name: "admin", last_name: "superuser", address_line1: "1 run the site", city: "Provo", state: "UT", zipcode: 12345, phone: "6789012", is_admin: "true" },
       { email: "danny@hotmail.com", username: "dannyNYC", password: "sandra123", first_name: "danny", last_name: "bonaduci", address_line1: "1 Broadway", address_line2: "Penthouse", city: "NYC", state: "NY", zipcode: 10001, phone: "8675309", is_admin: "true" },
-      { email: "caroline@hotmail.com", username: "carolineVA", password: "bertie99", first_name: "caroline", last_name: "burnett", address_line1: "1600 Pennsylvania Ave", address_line2: "Oval Office", city: "Washington", state: "DC", zipcode: 65432, phone: "4018887453", is_admin: "false" },
+      { email: "caroline@hotmail.com", username: "carolineVA", password: "bertie99", first_name: "caroline", last_name: "burnett", address_line1: "1600 Pennsylvania Ave", address_line2: "Oval Office", city: "Washington", state: "DC", zipcode: 65432, phone: "4018887453", is_admin: "true" },
       { email: "jessica@hotmail.com", username: "jessicaCHICAGO", password: "glamgal123", first_name: "jessica", last_name: "Alvarado", address_line1: "Bears Stadium", address_line2: "Near the water", city: "Chicago", state: "IL", zipcode: 12345, phone: "18006785544", is_admin: "true" },
     ]
     const users = await Promise.all(usersToCreate.map(createUser))
@@ -239,12 +237,6 @@ const testUserFuncs = async () => {
     const getUsers = await getAllUsers();
     console.log(getUsers)
     console.log('finished getting all users')
-
-    console.log("delete a user")
-    const deleteAUser = await deleteUser(4);
-    const getUsers2 = await getAllUsers();
-    console.log(getUsers2)
-    console.log('finished deleting a user')
 
   } catch (error) {
     console.error(error)

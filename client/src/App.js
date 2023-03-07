@@ -47,21 +47,21 @@ function App() {
         <Route exact path={"/login"} element={
           <>
             <Navbar/>
-            <Login
+            <Login cookie={cookie}
             />
           </>}
         />
         <Route exact path={"/signup"} element={
           <>
             <Navbar/>
-            <Signup
+            <Signup cookie={cookie}
             />
           </>}
         />
         <Route exact path={"/profile"} element={
           <>
             <Navbar/>
-            <Profile
+            <Profile cookie={cookie}
             />
           </>}
         />

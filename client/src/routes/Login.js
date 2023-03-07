@@ -1,7 +1,7 @@
 import { React, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Login = ({cookie}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -29,6 +29,8 @@ const Login = () => {
       alert(json.message);
       if (json.token) {
         localStorage.setItem('jwt', json.token);
+        cookie.set('userId', json.user.id);
+        cookie.set('isAdmin', json.user.is_admin);
         navigate("/home");
       }
     } catch (error) {
@@ -42,8 +44,9 @@ const Login = () => {
       alert('Already logged out');
     } else {
       localStorage.clear('jwt');
+      cookie.remove('userId');
+      cookie.remove('isAdmin');
       alert('Logged out');
-      //window.location.reload(false);
       navigate("/home");
     }
   }
