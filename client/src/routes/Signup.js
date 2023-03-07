@@ -1,7 +1,7 @@
 import { React, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 
-const Signup = () => {
+const Signup = ({cookie}) => {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -45,6 +45,8 @@ const Signup = () => {
         alert(json.message);
       } else {
         localStorage.setItem('jwt', json.token);
+        cookie.set('userId', json.user.id);
+        cookie.set('isAdmin', json.user.is_admin);
         alert(json.message);
         navigate("/home");
       }
