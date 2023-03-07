@@ -12,6 +12,9 @@ const jwt = localStorage.getItem('jwt');
         <Link className={NavbarCss.link} to="/home">
           Home
         </Link>
+        <Link className={NavbarCss.link} to="/products">
+          Products
+        </Link>
         <Link className={NavbarCss.link} to="/cart">
           Cart
         </Link>

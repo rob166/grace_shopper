@@ -47,4 +47,4 @@ const Home = ({ cookie }) => {
     )
 }
 
-export default Home
+export default Home;

@@ -31,7 +31,7 @@ function App() {
             <Home prodId={prodId} setProdId={setProdId} cookie={cookie} />
           </>
         } />
-        <Route path='/products' element={
+        <Route exact path={'/products'} element={
           <>
             <Navbar/>
             <Product />

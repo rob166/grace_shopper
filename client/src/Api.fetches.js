@@ -15,7 +15,8 @@ export const showProducts = async () => {
         console.log(data)
         return data
     } catch (error) {
-        console.error(error)
+        console.error(error);
+        throw error;
     }
 };
 
