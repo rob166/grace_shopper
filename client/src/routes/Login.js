@@ -43,12 +43,12 @@ const Login = ({ cookie }) => {
   function logOutButton() {
     const jwt = localStorage.getItem('jwt');
     if (!jwt) {
-      NotificationManager.info('Already logged out');
+      NotificationManager.info('You have been logged out.');
     } else {
       localStorage.clear('jwt');
       cookie.remove('userId');
       cookie.remove('isAdmin');
-      NotificationManager.success('Logged out');
+      NotificationManager.success('You are logged out.');
       navigate("/home");
     }
   }
@@ -70,7 +70,7 @@ const Login = ({ cookie }) => {
               onChange={(e) => setPassword(e.target.value)} />
           </div>
           <div className={LoginCss.buttons}>
-            <button className={LoginCss.button} onClick={loginButton}>Enter username and password</button>
+            <button className={LoginCss.button} onClick={loginButton}>Submit</button>
           </div>
 
           <div className={LoginCss.buttons}>
@@ -78,7 +78,7 @@ const Login = ({ cookie }) => {
           </div>
 
 
-          <h3 className={LoginCss.answerBoxText}>Username doesn't exist?  Register here:</h3>
+          <h3 className={LoginCss.answerBoxText}>Not yet a member? Register here:</h3>
           <div className={LoginCss.buttons}>
             <Link className={LoginCss.buttonLink} to="/signup"><button className={LoginCss.buttonLink}>Sign Up</button></Link>
           </div>

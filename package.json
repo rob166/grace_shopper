@@ -1,7 +1,9 @@
 {
   "dependencies": {
+    "luxon": "^3.3.0",
     "nodemon": "^2.0.20",
     "react-cookie": "^4.1.1",
+    "react-notifications": "^1.7.4",
     "react-router": "^6.8.1",
     "universal-cookie": "^4.0.4"
   }
