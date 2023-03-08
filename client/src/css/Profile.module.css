@@ -16,7 +16,14 @@
       padding: 1em;
       font-size: 20px;
 }
-
+.prevOrderButton{
+      margin-top: .5em;
+      color: rgb(240, 102, 51);
+     
+}
+.prevOrderButton:hover{
+      cursor: pointer;
+}
 .inputBox {
       padding-left: 10px;
       height: 40px;
@@ -64,6 +71,8 @@
       font-size: px;
 }
 
+
+
 .buttonLink {
       display: flex;
       align-items: center;
@@ -80,8 +89,10 @@
 
 .button:hover {
       background-color: rgb(242, 186, 166);
+     
 }
 
 .buttonLink:hover {
       background-color: rgb(242, 186, 166);
+      cursor: pointer;
 }

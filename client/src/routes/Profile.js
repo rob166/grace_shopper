@@ -47,9 +47,10 @@ const Profile = () => {
         <div >
         <Link className={ProfileCss.buttonLink} to="/profile/edit" state={user}><button className={ProfileCss.buttonLink}><h3>Edit Profile</h3></button></Link>
       </div>
+      <button className={ProfileCss.prevOrderButton}onClick={()=> navigate('/user/orders')}>view recent orders</button>
       </div>
      
-  <button onClick={()=> navigate('/user/orders')}>view recent orders</button>
+ 
     </div>
 
   )
