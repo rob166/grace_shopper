@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
-import { useNavigate } from 'react-router-dom';
+import { Link ,useNavigate} from "react-router-dom";
 
+import ProfileCss from '../css/Profile.module.css'
 const Profile = () => {
   const [user, setUser] = useState('');
  const navigate = useNavigate()
@@ -34,21 +34,22 @@ const Profile = () => {
 
   return (
 
-    <div>
-      <div>
-        <span><h3>Email: {user.email}</h3></span>
-        <span><h3>First Name: {user.first_name}</h3></span>
-        <span><h3>Last Name: {user.last_name}</h3></span>
-        <span><h3>Address: {user.address_line1}</h3></span>
-        <span><h3>City: {user.city}</h3></span>
-        <span><h3>State: {user.state}</h3></span>
-        <span><h3>Zipcode: {user.zipcode}</h3></span>
-        <span><h3>Phone Number: {user.phone}</h3></span>
+    <div className={ProfileCss.body}>
+      <div className={ProfileCss.answerBox}>
+      <span className={ProfileCss.answerBoxText}>Email: {user.email}</span>
+        <span className={ProfileCss.answerBoxText}>First Name: {user.first_name}</span>
+        <span className={ProfileCss.answerBoxText}>Last Name: {user.last_name}</span>
+        <span className={ProfileCss.answerBoxText}>Address: {user.address_line1}</span>
+        <span className={ProfileCss.answerBoxText}>City: {user.city}</span>
+        <span className={ProfileCss.answerBoxText}>State: {user.state}</span>
+        <span className={ProfileCss.answerBoxText}>Zipcode: {user.zipcode}</span>
+        <span className={ProfileCss.answerBoxText}>Phone Number: {user.phone}</span>
+        <div >
+        <Link className={ProfileCss.buttonLink} to="/profile/edit" state={user}><button className={ProfileCss.buttonLink}><h3>Edit Profile</h3></button></Link>
       </div>
-      <div>
-        <Link to="/profile/edit" state={user}><button><h3>Edit Profile</h3></button></Link>
       </div>
-   
+     
+  <button onClick={()=> navigate('/user/orders')}>view recent orders</button>
     </div>
 
   )

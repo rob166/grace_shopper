@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom';
+import ProfileEditCss from '../css/ProfileEdit.module.css'
 
-const ProfileEdit = (props) => {
+const ProfileEdit = () => {
       const location = useLocation();
       const propsData = location.state;
       const [email, setEmail] = useState(propsData.email);
-      //const [username, setUsername] = useState('');
-      //const [password, setPassword] = useState('');
       const [first_name, setFirstName] = useState(propsData.first_name);
       const [last_name, setLastName] = useState(propsData.last_name);
       const [address_line1, setAddress1] = useState(propsData.address_line1);
