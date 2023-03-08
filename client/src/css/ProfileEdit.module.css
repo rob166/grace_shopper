@@ -13,10 +13,10 @@
       flex-direction: row;
       justify-content: center;
       align-items: center;
-      
       padding: .9em;
       font-size: 20px;
 }
+
 .inputColumn {
       display: flex;
       flex-direction: column;
@@ -24,9 +24,8 @@
       width: 100%;
       margin-left: 1.5px;
       margin-right: 1.5px;
-     
-      
 }
+
 .inputBox {
       padding-left: 10px;
       height: 30px;
@@ -49,28 +48,11 @@
       color: aliceblue;
 }
 
-.answerBoxText {
-      color: aliceblue;
-      font-size: 2em;
-}
-
 .buttons {
       display: flex;
       align-items: center;
       justify-content: center;
       padding: .5em;
-}
-
-.button {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: rgb(240, 102, 51);
-      width: 260px;
-      height: 38px;
-      border: none;
-      color: white;
-      font-size: 20px;
 }
 
 .buttonLink {
@@ -79,7 +61,7 @@
       justify-content: center;
       background-color: rgb(240, 102, 51);
       height: 35px;
-      width: 130px;
+      width: 160px;
       border: none;
       color: white;
       font-size: 20px;
@@ -88,20 +70,7 @@
       margin-bottom: 10px;
 }
 
-.button:hover {
-      background-color: rgb(242, 186, 166);
-}
-
 .buttonLink:hover {
       background-color: rgb(242, 186, 166);
-}
-
-.buttonLogOut:hover {
-      background-color: rgb(242, 186, 166);
-}
-
-.header {
-      font-size: 5em;
-      color: rgb(30, 76, 78);
-      margin-bottom: 1em;
+      cursor: pointer;
 }
