@@ -1,14 +1,13 @@
 import { React, useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
-import { previousUserOrders } from '../Api.fetches';
-import ProfileCss from '../css/Profile.module.css'
+import { Link ,useNavigate} from "react-router-dom";
 
-const Profile = ({ cookie }) => {
+import ProfileCss from '../css/Profile.module.css'
+const Profile = () => {
   const [user, setUser] = useState('');
-  const [userOrders, setUserOrders] = useState([])
-console.log(userOrders)
+ const navigate = useNavigate()
+
   const jwt = localStorage.getItem('jwt');
-  const userId = cookie.get('userId')
+
   useEffect(() => {
     async function showMyUser() {
       try {
@@ -31,14 +30,7 @@ console.log(userOrders)
   }, [jwt]);
 
 
-  const getUserOrders = async () => {
-    const resp = await previousUserOrders(userId)
-    setUserOrders(resp)
-  };
-
-useEffect(()=>{
-  getUserOrders()
-},[])
+ 
 
   return (
 
@@ -56,10 +48,8 @@ useEffect(()=>{
         <Link className={ProfileCss.buttonLink} to="/profile/edit" state={user}><button className={ProfileCss.buttonLink}><h3>Edit Profile</h3></button></Link>
       </div>
       </div>
-      
-      <div>
-        {userOrders?userOrders.map(uo => {return(<div>{uo.total}</div>)}):null}
-      </div>
+     
+  <button onClick={()=> navigate('/user/orders')}>view recent orders</button>
     </div>
 
   )
