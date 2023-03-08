@@ -2,13 +2,15 @@ import CartCss from "../css/Cart.module.css"
 import { showItemsInCart } from "../Api.fetches"
 import { useState, useEffect } from 'react'
 import PriceChanger from "../components/PriceChanger"
-import { makePurchase,userPurchase } from "../Api.fetches"
+import { makePurchase, userPurchase, makeNewCart } from "../Api.fetches"
+import { NotificationManager } from 'react-notifications';
+import { useNavigate } from "react-router"
 const Cart = ({ cookie }) => {
 
     const [cart, setCart] = useState([])
     const [edit, setEdit] = useState(false)
     const [render, setRender] = useState(null)
-
+    const navigate = useNavigate()
     const cartTotal = Number.parseFloat(
         cart.reduce((a, p) => a + p.quantity * p.price, 0)
     ).toFixed(2)
@@ -17,14 +19,18 @@ const Cart = ({ cookie }) => {
 
     const cartId = cookie.get('cartId')
     const userId = cookie.get('userId')
-   
+
     const getCartItems = async () => {
 
         const cartItems = await showItemsInCart(cookie.get('cartId'))
-
         setCart(cartItems)
     }
-
+    const newCart = async () => {
+        const newCart = await makeNewCart(crypto.randomUUID())
+        console.log(newCart)
+        const cartId = newCart.cart_id
+        cookie.set('cartId', cartId)
+    }
     useEffect(() => {
         getCartItems()
         // eslint-disable-next-line
@@ -92,13 +98,18 @@ const Cart = ({ cookie }) => {
                     </div>
                 </div>
                 <div className={CartCss.checkOutDiv}>
-                    <buttion
+                    <button
                         className={CartCss.checkOutButton}
-                        onClick={() => { 
-                            makePurchase(cartQuantity, cartTotal, cartId).then(()=> userPurchase(cartId,userId))
-                           
-                            }}
-                    >Check Out</buttion>
+                        onClick={() => {userId ?
+                            makePurchase(cartQuantity, cartTotal, cartId)
+                                .then(() => userPurchase(cartId, userId))
+                                .then(() => newCart()) :
+                                makePurchase(cartQuantity, cartTotal, cartId)
+                                .then(() => newCart())
+                                NotificationManager.success('order complete')
+                                navigate('/home') 
+                        }}
+                    >Check Out</button>
                 </div>
             </form>
 

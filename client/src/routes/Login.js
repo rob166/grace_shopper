@@ -28,7 +28,7 @@ const Login = ({ cookie }) => {
       const json = await response.json();
       //console.log(json)
 
-      NotificationManager.error(json.message);
+      NotificationManager.success(json.message);
       if (json.token) {
         localStorage.setItem('jwt', json.token);
         cookie.set('userId', json.user.id);

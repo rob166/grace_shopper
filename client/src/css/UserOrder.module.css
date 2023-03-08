@@ -1,0 +1,32 @@
+.body {
+    display: flex;
+    justify-content: center;
+    height: 90vh;
+    background-image: url('../img/backgroundLand.jpg');
+    background-color: #cccccc;
+    margin: none;
+    overflow-y: scroll;
+    padding-bottom: 2em;
+}
+
+.container {
+    height: 85vw;
+    padding: 1em;
+    border-style: solid;
+    border-color: black;
+    width: 60%;
+    margin-top: 1em;
+    display: flex;
+    overflow-y: scroll;
+    flex-direction: column;
+    background-color: rgb(247, 230, 223);
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
+        0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+}
+
+.productDiv {
+    margin-bottom: 1em;
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
+        0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    padding: 1em;
+}

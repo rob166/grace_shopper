@@ -2,6 +2,7 @@
 import { useState } from "react";
 import SingleProductCss from "../css/SingleProduct.module.css"
 import { addProduct } from "../Api.fetches";
+import { NotificationManager } from 'react-notifications';
 
 const SingleProduct = ({ cookie }) => {
     const [quantity, setQuantity] = useState(0)
@@ -69,6 +70,7 @@ const SingleProduct = ({ cookie }) => {
                             className={SingleProductCss.button}
                             onClick={() => {
                                 addProduct(cookie.get('cartId'),quantity,cookie.get('productId'))
+                                NotificationManager.success(`${product.name}, has been added to cart`)
                             }
                             }>Add to Cart</button>
 

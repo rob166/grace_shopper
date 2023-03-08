@@ -9,6 +9,7 @@ import Cart from './routes/Cart.js'
 import Profile from './routes/Profile.js'
 import ProfileEdit from './routes/ProfileEdit.js'
 import SingleProduct from './routes/SingleProduct.js';
+import UserOrders from './routes/UserOrders.js';
 import { useState } from 'react';
 import Cookies from 'universal-cookie';
 import 'react-notifications/lib/notifications.css';
@@ -63,7 +64,7 @@ function App() {
         <Route exact path={"/profile"} element={
           <>
             <Navbar/>
-            <Profile cookie={cookie}
+            <Profile
             />
           </>}
         />
@@ -80,6 +81,13 @@ function App() {
             />
           </>}
         />
+
+      <Route exact path={'/user/orders'} element={
+        <>
+          <Navbar/>
+          <UserOrders cookie={cookie} />
+        </>
+      }/>
       </Routes>
       <NotificationContainer />
     </div>
