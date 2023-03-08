@@ -20,11 +20,12 @@ const UserOrders = ({ cookie }) => {
             <div className={UserOrderCss.container}>
             {userOrders ? userOrders.map(uo => {
                 return (
-                    <div className={UserOrderCss.productDiv}>
+                    <div className={UserOrderCss.productDiv}
+                    key={crypto.randomUUID()}>
                         <div>{ DateTime.fromISO(uo.date).toLocaleString(DateTime.DATE_MED) }</div>
                         <div>
                             {uo.products.map(p => {
-                                return (<div>
+                                return (<div key={crypto.randomUUID()}>
                                     <div>{p.quantity} : {p.name}</div>
                                 
                                     </div>
