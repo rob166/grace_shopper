@@ -1,9 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import NavbarCss from '../css/Navbar.module.css'
+import Cookies from 'universal-cookie';
+import NavbarCss from '../css/Navbar.module.css';
 
 const Navbar = () => {
 const jwt = localStorage.getItem('jwt');
+const cookies = new Cookies();
+const admin = cookies.get('isAdmin');
+
   return (
     <div className={NavbarCss.body}>
      
@@ -27,7 +31,14 @@ const jwt = localStorage.getItem('jwt');
          My Profile
         </Link>
         </>
-        } 
+        }
+        {admin &&
+        <> 
+        <Link className={NavbarCss.link} to="/admin">
+         Admin 
+        </Link>
+        </>
+        }
         </div>
      
     </div>
