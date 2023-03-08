@@ -90,14 +90,17 @@
 
 .button:hover {
       background-color: rgb(242, 186, 166);
+      cursor: pointer;
 }
 
 .buttonLink:hover {
       background-color: rgb(242, 186, 166);
+      cursor: pointer;
 }
 
 .buttonLogOut:hover {
       background-color: rgb(242, 186, 166);
+      cursor: pointer;
 }
 
 .header {
