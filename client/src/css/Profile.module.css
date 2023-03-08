@@ -33,7 +33,6 @@
       margin-right: 3px;
       border-radius: 4px;
       color: white;
-
 }
 
 .answerBox {
@@ -68,7 +67,7 @@
       height: 58px;
       border: none;
       color: white;
-      font-size: px;
+      font-size: 10px;
 }
 
 
@@ -90,6 +89,7 @@
 .button:hover {
       background-color: rgb(242, 186, 166);
      
+      cursor: pointer;
 }
 
 .buttonLink:hover {

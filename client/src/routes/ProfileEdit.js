@@ -42,37 +42,44 @@ const ProfileEdit = () => {
       };
 
       return (
-            <div>
+            <div className={ProfileEditCss.body}>
                   <form onSubmit={(e) => {
                         e.preventDefault();
                   }
                   }>
-                        <div>
-                              <input placeholder='Email' value={email}
-                                    onChange={(e) => setEmail(e.target.value)} />
+                        <div className={ProfileEditCss.answerBox}>
+                              <div className={ProfileEditCss.input}>
+                                    <div className={ProfileEditCss.inputColumn}>
+                                          <input className={ProfileEditCss.inputBox} placeholder='Email' value={email}
+                                                onChange={(e) => setEmail(e.target.value)} />
 
-                              <input placeholder='First Name' value={first_name}
-                                    onChange={(e) => setFirstName(e.target.value)} />
+                                          <input className={ProfileEditCss.inputBox} placeholder='First Name' value={first_name}
+                                                onChange={(e) => setFirstName(e.target.value)} />
 
-                              <input placeholder='Last Name' value={last_name}
-                                    onChange={(e) => setLastName(e.target.value)} />
+                                          <input className={ProfileEditCss.inputBox} placeholder='Last Name' value={last_name}
+                                                onChange={(e) => setLastName(e.target.value)} />
 
-                              <input placeholder='Address' value={address_line1}
-                                    onChange={(e) => setAddress1(e.target.value)} />
+                                          <input className={ProfileEditCss.inputBox} placeholder='Address' value={address_line1}
+                                                onChange={(e) => setAddress1(e.target.value)} />
+                                    </div>
+                                    <div className={ProfileEditCss.inputColumn}>
+                                          <input className={ProfileEditCss.inputBox} placeholder='City' value={city}
+                                                onChange={(e) => setCity(e.target.value)} />
 
-                              <input placeholder='City' value={city}
-                                    onChange={(e) => setCity(e.target.value)} />
+                                          <input className={ProfileEditCss.inputBox} placeholder='State Code' type="text" maxLength="2" value={state}
+                                                onChange={(e) => setState(e.target.value)} />
 
-                              <input placeholder='State Code' type="text" maxLength="2" value={state}
-                                    onChange={(e) => setState(e.target.value)} />
+                                          <input className={ProfileEditCss.inputBox} placeholder='Zipcode (0-9 only)' maxLength="5" value={zipcode}
+                                                onChange={(e) => setZipcode(e.target.value)} />
 
-                              <input placeholder='Zipcode (0-9 only)' maxLength="5" value={zipcode}
-                                    onChange={(e) => setZipcode(e.target.value)} />
-
-                              <input placeholder='Phone' value={phone}
-                                    onChange={(e) => setPhone(e.target.value)} />
-
-                              <Link to="/profile"><button onClick={editMyUser}>Update My Info</button></Link>
+                                          <input className={ProfileEditCss.inputBox} placeholder='Phone' value={phone}
+                                                onChange={(e) => setPhone(e.target.value)} />
+                                    </div>
+                                    
+                              </div>
+                              <div lassName={ProfileEditCss.buttons}>
+                              <Link className={ProfileEditCss.buttonLink} to="/profile"><button className={ProfileEditCss.buttonLink} onClick={editMyUser}>Update My Info</button></Link>
+                              </div>
                         </div>
                   </form>
 

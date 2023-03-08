@@ -78,46 +78,46 @@ const Signup = ({ cookie }) => {
           <h2 className={SignupCss.answerBoxText}>Signup</h2>
           <div className={SignupCss.input}>
             <div className={SignupCss.inputColumn}>
-          <input className={SignupCss.inputBox} placeholder='Email' value={email}
-            onChange={(e) => setEmail(e.target.value)} />
+              <input className={SignupCss.inputBox} placeholder='Email' value={email}
+                onChange={(e) => setEmail(e.target.value)} />
 
-          <input className={SignupCss.inputBox} placeholder='Username' value={username}
-            onChange={(e) => setUsername(e.target.value)} />
+              <input className={SignupCss.inputBox} placeholder='Username' value={username}
+                onChange={(e) => setUsername(e.target.value)} />
 
-          <input className={SignupCss.inputBox} placeholder='Password' value={password}
-            onChange={(e) => setPassword(e.target.value)} />
+              <input className={SignupCss.inputBox} placeholder='Password' value={password}
+                onChange={(e) => setPassword(e.target.value)} />
 
-          <input className={SignupCss.inputBox} placeholder='First Name' value={first_name}
-            onChange={(e) => setFirstName(e.target.value)} />
+              <input className={SignupCss.inputBox} placeholder='First Name' value={first_name}
+                onChange={(e) => setFirstName(e.target.value)} />
 
-          <input className={SignupCss.inputBox} placeholder='Last Name' value={last_name}
-            onChange={(e) => setLastName(e.target.value)} />
-</div>
-<div className={SignupCss.inputColumn}>
-          <input className={SignupCss.inputBox} placeholder='Address' value={address_line1}
-            onChange={(e) => setAddress1(e.target.value)} />
-
-          <input className={SignupCss.inputBox} placeholder='City' value={city}
-            onChange={(e) => setCity(e.target.value)} />
-
-          <input className={SignupCss.inputBox} placeholder='State Code' type="text" minLength="2" maxLength="2" value={state}
-            onChange={(e) => setState(e.target.value)} />
-
-          <input className={SignupCss.inputBox} placeholder='Zipcode (0-9 only)' minLength="5" maxLength="5" value={zipcode}
-            onChange={(e) => setZipcode(e.target.value)} />
-
-          <input className={SignupCss.inputBox} placeholder='Phone' value={phone}
-            onChange={(e) => setPhone(e.target.value)} />
+              <input className={SignupCss.inputBox} placeholder='Last Name' value={last_name}
+                onChange={(e) => setLastName(e.target.value)} />
             </div>
+            <div className={SignupCss.inputColumn}>
+              <input className={SignupCss.inputBox} placeholder='Address' value={address_line1}
+                onChange={(e) => setAddress1(e.target.value)} />
+
+              <input className={SignupCss.inputBox} placeholder='City' value={city}
+                onChange={(e) => setCity(e.target.value)} />
+
+              <input className={SignupCss.inputBox} placeholder='State Code' type="text" minLength="2" maxLength="2" value={state}
+                onChange={(e) => setState(e.target.value)} />
+
+              <input className={SignupCss.inputBox} placeholder='Zipcode (0-9 only)' minLength="5" maxLength="5" value={zipcode}
+                onChange={(e) => setZipcode(e.target.value)} />
+
+              <input className={SignupCss.inputBox} placeholder='Phone' value={phone}
+                onChange={(e) => setPhone(e.target.value)} />
             </div>
+          </div>
           <div className={SignupCss.buttons}>
-          <button className={SignupCss.button} onClick={signupButton}>Enter your information</button>
+            <button className={SignupCss.button} onClick={signupButton}>Enter your information</button>
+          </div>
+          <h3 className={SignupCss.answerBoxText}>Username already exists? Log in here:</h3>
+          <div lassName={SignupCss.buttons}>
+            <Link className={SignupCss.buttonLink} to="/login"><button className={SignupCss.buttonLink}>Log In</button></Link>
+          </div>
         </div>
-        <h3 className={SignupCss.answerBoxText}>Username already exists? Log in here:</h3>
-        <div lassName={SignupCss.buttons}>
-          <Link className={SignupCss.buttonLink} to="/login"><button className={SignupCss.buttonLink}>Log In</button></Link>
-        </div>
-    </div>
       </form >
     </div >
   );
