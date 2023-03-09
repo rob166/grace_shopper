@@ -1,4 +1,5 @@
 import { showItemsInCart } from "../Api.fetches"
+import CheckoutCss from '../css/Checkout.module.css'
 import ReactDOM from 'react-dom';
 import { React, useState, useEffect } from 'react'
 import { makePurchase, userPurchase, makeNewCart } from "../Api.fetches"
@@ -14,7 +15,7 @@ const CARD_OPTIONS = {
     style: {
         base: {
             iconColor: "#c4f0ff",
-            color: "#fff",
+            color: "black",
             fontWieght: 500,
             fontFamily: "Roboto, Open Sans, Segoe UI, sans-serif",
             fontSize: "16px",
@@ -111,8 +112,8 @@ const CheckoutForm = ({ cookie, setTotal }) => {
         }
     };
 
-    return (<div>
-        <div>total  {
+    return (<div className={CheckoutCss.checkoutbox}>
+        <div className={CheckoutCss.price}>total:  ${
             cart ?
                 Number.parseFloat(
                     cart.reduce((a, p) => a + p.quantity * p.price, 0)
@@ -120,7 +121,7 @@ const CheckoutForm = ({ cookie, setTotal }) => {
         }</div>
         <form onSubmit={handleSubmit}>
             <CardElement options={CARD_OPTIONS} />
-            <button type="submit" disabled={!stripe || !elements}>
+            <button className={CheckoutCss.button} type="submit" disabled={!stripe || !elements}>
                 Pay
             </button>
         </form>
