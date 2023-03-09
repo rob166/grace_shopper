@@ -85,6 +85,14 @@
       text-decoration: none;
       margin-top: 5px;
 }
+.userOrderButton{
+      color: coral;
+      margin-top: 1em;
+      
+}
+.userOrderButton:hover{
+      cursor: pointer;
+}
 
 .button:hover {
       background-color: rgb(242, 186, 166);
