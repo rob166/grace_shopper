@@ -4,6 +4,7 @@ require('dotenv').config();
 const stripe = require('stripe')(process.env.STRIPE_SECRET_TEST);
 
 router.post('/', async (req, res, next) => {
+      console.log('you made it to payment')
       let { amount, id } = req.body
       try {
             const payment = await stripe.paymentIntents.create({

@@ -60,10 +60,10 @@ const SingleProduct = ({ cookie }) => {
 
                         <div
                             className={SingleProductCss.quantity}>
-                            <button
+                            <button className={SingleProductCss.minusPlus}
                                 onClick={() => addToQuantity()}>+</button>
                             <div className={SingleProductCss.num}>{quantity}</div>
-                            <button className={SingleProductCss.minus} onClick={() => minusFromQuantity()}>-</button>
+                            <button className={SingleProductCss.minusPlus} onClick={() => minusFromQuantity()}>-</button>
                         </div>
 
                         <button

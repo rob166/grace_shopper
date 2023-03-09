@@ -42,28 +42,15 @@ const Profile = () => {
         </span>
         <span className={ProfileCss.answerBoxText}>City: {user.city}</span>
         <span className={ProfileCss.answerBoxText}>State: {user.state}</span>
-        <span className={ProfileCss.answerBoxText}>
-          Zipcode: {user.zipcode}
-        </span>
-        <span className={ProfileCss.answerBoxText}>
-          Phone Number: {user.phone}
-        </span>
-        <div>
-          <Link
-            className={ProfileCss.buttonLink}
-            to='/profile/edit'
-            state={user}
-          >
-            <button className={ProfileCss.buttonLink}>
-              <h3>Edit Profile</h3>
-            </button>
-          </Link>
-        </div>
+        <span className={ProfileCss.answerBoxText}>Zipcode: {user.zipcode}</span>
+        <span className={ProfileCss.answerBoxText}>Phone Number: {user.phone}</span>
+        <div >
+        <Link className={ProfileCss.buttonLink} to="/profile/edit" state={user}><button className={ProfileCss.buttonLink}><h3>Edit Profile</h3></button></Link>
       </div>
-
-      <button onClick={() => navigate('/user/orders')}>
-        view recent orders
-      </button>
+      <button className={ProfileCss.userOrderButton}onClick={()=> navigate('/user/orders')}>view recent orders</button>
+      </div>
+     
+  
     </div>
   );
 };

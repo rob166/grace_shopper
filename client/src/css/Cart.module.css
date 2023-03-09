@@ -148,3 +148,10 @@
 .total{
     margin-right: .5em;
 }
+.button{
+    width: 80%;
+    padding: 6px;
+}
+.button:hover{
+    background-color: rgb(202, 168, 127);
+}
