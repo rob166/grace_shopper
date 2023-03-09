@@ -34,12 +34,11 @@ function App() {
           }
         />
         <Route
-          exact
-          path={'/products'}
+          exact path={'/products'}
           element={
             <>
               <Navbar />
-              <Product />
+              <Product prodId={prodId} setProdId={setProdId} cookie={cookie} />
             </>
           }
         />
