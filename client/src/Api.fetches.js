@@ -1,6 +1,3 @@
-
-
-
 export const showProducts = async () => {
     try {
         const resp = await fetch('http://localhost:3001/api/products', {
