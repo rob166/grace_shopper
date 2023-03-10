@@ -90,7 +90,7 @@
     padding: 6px;
 }
 .button:hover{
-    background-color: rgb(203, 181, 153);
+    background-color: rgb(202, 168, 127);
 }
 .buttons{
     margin-top: 2em;
@@ -116,4 +116,13 @@
 }
 .minus{
     font-size: large;
+}
+
+.minusPlus {
+    width: 20%;
+    font-size: 30px;
+}
+
+.minusPlus:hover {
+    background-color: rgb(202, 168, 127);
 }
