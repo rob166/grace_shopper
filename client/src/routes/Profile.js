@@ -62,7 +62,7 @@ const Profile = () => {
       </div>
 
       <button onClick={() => navigate('/user/orders')}>
-        view recent orders
+        View your order history
       </button>
     </div>
   );

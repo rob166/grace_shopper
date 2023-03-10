@@ -9,7 +9,18 @@ const {
   getUser,
   getUserByEmail,
   updateUser,
+  getAllUsers,
 } = require('../db');
+
+router.get('/', async (req, res, next) => {
+  try {
+    const user = await getAllUsers();
+    // console.log(user);
+    res.send(user);
+  } catch (err) {
+    console.log('err', err);
+  }
+})
 
 router.post('/register', async (req, res, next) => {
   const {
@@ -122,7 +133,7 @@ router.post('/login', async (req, res, next) => {
             expiresIn: '4w',
           }
         );
-        res.send({ user, message: "you're logged in!", token });
+        res.send({ user, message: "You're logged in!", token });
       } else {
         res.send({
           name: 'IncorrectCredentialsError',
