@@ -18,6 +18,16 @@ const Home = ({ cookie }) => {
 
     return (
         <div className={HomeCss.body}>
+        <div className={HomeCss.image}>
+            
+            <img src={require("../img/cheers.jpeg")} alt="people cheersing"/>
+            <div className={HomeCss.centered}>
+            Be bold enough to use your voice,
+             brave enough to listen to your heart,
+             and strong enough to live the life you have always imagined.
+            </div>
+        </div>
+        <div className={HomeCss.bodyProducts}>
             {products ? products.map(p =>
                 <Link to='/product-view' className={HomeCss.link}
                     key={crypto.randomUUID()}
@@ -41,6 +51,7 @@ const Home = ({ cookie }) => {
                     </div>
                 </Link>)
                 : <div>no work</div>}
+                </div>
         </div>
 
     )

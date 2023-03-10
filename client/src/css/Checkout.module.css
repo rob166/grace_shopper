@@ -43,6 +43,13 @@
     0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
 }
 
+.button:hover{
+    background-color: coral;
+    color: aliceblue;
+    cursor: pointer;
+    box-shadow: none;
+}
+
 .loadingBody{
     width: 100vw;
     height: 100vh;
