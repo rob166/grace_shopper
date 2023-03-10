@@ -200,21 +200,21 @@ async function createInitialProduct() {
       },
       {
         name:"Bloody Mary",
-        description:"This canned Bloody Mary is the least exciting thing imaginable. The ingredients list reads like something that could be found in a vending machine, and you'd think that someone would have put some more effort into making it taste better than lukewarm tomato juice with an extra pinch of salt. Despite its name, there's no real hint of anything remotely sweet or spicy, so don't let yourself get your hopes up. To top it off, the texture is watery and thick at the same time – it's really hard to stomach! Don't waste your hard-earned money on this canned disappointment; make one from scratch instead.",
+        description:"This canned Bloody Mary is the least exciting thing imaginable. The ingredients list reads like something that could be found in a vending machine, and you'd think that someone would have put some more effort into making it taste better than lukewarm tomato juice with an extra pinch of salt. Despite its name, there's no real hint of anything remotely sweet or spicy, so don't let yourself get your hopes up. To top it off, the texture is watery and thick at the same time - it's really hard to stomach! Don't waste your hard-earned money on this canned disappointment; make one from scratch instead.",
         price:29.95,
         image:"bloodyMary.png",
         category: "vodka"
       },
       {
         name:"Bahama Mama",
-        description:"Ah, the sublime nectar of a Bahama Mama! This tropical tropicana is a combination of pineapple juice, orange juice, coconut cream, grenadine syrup, and rum. There's nothing more refreshing or delicious to enjoy after a long day in the sun! If you're looking for that taste of paradise without going on a getaway, this canned version provides all the same goodness. Perfect for a barbecue or pool party–just chill and enjoy! The sweetness and lightness of this refresher will have you hooked and begging for more. Sip it straight or as an ingredient in one of your favorite cocktails–it'll bring instant relaxation while leaving behind lots of fruity flavor! So go ahead–indulge yourself with this paradise-in-a-can beverage!",
+        description:"Ah, the sublime nectar of a Bahama Mama! This tropical tropicana is a combination of pineapple juice, orange juice, coconut cream, grenadine syrup, and rum. There's nothing more refreshing or delicious to enjoy after a long day in the sun! If you're looking for that taste of paradise without going on a getaway, this canned version provides all the same goodness. Perfect for a barbecue or pool party-just chill and enjoy! The sweetness and lightness of this refresher will have you hooked and begging for more. Sip it straight or as an ingredient in one of your favorite cocktails-it'll bring instant relaxation while leaving behind lots of fruity flavor! So go ahead-indulge yourself with this paradise-in-a-can beverage!",
         price:29.95,
         image:"bahamaMama.png",
         category: "rum"
       },
       {
         name:"Colt 45",
-        description:"The delicious, bitter taste of Colt 45 Malt Liquor lingers for what feels like an eternity on your tongue. Accompanied by a robust bouquet of distinctive fresh scents, it is pleasure unlike any other. Its deep, dark and velvety texture is the perfect compliment to its smooth and silky sensation in beer form. As you savour each sip and let the liquid slide down your throat, you know that this particular malt liquor will remain ingrained in your mind forever. Drink as a guilty pleasure or indulge in an evening alone – if only all beverages could deliver such joy!",
+        description:"The delicious, bitter taste of Colt 45 Malt Liquor lingers for what feels like an eternity on your tongue. Accompanied by a robust bouquet of distinctive fresh scents, it is pleasure unlike any other. Its deep, dark and velvety texture is the perfect compliment to its smooth and silky sensation in beer form. As you savour each sip and let the liquid slide down your throat, you know that this particular malt liquor will remain ingrained in your mind forever. Drink as a guilty pleasure or indulge in an evening alone - if only all beverages could deliver such joy!",
         price:29.95,
         image:"colt45.png",
         category: "malt liquor"
@@ -225,6 +225,55 @@ async function createInitialProduct() {
         price:29.95,
         image:"shirleyTemple.png",
         category: "non alcoholic"
+      },
+      {
+        name:"Mickey's Fine Malt Liquor",
+        description:"Oh my goodness, let me tell you about Mickey's Malt Liquor - it is a total game-changer. From the first sip, you are hit with a bold and flavorful profile that just screams satisfaction. It has this intense maltiness that mixes perfectly with just the right amount of sweetness and hoppy bitterness. The aroma alone is enough to make your mouth water and your taste buds dance with anticipation. What I love most about this brew is its smooth texture that goes down easy but leaves behind an enjoyable lingering kick. It's perfect for parties or chilling out with friends, and it pairs oh-so-well with favorite comfort foods like pizza or cheeseburgers. Mickey's Malt Liquor is definitely one of my go-to choices whenever I'm in need of some liquid excitement!",
+        price:13.59,
+        image:"mickeys.jpeg",
+        category: "malt liquor"
+      },
+      {
+        name:"Whiskey Highball",
+        description:"Whiskey Highball is the perfect drink for anyone who likes to unwind with a classic cocktail that packs a punch. It's a simple yet elegant concoction that consists of whiskey, soda water, and lots of ice. Imagine sipping on this tall glass of deliciousness after a long day at work or during happy hour with friends - the smoothness of the whiskey coupled with the refreshing carbonation of soda water will leave you feeling invigorated and energized. The best thing about Whiskey Highball is how versatile it is - you can customize it to your liking by using different types of whiskeys, adding flavored syrups or bitters, or even a squeeze of citrus juice. So go ahead and indulge in a timeless classic that never goes out of style - cheers to Whiskey Highball!",
+        price:18.63,
+        image:"cutwaterHighball.jpeg",
+        category: "whiskey"
+      },
+      {
+        name:"Whiskey Lemon Tea",
+        description:"Oh my goodness, have you ever heard of Whiskey Lemon Tea? This drink is absolutely amazing! Imagine the smooth, rich flavor of whiskey blended with the tart tang of fresh lemon juice and the comforting warmth of hot tea. It's a match made in heaven! The aroma alone is enough to make your mouth water. And let me tell you, one sip will transport you to a cozy spot by the fire on a chilly evening. The whiskey blends perfectly with the bitter tea and zesty lemon, creating a warm and inviting flavor that simply melts away any stress or worries you may have had before taking that first sip. Honestly, if you haven't tried Whiskey Lemon Tea yet, then you're missing out on one of life's greatest pleasures!",
+        price:18.63,
+        image:"cutwaterWhiskeyTea.jpeg",
+        category: "whiskey"
+      },
+      {
+        name:"Classic Margarita",
+        description:"Oh wow, have you ever tried a classic margarita? It's seriously an explosion of flavors in your mouth! I mean, this iconic cocktail is made with top-shelf tequila, citrusy lime juice, and a hint of orange liqueur. The rim of the glass is typically salted to balance out the acidity of the drink which adds a whole new dimension of savory taste to it. Whether you like yours on the rocks or blended with ice, this quintessential Mexican cocktail never disappoints! The refreshing taste and tangy sourness make it perfect for sipping on hot summer days or pairing with spicy food. It's no wonder why margaritas are a crowd pleaser at every party or bar. Honestly, nothing beats the classic margarita recipe when it comes to cocktails that pack a punch and quench your thirst at once. Cheers to enjoying life one sip at a time!",
+        price:12.47,
+        image:"juneShinesMargarita.jpeg",
+        category: "tequila"
+      },
+      {
+        name:"Ranch Water",
+        description:"Ah, Tequila Ranch Water - the ultimate refresher for parched throats and not-so-parched personalities. This tantalizing cocktail truly personifies the wild, untamed spirit of its namesake. A frosty glass adorned with a sliver of lime, filled to the brim with smooth tequila and sparkling soda water, is all it takes to experience a sudden rush of pure joy mixed with a hint of recklessness. Sip on this zesty mixture and let the invigorating blend of citrusy tang and fiery spice awaken your senses in no time at all. If you're looking for something that embodies excitement, spontaneity, and merriment - look no further than Tequila Ranch Water!",
+        price:12.47,
+        image:"juneShinesRanchWater.jpeg",
+        category: "tequila"
+      },
+      {
+        name:"Schlitz Malt Liquor",
+        description:"Oh boy, let's talk about Schlitz Malt Liquor. This beverage is truly exceptional - if by exceptional you mean \"it tastes like pancake syrup mixed with rubbing alcohol.\" With its lovely golden color and thick, syrupy texture, you'll feel like you're drinking a breakfast waffle in liquid form. And don't worry about the alcohol content - at 5.9%, it's just strong enough to make you forget how bad it tastes without completely knocking you out. But hey, at least the can looks cool with its bold red, black, and gold design. Who needs good taste when you've got flashy packaging? Bottoms up!",
+        price:4.99,
+        image:"shlitzMaltLiquor.jpeg",
+        category: "malt liquor"
+      },
+      {
+        name:"Steel Malt Liquor",
+        description:"Steel malt liquor is a premium, high-quality beverage that boasts a rich and full-bodied flavor profile. It is crafted using only the finest ingredients, including top-quality malted barley, hops, and yeast. The result is a product that delivers an unparalleled combination of smoothness, complexity, and robustness. Steel malt liquor is also notable for its distinctive aroma and bold character - traits that make it an excellent accompaniment to grilled meats, seafood dishes or spicy cuisine. Whether enjoyed alone or with friends, steel malt liquor embodies sophistication and class in every sip - making it the ultimate choice for those who demand nothing less than the best from their beverages.",
+        price:32.53,
+        image:"steelMaltLiquor.jpeg",
+        category: "malt liquor"
       }
     ]
     const product = await Promise.all(productToCreate.map(createProduct))
