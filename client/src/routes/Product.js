@@ -20,55 +20,67 @@ const Product = ({ cookie }) => {
         showProd()
     }, []);
 
-    const filteredProducts = selectedCategory ? products.filter((p) => p.category === selectedCategory) : products;
+    const filteredProducts = selectedCategory
+        ? products.filter((p) => p.category === selectedCategory)
+        : products;
 
-    const sortedProducts = sortingOrder === "asc" ? [...filteredProducts].sort((a, b) => a.name.localeCompare(b.name)) : [...filteredProducts].sort((a, b) => b.name.localeCompare(a.name));
+    const sortedProducts = sortingOrder === "asc"
+        ? [...filteredProducts].sort((a, b) => a.name.localeCompare(b.name))
+        : [...filteredProducts].sort((a, b) => b.name.localeCompare(a.name));
 
     return (
         <div className={HomeCss.body}>
-            <div>
-                <select onChange={(e) => setSelectedCategory(e.target.value)}>
-                    <option value="">All Categories</option>
-                    <option value="tequila">Tequila</option>
-                    <option value="vodka">Vodka</option>
-                    <option value="rum">Rum</option>
-                    <option value="whiskey">Whiskey</option>
-                    <option value="malt liquor">Malt Liquor</option>
-                    <option value="non alcoholic">Non-Alcoholic</option>
-                </select>
-                <select onChange={(e) => setSortingOrder(e.target.value)}>
-                    <option value="asc">Sort A-Z</option>
-                    <option value="desc">Sort Z-A</option>
-                </select>
+            <div className={styles.filterContainer}>
+                <div className={styles.filter}>
+                    <label htmlFor="filter-select">Filter by:</label>
+                    <select onChange={(e) => setSelectedCategory(e.target.value)}>
+                        <option value="">All Categories</option>
+                        <option value="tequila">Tequila</option>
+                        <option value="vodka">Vodka</option>
+                        <option value="rum">Rum</option>
+                        <option value="whiskey">Whiskey</option>
+                        <option value="malt liquor">Malt Liquor</option>
+                        <option value="non alcoholic">Non-Alcoholic</option>
+                    </select>
+                </div>
+                <div className={styles.sort}>
+                    <label htmlFor="sort-select">Sort by:</label>
+                    <select onChange={(e) => setSortingOrder(e.target.value)}>
+                        <option value="asc">Sort A-Z</option>
+                        <option value="desc">Sort Z-A</option>
+                    </select>
+                </div>
             </div>
-            {sortedProducts ? (
-                sortedProducts.map((p) => (
-                    <Link
-                        to="/product-view"
-                        className={HomeCss.link}
-                        key={crypto.randomUUID()}
-                        onMouseDown={() => {
-                            cookie.set("productId", p.product_id);
-                            cookie.set("product", p);
-                        }}
-                    >
-                        <div className={HomeCss.product} key={crypto.randomUUID()}>
-                            <div className={HomeCss.title}> {p.name}</div>
-                            <div className={HomeCss.imgDiv}>
-                                <img
-                                    className={HomeCss.img}
-                                    src={require(`../img/${p.image}`)}
-                                    alt="drink"
-                                />
+            <div className={styles.productContainer}>
+                {sortedProducts ? (
+                    sortedProducts.map((p) => (
+                        <Link
+                            to="/product-view"
+                            className={styles.link}
+                            key={crypto.randomUUID()}
+                            onMouseDown={() => {
+                                cookie.set("productId", p.product_id);
+                                cookie.set("product", p);
+                            }}
+                        >
+                            <div className={styles.product} key={crypto.randomUUID()}>
+                                <div className={styles.productTitle}> {p.name}</div>
+                                <div className={styles.productImage}>
+                                    <img
+                                        className={styles.img}
+                                        src={require(`../img/${p.image}`)}
+                                        alt="drink"
+                                    />
+                                </div>
                             </div>
-                        </div>
-                    </Link>
-                ))
-            ) : (
-                <div>no work</div>
-            )}
+                        </Link>
+                    ))
+                ) : (
+                    <div>no work</div>
+                )}
+            </div>
         </div>
     )
-}
+};
 
 export default Product;
