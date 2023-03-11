@@ -28,6 +28,8 @@ const CARD_OPTIONS = {
         }
     }
 }
+
+
 const CheckoutForm = ({ cookie, setLoading }) => {
     const stripe = useStripe();
     const elements = useElements();
@@ -45,6 +47,7 @@ const CheckoutForm = ({ cookie, setLoading }) => {
     const cartQuantity = cart.reduce((a, p) => a + p.quantity, 0)
 
     const newCart = async () => {
+
         const newCart = await makeNewCart(crypto.randomUUID())
         console.log(newCart)
         const cartId = newCart.cart_id
@@ -111,6 +114,7 @@ const CheckoutForm = ({ cookie, setLoading }) => {
                 console.error(error)
             }
         } else {
+            setLoading(false)
             console.log(error.message)
         }
     };
