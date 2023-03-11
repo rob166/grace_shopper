@@ -51,7 +51,7 @@ const PriceChanger = ({ cookie, setRender, setEdit }) => {
                 className={CartCss.button}
                 onClick={() => {
                     addProduct(
-                        cart,
+                        quantity + product.quantity < 1 ? 0 : cart,
                         quantity + product.quantity,
                         product.product_id
                     ).then(() => setRender(crypto.randomUUID()))

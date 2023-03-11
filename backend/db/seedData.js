@@ -89,7 +89,7 @@ async function createTables() {
           );
 
          CREATE TABLE previous_products(
-           product_id SERIAL PRIMARY KEY,
+           product_id INTEGER,
            name VARCHAR(255),
            quantity INTEGER,
            cart_id INTEGER,
