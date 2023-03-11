@@ -69,8 +69,9 @@ const SingleProduct = ({ cookie }) => {
                         <button
                             className={SingleProductCss.button}
                             onClick={() => {
-                                addProduct(cookie.get('cartId'),quantity,cookie.get('productId'))
-                                NotificationManager.success(`${product.name}, has been added to cart`)
+                                if(quantity>0){
+                                addProduct(cookie.get('cartId'), quantity, cookie.get('productId'))
+                                NotificationManager.success(`${product.name}, has been added to cart`)}else{NotificationManager.success('Quantity 0')}
                             }
                             }>Add to Cart</button>
 

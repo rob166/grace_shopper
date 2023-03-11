@@ -32,7 +32,7 @@ const CheckoutForm = ({ cookie, setLoading }) => {
     const stripe = useStripe();
     const elements = useElements();
     const [cart, setCart] = useState([])
-    const [success, setSuccess] = useState(false)
+
    
     const navigate = useNavigate()
     const cartId = cookie.get('cartId')
@@ -97,7 +97,7 @@ const CheckoutForm = ({ cookie, setLoading }) => {
                 if (data.success) {
                 
                     console.log('successful payment')
-                    setSuccess(true)
+             
                     userId ?
                         makePurchase(cartQuantity, cartTotal, cartId)
                             .then(() => userPurchase(cartId, userId))

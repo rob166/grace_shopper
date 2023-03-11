@@ -127,9 +127,9 @@ const addBoughtItems = async (cartId) => {
 const inserIntoBoughtItems = async (item) => {
   try {
     const { rows: [product] } = await client.query(`
-  INSERT INTO previous_products(name,quantity,cart_id,image)
-  VAlUES($1,$2,$3,$4)
-  RETURNING *;`, [item.name, item.quantity, item["cart_id"], item.image])
+  INSERT INTO previous_products( product_id,name,quantity,cart_id,image)
+  VAlUES($1,$2,$3,$4,$5)
+  RETURNING *;`, [item["product_id"],item.name, item.quantity, item["cart_id"], item.image])
     console.log("INSTER IN TO BROUGHT ITEMS", product)
   } catch (error) {
     console.error(error)

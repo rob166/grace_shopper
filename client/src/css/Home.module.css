@@ -49,16 +49,18 @@
   margin-top: 1em;
   /* background-image:url("../img/cheers.jpeg"); */
   width: 100vw;
-  /* height: 70vh; */
+  height: 40vh;
   display: flex;
   justify-content: center;
   position: relative;
   text-align: center;
   color: white;
+  overflow-y: hidden;
 }
 
-img{
-  width: 94vw;
+.cheers{
+  width: 100%;
+
 }
 
 .centered {
