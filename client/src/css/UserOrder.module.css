@@ -30,3 +30,24 @@
         0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
     padding: 1em;
 }
+
+.dateAndBuy{
+    display: flex;
+    justify-content: space-between;
+}
+
+.button {
+    padding: .5em;
+    margin-top: 1em;
+    background-color: bisque;
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
+        0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+
+}
+
+.button:hover {
+    background-color: coral;
+    color: aliceblue;
+    cursor: pointer;
+    box-shadow: none;
+}

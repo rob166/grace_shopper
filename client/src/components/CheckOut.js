@@ -28,11 +28,12 @@ const CARD_OPTIONS = {
         }
     }
 }
-const CheckoutForm = ({ cookie, setTotal }) => {
+const CheckoutForm = ({ cookie, setLoading }) => {
     const stripe = useStripe();
     const elements = useElements();
     const [cart, setCart] = useState([])
-    const [success, setSuccess] = useState(false)
+
+   
     const navigate = useNavigate()
     const cartId = cookie.get('cartId')
     const userId = cookie.get('userId')
@@ -66,7 +67,7 @@ const CheckoutForm = ({ cookie, setTotal }) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
+       
         if (elements == null) {
             return;
         }
@@ -91,18 +92,20 @@ const CheckoutForm = ({ cookie, setTotal }) => {
                     }),
                 })
                 const data = await resp.json()
-                console.log('this the data',data)
+                
+                console.log('this the data', data)
                 if (data.success) {
+                
                     console.log('successful payment')
-                    setSuccess(true)
+             
                     userId ?
-                    makePurchase(cartQuantity, cartTotal, cartId)
-                        .then(() => userPurchase(cartId, userId))
-                        .then(() => newCart()) :
-                    makePurchase(cartQuantity, cartTotal, cartId)
-                        .then(() => newCart())
-                NotificationManager.success('order complete')
-                navigate('/home')
+                        makePurchase(cartQuantity, cartTotal, cartId)
+                            .then(() => userPurchase(cartId, userId))
+                            .then(() => newCart()) :
+                        makePurchase(cartQuantity, cartTotal, cartId)
+                            .then(() => newCart())
+                    NotificationManager.success('order complete')
+                    navigate('/home')
                 }
             } catch (error) {
                 console.error(error)
@@ -112,20 +115,23 @@ const CheckoutForm = ({ cookie, setTotal }) => {
         }
     };
 
-    return (<div className={CheckoutCss.checkoutbox}>
-        <div className={CheckoutCss.price}>total:  ${
-            cart ?
-                Number.parseFloat(
-                    cart.reduce((a, p) => a + p.quantity * p.price, 0)
-                ).toFixed(2) : null
-        }</div>
-        <form onSubmit={handleSubmit}>
-            <CardElement options={CARD_OPTIONS} />
-            <button className={CheckoutCss.button} type="submit" disabled={!stripe || !elements}>
-                Pay
-            </button>
-        </form>
-    </div>
+    return (
+       <div className={CheckoutCss.checkoutbox}>
+            <div className={CheckoutCss.price}>total:  ${
+                cart ?
+                    Number.parseFloat(
+                        cart.reduce((a, p) => a + p.quantity * p.price, 0)
+                    ).toFixed(2) : null
+            }</div>
+            <form onSubmit={handleSubmit
+                            }>
+                <CardElement options={CARD_OPTIONS} />
+                <button onMouseUp={()=>setLoading(true)} className={CheckoutCss.button} type="submit" disabled={!stripe || !elements}
+              >
+                    Pay
+                </button>
+            </form>
+        </div>
     );
 };
 

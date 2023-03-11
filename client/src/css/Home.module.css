@@ -37,3 +37,37 @@
   margin: none;
   overflow-y: scroll;
 }
+
+.bodyProducts {
+  display: flex;
+  flex-wrap: wrap;
+  height: 90vh;
+  margin: none;
+  overflow-y: scroll;
+}
+.image{
+  margin-top: 1em;
+  /* background-image:url("../img/cheers.jpeg"); */
+  width: 100vw;
+  height: 40vh;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  text-align: center;
+  color: white;
+  overflow-y: hidden;
+}
+
+.cheers{
+  width: 100%;
+
+}
+
+.centered {
+  color: coral;
+  position: absolute;
+  font-size: larger;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
