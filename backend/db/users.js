@@ -59,7 +59,7 @@ const createUser = async ({
   } catch (error) {
     throw error;
   }
-};
+}
 
 async function getUserByUsername(username) {
   try {
@@ -77,6 +77,7 @@ async function getUserByUsername(username) {
     throw error;
   }
 }
+
 async function getUserByEmail(email) {
   try {
     const {
@@ -93,6 +94,7 @@ async function getUserByEmail(email) {
     throw error;
   }
 }
+
 async function getUser(username, password) {
   try {
     const user = await getUserByUsername(username);

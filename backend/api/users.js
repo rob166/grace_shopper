@@ -10,17 +10,20 @@ const {
   getUserByEmail,
   updateUser,
   getAllUsers,
+  deleteUser,
 } = require('../db');
 
 router.get('/', async (req, res, next) => {
   try {
-    const user = await getAllUsers();
-    // console.log(user);
-    res.send(user);
+    const usertoken = req.headers.authorization;
+    if (usertoken) {
+      const user = await getAllUsers();
+      res.send(user);
+    }
   } catch (err) {
     console.log('err', err);
   }
-})
+});
 
 router.post('/register', async (req, res, next) => {
   const {
@@ -194,6 +197,21 @@ router.patch('/user/edit', async (req, res, next) => {
     });
 
     res.send(updatedUser);
+  } catch (err) {
+    console.log('err', err);
+  }
+});
+
+router.delete('/user/:id', async (req, res, next) => {
+  const { id } = req.params;
+  
+  try {
+    const adminToken = req.headers.authorization;
+    
+    if (adminToken) {
+      const killUser = await deleteUser(id);
+      res.send(killUser);
+    }
   } catch (err) {
     console.log('err', err);
   }
