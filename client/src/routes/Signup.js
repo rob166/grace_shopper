@@ -114,7 +114,7 @@ const Signup = ({ cookie }) => {
             <button className={SignupCss.button} onClick={signupButton}>Enter your information</button>
           </div>
           <h3 className={SignupCss.answerBoxText}>Username already exists? Log in here:</h3>
-          <div lassName={SignupCss.buttons}>
+          <div className={SignupCss.buttons}>
             <Link className={SignupCss.buttonLink} to="/login"><button className={SignupCss.buttonLink}>Log In</button></Link>
           </div>
         </div>

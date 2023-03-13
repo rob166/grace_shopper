@@ -9,7 +9,21 @@ const {
   getUser,
   getUserByEmail,
   updateUser,
+  getAllUsers,
+  deleteUser,
 } = require('../db');
+
+router.get('/', async (req, res, next) => {
+  try {
+    const usertoken = req.headers.authorization;
+    if (usertoken) {
+      const user = await getAllUsers();
+      res.send(user);
+    }
+  } catch (err) {
+    console.log('err', err);
+  }
+});
 
 router.post('/register', async (req, res, next) => {
   const {
@@ -122,7 +136,7 @@ router.post('/login', async (req, res, next) => {
             expiresIn: '4w',
           }
         );
-        res.send({ user, message: "you're logged in!", token });
+        res.send({ user, message: "You're logged in!", token });
       } else {
         res.send({
           name: 'IncorrectCredentialsError',
@@ -183,6 +197,21 @@ router.patch('/user/edit', async (req, res, next) => {
     });
 
     res.send(updatedUser);
+  } catch (err) {
+    console.log('err', err);
+  }
+});
+
+router.delete('/user/:id', async (req, res, next) => {
+  const { id } = req.params;
+  
+  try {
+    const adminToken = req.headers.authorization;
+    
+    if (adminToken) {
+      const killUser = await deleteUser(id);
+      res.send(killUser);
+    }
   } catch (err) {
     console.log('err', err);
   }

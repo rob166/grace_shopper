@@ -1,0 +1,30 @@
+.body {
+    display: flex;
+    height: 90vh;
+    background-image: url('../img/backgroundLand.jpg');
+    flex-direction: column;
+}
+
+.title {
+    background-color: #cccccc;
+    font-size: 1.5em;
+    height: 5vh;
+    padding: .5em;
+}
+
+.userTable {
+    overflow-x: auto;
+}
+
+th {
+    background-color: rgb(30, 76, 78);
+    color: #cccccc;
+}
+
+tr {
+    background-color: #f1f1f1;
+}
+
+tr:hover {
+    background-color: coral;
+}
