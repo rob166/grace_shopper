@@ -25,14 +25,14 @@ const admin = cookies.get('isAdmin');
         <Link className={NavbarCss.link} to="/login">
          Login/Logout
         </Link>
-        {jwt && !admin &&
+        {jwt &&
         <> 
         <Link className={NavbarCss.link} to="/profile">
          My Profile
         </Link>
         </>
         }
-        {admin &&
+        {(admin === 'true') &&
         <> 
         <Link className={NavbarCss.link} to="/admin">
          Admin 
