@@ -4,14 +4,15 @@ import { addProduct } from '../Api.fetches';
 import { NotificationManager } from 'react-notifications';
 
 const SingleProduct = ({ cookie }) => {
-  const [quantity, setQuantity] = useState(0);
+  
 
-  const productId = cookie.get('productId');
-  const product = cookie.get('product');
-  console.log(productId);
-  const addToQuantity = () => {
-    setQuantity(quantity + 1);
-  };
+    const productId = cookie.get('productId')
+    const product = cookie.get('product')
+    const [quantity, setQuantity] = useState(product.quantity)
+    console.log(productId)
+    const addToQuantity = () => {
+        setQuantity(quantity + 1)
+    }
 
   const minusFromQuantity = () => {
     if (quantity === 0) {
