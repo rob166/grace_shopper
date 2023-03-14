@@ -118,6 +118,7 @@ const userCheckOut = async (cartId, userId) => {
 const addBoughtItems = async (cartId) => {
   try {
     const items = await getAllItemsInCart(cartId);
+    console.log("addBoughtItems",items)
     await Promise.all(items.map(i => inserIntoBoughtItems(i)));
   } catch (error) {
     console.error(error);
