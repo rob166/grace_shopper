@@ -1,5 +1,5 @@
 const express = require('express');
-const { getAllProducts, getProductById, addProductToCart, removeProductsFromCart } = require('../db');
+const { getAllProducts, getProductById, addProductToCart, removeProductsFromCart, deleteProduct } = require('../db');
 const router = express.Router();
 
 router.use((req, res, next) => {
@@ -65,6 +65,21 @@ router.patch('/:prodId', async (req, res, next) => {
     }
   } catch (error) {
     console.error(error);
+  }
+});
+
+router.delete('/:prodId', async (req, res, next) => {
+  const { prodId } = req.params;
+
+  try{
+    const token = req.headers.authorization;
+
+    if (token) {
+      const deleteProd = await deleteProduct(prodId);
+      res.send(deleteProd);
+    }
+  } catch (err) {
+    console.log('err', err);
   }
 });
 
