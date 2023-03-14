@@ -11,6 +11,7 @@ import ProfileEdit from './routes/ProfileEdit.js';
 import SingleProduct from './routes/SingleProduct.js';
 import UserOrders from './routes/UserOrders.js';
 import Admin from './routes/Admin.js';
+import CheckoutPage from './routes/CheckoutPage.js';
 import { useState } from 'react';
 import Cookies from 'universal-cookie';
 import 'react-notifications/lib/notifications.css';
@@ -120,6 +121,15 @@ function App() {
             </>
           }
         />
+
+        <Route
+        path={'/checkout'}
+        element={
+          <>
+            <Navbar/>
+            <CheckoutPage cookie={cookie}/>
+          </>
+        }/>
       </Routes>
       <NotificationContainer />
     </div>

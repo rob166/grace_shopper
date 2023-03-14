@@ -20,6 +20,8 @@ router.use('/products', productsRouter);
 const cartRouter = require('./cart');
 router.use('/cart', cartRouter);
 
-
+// ROUTER: /api/payment
+const paymentRouter = require('./payment');
+router.use('/payment', paymentRouter);
 
 module.exports = router;

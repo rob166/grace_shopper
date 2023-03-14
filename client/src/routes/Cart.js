@@ -2,8 +2,8 @@ import CartCss from "../css/Cart.module.css"
 import { showItemsInCart } from "../Api.fetches"
 import { useState, useEffect } from 'react'
 import PriceChanger from "../components/PriceChanger"
-import { makePurchase, userPurchase, makeNewCart } from "../Api.fetches"
-import { NotificationManager } from 'react-notifications';
+// import { makePurchase, userPurchase, makeNewCart } from "../Api.fetches"
+// import { NotificationManager } from 'react-notifications';
 import { useNavigate } from "react-router"
 const Cart = ({ cookie }) => {
 
@@ -11,25 +11,11 @@ const Cart = ({ cookie }) => {
     const [edit, setEdit] = useState(false)
     const [render, setRender] = useState(null)
     const navigate = useNavigate()
-    const cartTotal = Number.parseFloat(
-        cart.reduce((a, p) => a + p.quantity * p.price, 0)
-    ).toFixed(2)
-
-    const cartQuantity = cart.reduce((a, p) => a + p.quantity, 0)
-
-    const cartId = cookie.get('cartId')
-    const userId = cookie.get('userId')
 
     const getCartItems = async () => {
 
         const cartItems = await showItemsInCart(cookie.get('cartId'))
         setCart(cartItems)
-    }
-    const newCart = async () => {
-        const newCart = await makeNewCart(crypto.randomUUID())
-        console.log(newCart)
-        const cartId = newCart.cart_id
-        cookie.set('cartId', cartId)
     }
     useEffect(() => {
         getCartItems()
@@ -98,18 +84,14 @@ const Cart = ({ cookie }) => {
                     </div>
                 </div>
                 <div className={CartCss.checkOutDiv}>
+                {cart.length>=1?
                     <button
                         className={CartCss.checkOutButton}
-                        onClick={() => {userId ?
-                            makePurchase(cartQuantity, cartTotal, cartId)
-                                .then(() => userPurchase(cartId, userId))
-                                .then(() => newCart()) :
-                                makePurchase(cartQuantity, cartTotal, cartId)
-                                .then(() => newCart())
-                                NotificationManager.success('order complete')
-                                navigate('/home') 
+                        onClick={() => {
+                            navigate('/checkout')
                         }}
                     >Check Out</button>
+                    :null}
                 </div>
             </form>
 
