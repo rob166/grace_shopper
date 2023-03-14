@@ -105,10 +105,11 @@ const CheckoutForm = ({ cookie, setLoading }) => {
             makePurchase(cartQuantity, cartTotal, cartId)
               .then(() => userPurchase(cartId, userId))
               .then(() => newCart())
-              .then(removeAllItems()) :
+              // .then(removeAllItems()) 
+              :
             makePurchase(cartQuantity, cartTotal, cartId)
               .then(() => newCart())
-              .then(removeAllItems())
+              // .then(removeAllItems())
           NotificationManager.success('order complete')
           navigate('/home')
         }

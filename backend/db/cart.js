@@ -2,6 +2,8 @@ const client = require('./client');
 const bcrypt = require('bcrypt');
 const SALT_COUNT = 10;
 
+const{removeProductsFromCart} = require('./products')
+
 const getAllItemsInCart = async (cartId) => {
   try {
     const { rows: cart } = await client.query(
@@ -64,7 +66,8 @@ const createNewCart = async (sessionId) => {
     VALUES($1)
     RETURNING *;`,
       [sessionId]
-    );
+    ) 
+    removeProductsFromCart()
 
     return cart;
   } catch (error) {
@@ -81,7 +84,7 @@ const checkout = async (quantity, total, cartId) => {
     SET quantity=$1, total=$2, purchased=true
     WHERE cart_id =$3 
     RETURNING *;`, [quantity, total, cartId])
-    console.log(cart)
+ 
     return cart
   } catch (error) {
     console.error(error)
@@ -106,6 +109,8 @@ const userCheckOut = async (cartId, userId) => {
     VALUES($1,$2,$3,$4)
     RETURNING *;
     `, [userId, cartId, date, total])
+
+  
 
     console.log(userCart)
     return userCart
@@ -168,9 +173,6 @@ const attachPprodToPorder = async (cartId) => {
   }
 }
 
-// const getAllPreviousOrders = async()=>{
-
-// }
 
 
 module.exports = {

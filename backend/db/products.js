@@ -71,7 +71,7 @@ const removeProductsFromCart = async () => {
       rows: products,
     } = await client.query(
       `UPDATE products
-      SET quantity = 0, cart_Id = 0
+      SET quantity = 0
       RETURNING *;`
       );
     return products ;
