@@ -84,7 +84,7 @@ const checkout = async (quantity, total, cartId) => {
     SET quantity=$1, total=$2, purchased=true
     WHERE cart_id =$3 
     RETURNING *;`, [quantity, total, cartId])
-    // await removeProductsFromCart()
+ 
     return cart
   } catch (error) {
     console.error(error)
@@ -110,7 +110,7 @@ const userCheckOut = async (cartId, userId) => {
     RETURNING *;
     `, [userId, cartId, date, total])
 
-    // await removeProductsFromCart()
+  
 
     console.log(userCart)
     return userCart
@@ -173,9 +173,6 @@ const attachPprodToPorder = async (cartId) => {
   }
 }
 
-// const getAllPreviousOrders = async()=>{
-
-// }
 
 
 module.exports = {
