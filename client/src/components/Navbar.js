@@ -25,7 +25,7 @@ const admin = cookies.get('isAdmin');
         <Link className={NavbarCss.link} to="/login">
          Login/Logout
         </Link>
-        {jwt &&
+        {jwt && 
         <> 
         <Link className={NavbarCss.link} to="/profile">
          My Profile

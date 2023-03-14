@@ -34,16 +34,16 @@ const getAllProducts = async () => {
 const getProductById = async (id) => {
   try {
     // const { rows: [product] } = await client.query(`
-    // SELECT * 
+    // SELECT *
     // FROM products
     // WHERE product_id = $1`, [id]);
-    const product = await getAllProducts()
-    const productWeGetting = product.filter(p => p.product_id == id)
-    console.log('THIS THE PRODUCT WE GETTING', productWeGetting)
-    return productWeGetting[0]
+    const product = await getAllProducts();
+    const productWeGetting = product.filter((p) => p.product_id == id);
+    console.log('THIS THE PRODUCT WE GETTING', productWeGetting);
+    return productWeGetting[0];
   } catch (error) {
     console.error(error);
-  };
+  }
 };
 
 const addProductToCart = async (cartId, quantity, productId) => {
@@ -65,21 +65,16 @@ const addProductToCart = async (cartId, quantity, productId) => {
   }
 };
 
-const removeProductsFromCart = async (cartId, productId) => {
+const removeProductsFromCart = async () => {
   try {
     const {
-      rows: [product],
+      rows: products,
     } = await client.query(
-      `
-            UPDATE products
-            SET quantity = 0, cart_Id = 0
-            WHERE cart_id=$1
-            AND product_id=$2
-            RETURNING *;`,
-      [cartId, productId]
-    );
-    return product;
-
+      `UPDATE products
+      SET quantity = 0, cart_Id = 0
+      RETURNING *;`
+      );
+    return products ;
   } catch (error) {
     console.error(error);
   }

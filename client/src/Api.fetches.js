@@ -155,3 +155,18 @@ export const previousUserOrders = async(userId)=>{
         console.error(error)
     }
 }
+
+export const removeAllItems = async()=>{
+    try{
+        const resp = await fetch('http://localhost:3001/api/products',{
+            method:"PATCH",
+            headers:{
+                'Content-Type': 'application/json',
+            }
+        })
+        const data = await resp.json()
+        console.log(data)
+    }catch(error){
+        console.error(error)
+    }
+}

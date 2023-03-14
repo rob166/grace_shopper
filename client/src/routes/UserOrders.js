@@ -9,7 +9,7 @@ import { NotificationManager } from 'react-notifications';
 const UserOrders = ({ cookie }) => {
     const userId = cookie.get('userId')
     const [userOrders, setUserOrders] = useState([])
-
+    console.log(userOrders)
     const isInCart = async (product) => {
         const cart = await showItemsInCart(cookie.get('cartId'))
         const newcart = cart.filter(i => i.product_id === product.product_id)

@@ -1,20 +1,19 @@
-import { useEffect, useState } from "react"
-import { showProducts } from "../Api.fetches";
-import { Link } from "react-router-dom";
-
+import { useEffect, useState } from 'react';
+import { showProducts } from '../Api.fetches';
+import { Link } from 'react-router-dom';
 import HomeCss from '../css/Home.module.css';
 
 const Home = ({ cookie }) => {
+  const [products, setProducts] = useState([]);
 
-    const [products, setProducts] = useState([]);
-
-    const showProd = async () => {
-        const resp = await showProducts()
-        setProducts(resp)
-    }
-    useEffect(() => {
-        showProd()
-    }, [])
+  const showProd = async () => {
+    const resp = await showProducts();
+    setProducts(resp);
+  };
+  // eslint-disable-next-line
+  useEffect(() => {
+    showProd();
+  }, []);
 
     return (
         <div className={HomeCss.body}>

@@ -1,5 +1,5 @@
 const express = require('express');
-const { getAllProducts, getProductById, addProductToCart } = require('../db');
+const { getAllProducts, getProductById, addProductToCart, removeProductsFromCart } = require('../db');
 const router = express.Router();
 
 router.use((req, res, next) => {
@@ -35,6 +35,20 @@ router.get('/:prodId', async (req, res, next) => {
     console.error(error);
   }
 });
+router.patch('/',async(req,res,next)=>{
+  try{
+    const removed = await removeProductsFromCart()
+    if(removed){
+    res.send({
+      name:'success',
+      message:"products removed"
+    
+    })
+  }
+  }catch(error){
+    console.error(error)
+  }
+})
 
 router.patch('/:prodId', async (req, res, next) => {
   try {

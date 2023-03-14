@@ -49,6 +49,10 @@ const Profile = () => {
       </div>
       <button className={ProfileCss.userOrderButton}onClick={()=> navigate('/user/orders')}>view recent orders</button>
       </div>
+
+      <button onClick={() => navigate('/user/orders')}>
+        View your order history
+      </button>
      
   
     </div>
