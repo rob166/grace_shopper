@@ -202,6 +202,24 @@ router.patch('/user/edit', async (req, res, next) => {
   }
 });
 
+router.patch('/user/edit/admin', async (req, res, next) => {
+  const {
+    id,
+    is_admin,
+  } = req.body;
+
+  try {
+    const updatedUser = await updateUser({
+      id,
+      is_admin,
+    });
+
+    res.send(updatedUser);
+  } catch (err) {
+    console.log('err', err);
+  }
+});
+
 router.delete('/user/:id', async (req, res, next) => {
   const { id } = req.params;
   

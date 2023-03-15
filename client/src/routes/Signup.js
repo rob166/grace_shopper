@@ -41,7 +41,6 @@ const Signup = ({ cookie }) => {
         );
 
       const json = await response.json();
-      console.log(json);
 
       if (json.error) {
         NotificationManager.error(json.message);

@@ -22,21 +22,15 @@ const Login = ({ cookie }) => {
       });
 
       const json = await response.json();
-      //console.log(json)
 
       NotificationManager.success(json.message);
-      if (json.token) {
         localStorage.setItem('jwt', json.token);
         cookie.set('userId', json.user.id);
         cookie.set('isAdmin', json.user.is_admin);
+        json.user.is_admin===true ?
+        navigate('/admin')
+        :
         navigate('/home');
-      }
-      if (json.token && 'isAdmin') {
-        localStorage.setItem('jwt', json.token);
-        cookie.set('userId', json.user.id);
-        cookie.set('isAdmin', json.user.is_admin);
-        navigate('/admin');
-      }
     } catch (error) {
       console.error(error);
     }

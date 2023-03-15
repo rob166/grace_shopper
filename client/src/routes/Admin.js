@@ -1,20 +1,23 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import AdminCss from '../css/Admin.module.css';
 
 const Admin = () => {
-  const [users, setUsers] = useState([]);
+  const [change, setChange] = useState('');
+  const [users, setUsers] = useState('');
   const jwt = localStorage.getItem('jwt');
-
+  
   useEffect(() => {
     fetchAllUsers();
-  }, [users]);
+  }, [change]);
 
   async function fetchAllUsers() {
     try {
       const response = await fetch('http://localhost:3001/api/users', {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${jwt}`,
+          'Authorization': `Bearer ${jwt}`,
         },
       });
       const json = await response.json();
@@ -30,13 +33,12 @@ const Admin = () => {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${jwt}`,
-          
+          Authorization: `Bearer ${jwt}`,
         },
       });
       const result = await response.json();
-      console.log(result);
       setUsers(result);
+      setChange(crypto.randomUUID());
     } catch (error) {
       console.error(error);
     }
@@ -51,12 +53,13 @@ const Admin = () => {
           <thead>
             <tr>
               <th>User Id</th>
-              <th>Username</th>
               <th>Name</th>
+              <th>Username</th>
               <th>Email</th>
               <th>Address</th>
               <th>Phone</th>
               <th>Delete User</th>
+              <th>Admin?</th>
             </tr>
           </thead>
           <tbody>
@@ -73,6 +76,7 @@ const Admin = () => {
                   state,
                   zipcode,
                   phone,
+                  is_admin
                 }) => (
                   <tr key={id}>
                     <td>{id}</td>
@@ -99,6 +103,11 @@ const Admin = () => {
                         Delete
                       </button>
                     </td>
+                    {is_admin === false ?
+                      <td> <Link to='/isadmin' state={id}><button className={AdminCss.deleteButton}>No</button></Link></td>
+                      :
+                      <td>Yes</td>
+                    }
                   </tr>
                 )
               )}
