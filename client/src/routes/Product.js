@@ -10,6 +10,7 @@ const Product = ({ cookie }) => {
   const [sortingOrder, setSortingOrder] = useState('asc');
   const admin = cookie.get('isAdmin');
   const jwt = localStorage.getItem('jwt');
+  const [change, setChange] = useState('');
 
   const showProd = async () => {
     const resp = await showProducts();
@@ -18,7 +19,7 @@ const Product = ({ cookie }) => {
 
   useEffect(() => {
     showProd();
-  }, []);
+  }, [change]);
 
   const filteredProducts = selectedCategory
     ? products.filter((p) => p.category === selectedCategory)
@@ -43,14 +44,13 @@ const Product = ({ cookie }) => {
       );
       const result = await response.json();
       setProducts(result);
+      setChange(crypto.randomUUID());
     } catch (error) {
       console.error(error);
     }
   }
 
-  // useEffect(() => {
-  //   deleteTheProduct();
-  // }, [products]);
+
 
   return (
     <div className={HomeCss.body}>

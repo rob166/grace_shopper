@@ -28,3 +28,10 @@ tr {
 tr:hover {
     background-color: coral;
 }
+
+.deleteButton:hover {
+    cursor: pointer;
+    background-color: rgb(30, 76, 78);
+    color: white
+
+}
