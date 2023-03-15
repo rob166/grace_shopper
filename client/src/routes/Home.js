@@ -27,7 +27,7 @@ const Home = ({ cookie }) => {
              and strong enough to live the life you have always imagined.
             </div>
         </div> */}
-        <div className={HomeCss.bodyProducts}>
+        <div className={styles.productContainer}>
             {products ? products.map(p =>
                 <Link to='/product-view' className={HomeCss.link}
                     key={crypto.randomUUID()}
