@@ -8,6 +8,8 @@ const Product = ({ cookie }) => {
   const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [sortingOrder, setSortingOrder] = useState('asc');
+  const admin = cookie.get('isAdmin');
+  const jwt = localStorage.getItem('jwt');
 
   const showProd = async () => {
     const resp = await showProducts();
@@ -26,6 +28,29 @@ const Product = ({ cookie }) => {
     sortingOrder === 'asc'
       ? [...filteredProducts].sort((a, b) => a.name.localeCompare(b.name))
       : [...filteredProducts].sort((a, b) => b.name.localeCompare(a.name));
+
+  async function deleteTheProduct(prodId) {
+    try {
+      const response = await fetch(
+        `http://localhost:3001/api/products/${prodId}`,
+        {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${jwt}`,
+          },
+        }
+      );
+      const result = await response.json();
+      setProducts(result);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  // useEffect(() => {
+  //   deleteTheProduct();
+  // }, [products]);
 
   return (
     <div className={HomeCss.body}>
@@ -53,6 +78,7 @@ const Product = ({ cookie }) => {
       <div className={styles.productContainer}>
         {sortedProducts ? (
           sortedProducts.map((p) => (
+            <>
             <Link
               to='/product-view'
               className={styles.link}
@@ -63,7 +89,7 @@ const Product = ({ cookie }) => {
               }}
             >
               <div className={styles.product} key={crypto.randomUUID()}>
-                <div className={styles.productTitle}> {p.name}</div>
+                <div className={styles.productTitle}>{p.name}</div>
                 <div className={styles.productImage}>
                   <img
                     className={styles.img}
@@ -71,17 +97,27 @@ const Product = ({ cookie }) => {
                     alt='drink'
                   />
                 </div>
-                <div>
-                  {'isAdmin' && (
-                    <>
-                      <Link to='/admin'>Edit</Link>
-                      <br></br>
-                      <Link to='/admin'>Delete</Link>
-                    </>
-                  )}
-                </div>
               </div>
             </Link>
+            <div className={styles.editAndDelete}>
+            {admin === 'true' && (
+              <>
+                <span>
+                  <button className={styles.editButton}>Edit</button>
+                </span>
+                
+                <span>
+                  <button
+                    className={styles.deleteButton}
+                    onClick={() => deleteTheProduct(p.product_id)}
+                  >
+                    Delete
+                  </button>
+                </span>
+              </>
+            )}
+          </div>
+          </>
           ))
         ) : (
           <div>no work</div>

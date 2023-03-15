@@ -71,7 +71,7 @@ const removeProductsFromCart = async () => {
       rows: products,
     } = await client.query(
       `UPDATE products
-      SET quantity = 0, cart_Id = 0
+      SET quantity = 0
       RETURNING *;`
       );
     return products ;
@@ -97,6 +97,23 @@ const getAllItemsInCart = async (cartId) => {
   }
 };
 
+const deleteProduct = async (prodId) => {
+  try {
+    const {
+      rows: [product],
+    } = await client.query(
+      `
+      DELETE FROM products
+      WHERE product_id = $1
+      `,
+      [prodId]
+    );
+    return product;
+  } catch (error) {
+    throw error;
+  }
+}
+
 module.exports = {
   createProduct,
   getAllProducts,
@@ -104,4 +121,5 @@ module.exports = {
   addProductToCart,
   getAllItemsInCart,
   removeProductsFromCart,
+  deleteProduct,
 };

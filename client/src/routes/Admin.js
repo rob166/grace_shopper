@@ -7,7 +7,7 @@ const Admin = () => {
 
   useEffect(() => {
     fetchAllUsers();
-  }, []);
+  }, [users]);
 
   async function fetchAllUsers() {
     try {
@@ -36,6 +36,7 @@ const Admin = () => {
       });
       const result = await response.json();
       console.log(result);
+      setUsers(result);
     } catch (error) {
       console.error(error);
     }
@@ -56,7 +57,6 @@ const Admin = () => {
               <th>Address</th>
               <th>Phone</th>
               <th>Delete User</th>
-              <th></th>
             </tr>
           </thead>
           <tbody>
