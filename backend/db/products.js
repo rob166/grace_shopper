@@ -100,7 +100,7 @@ const getAllItemsInCart = async (cartId) => {
 const deleteProduct = async (prodId) => {
   try {
     const {
-      rows: [product],
+      rows: product
     } = await client.query(
       `
       DELETE FROM products

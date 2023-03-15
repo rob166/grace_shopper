@@ -121,7 +121,7 @@ async function getAllUsers() {
 async function deleteUser(id) {
   try {
     const {
-      rows: [user],
+      rows: user
     } = await client.query(
       `
           DELETE FROM users
