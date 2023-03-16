@@ -12,7 +12,7 @@
 
 
 <!-- TABLE OF CONTENTS -->
-<details>
+<details style="text-align: center;">
   <summary>Table of Contents</summary>
   <ol>
     <li><a href="#built-with">Built With</a></li>
