@@ -30,7 +30,7 @@ const CARD_OPTIONS = {
 }
 
 
-const CheckoutForm = ({ cookie, setLoading }) => {
+const CheckoutForm = ({ cookie, setLoading, setQuantity }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [cart, setCart] = useState([])
@@ -111,6 +111,7 @@ const CheckoutForm = ({ cookie, setLoading }) => {
               .then(() => newCart())
               // .then(removeAllItems())
           NotificationManager.success('order complete')
+          setQuantity(0);
           navigate('/home')
         }
       } catch (error) {
