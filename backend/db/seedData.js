@@ -230,7 +230,7 @@ async function createInitialProduct() {
         name:"Mickey's Fine Malt Liquor",
         description:"Oh my goodness, let me tell you about Mickey's Malt Liquor - it is a total game-changer. From the first sip, you are hit with a bold and flavorful profile that just screams satisfaction. It has this intense maltiness that mixes perfectly with just the right amount of sweetness and hoppy bitterness. The aroma alone is enough to make your mouth water and your taste buds dance with anticipation. What I love most about this brew is its smooth texture that goes down easy but leaves behind an enjoyable lingering kick. It's perfect for parties or chilling out with friends, and it pairs oh-so-well with favorite comfort foods like pizza or cheeseburgers. Mickey's Malt Liquor is definitely one of my go-to choices whenever I'm in need of some liquid excitement!",
         price:13.59,
-        image:"mickeys.jpeg",
+        image:"mickeys.png",
         category: "malt liquor"
       },
       {
