@@ -14,7 +14,7 @@
 <!-- TABLE OF CONTENTS -->
 <br>
 <details>
-  <summary font="24px">Table of Contents</summary>
+  <summary size="24px">Table of Contents</summary>
   <ol>
     <li><a href="#built-with">Built With</a></li>
     <li><a href="#getting-started">Getting Started</a></li>
