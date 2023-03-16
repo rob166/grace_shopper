@@ -28,8 +28,6 @@ This is a full-stack e-commerce web application built as a group project for a f
 
 ### Built With
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-
 * React.js
 * Node.js
 * Express
@@ -37,21 +35,44 @@ This section should list any major frameworks/libraries used to bootstrap your p
 * Stripe API
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+<br>
 
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
+1. Clone the repository and navigate to the root directory.
+   ```sh
+   git clone https://github.com/rob166/grace_shopper.git
+   ```
+2. Install NPM packages.
+  ``` sh
+  npm install
   ```
+3. Create a PostgreSQL database named grace-shopper and seed it.
+  ``` sh
+  npm run seed:dev
+  ```
+4. Create a .env file.
+  ```js
+  PORT = 3001
+  DATABASE_URL = 'https://localhost:5432/grace-shopper'
+  JWT_SECRET = 'rancho cuca munga'
+  STRIPE_SECRET_TEST = 'sk_test_51MjXWeHzJyNcKPcUh1IxkKeEbTbSGyzcovV5zAxZ5ceKoB9lThvsNFKZZSX3TEe8DAonap4FAZHPPnRaOn4YWkd300J7dbB8sM'
+  ```
+5. Open a new terminal, go to the backend directory, and start the backend server.
+  ``` sh
+  npm start
+  ```
+6. Go to the client directory and install NPM packages.
+  ``` sh
+  npm install
+  ```
+6. Open another terminal and start the client server.
+  ``` sh
+  npm start
+  ```
+7. Navigate to [http://localhost:3000](http://localhost:3000) in your browser to use the app.
 
 ### Installation
 
