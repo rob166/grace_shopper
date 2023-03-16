@@ -91,7 +91,8 @@ This is a full-stack e-commerce web application built as a group project for a f
 <!-- CONTRIBUTING -->
 ## Contributing
 
-* [![Caroline LinkedIn][linkedin-shield]][linkedin-url1]
+Caroline Kim [![LinkedIn][linkedin-shield]][linkedin-url1]
+Daniel Reese [![LinkedIn][linkedin-shield]][linkedin-url2]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -117,4 +118,4 @@ Use this space to list resources you find helpful and would like to give credit 
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url1]: https://www.linkedin.com/in/caroline-k-717095195/
-
+[linkedin-url2]: https://www.linkedin.com/in/daniel-reese-webdev/
