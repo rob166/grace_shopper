@@ -156,7 +156,7 @@ useEffect(() => {
         element={
           <>
             <Navbar quantity={quantity}/>
-            <CheckoutPage cookie={cookie}/>
+            <CheckoutPage cookie={cookie} setQuantity={setQuantity}/>
           </>
         }/>
       </Routes>

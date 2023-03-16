@@ -6,7 +6,7 @@ import { useState } from 'react';
 const PUBLIC_KEY ="pk_test_51MjXWeHzJyNcKPcUVLxWJmAiqbEFfiFbAbq3AGsuUInu5wO3CxFMXd89jl8Q2h5wax7Q1ZyUdW8vuPwJVmnzz1xF00dVY5oRli"
 
 
-const CheckoutPage = ({cookie})=>{
+const CheckoutPage = ({cookie, setQuantity})=>{
     const stripePromise = loadStripe(PUBLIC_KEY);
     
     const [loading, setLoading] = useState(false)
@@ -25,7 +25,7 @@ const CheckoutPage = ({cookie})=>{
             <div className={CheckoutCss.container}>
            
                 <Elements stripe={stripePromise}>
-                 <CheckoutForm setLoading={setLoading} cookie={cookie}/>
+                 <CheckoutForm setLoading={setLoading} cookie={cookie} setQuantity={setQuantity}/>
                 </Elements>
             </div>
    
