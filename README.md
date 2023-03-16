@@ -6,7 +6,7 @@
   <h3 align="center">Grace Shopper Buzzed</h3>
   <br>
   <p align="center">
-    This is a full-stack e-commerce web application built as a group project for a fictional store called "Grace Shopper Buzzed." The app allows users to browse and purchase products, as well as create an account and save their shipping and billing information. Admin users can also add, edit, and delete products.
+This is a full-stack e-commerce web application built as a group project for a fictional store called "Grace Shopper Buzzed." The app allows users to browse and purchase products, as well as create an account and save their shipping and billing information. Admin users can also add, edit, and delete products.
   </p>
 </div>
 
