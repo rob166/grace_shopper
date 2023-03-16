@@ -46,7 +46,7 @@ const SingleProduct = ({ cookie ,setRender}) => {
             </div>
 
             <div className={SingleProductCss.buttons}>
-              <div className={SingleProductCss.price}>{Number.parseFloat(product.price * quantity).toFixed(2)}</div>
+              <div className={SingleProductCss.price}>{quantity < 1 ? product.price:Number.parseFloat(product.price * quantity).toFixed(2)}</div>
 
               <div className={SingleProductCss.quantity}>
                 <button

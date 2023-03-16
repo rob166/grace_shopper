@@ -137,7 +137,7 @@ useEffect(() => {
           element={
             <>
               <Navbar quantity={quantity}/>
-              <UserOrders cookie={cookie} />
+              <UserOrders setRender={setRender} cookie={cookie} />
             </>
           }
         />
