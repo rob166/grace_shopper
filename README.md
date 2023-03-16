@@ -91,8 +91,10 @@ This is a full-stack e-commerce web application built as a group project for a f
 <!-- CONTRIBUTING -->
 ## Contributing
 
-Caroline Kim [![LinkedIn][linkedin-shield]][linkedin-url1]
-Daniel Reese [![LinkedIn][linkedin-shield]][linkedin-url2]
+* [![LinkedIn][linkedin-shield]][linkedin-url1] Caroline Kim
+* [![LinkedIn][linkedin-shield]][linkedin-url2] Daniel Reese
+* [![LinkedIn][linkedin-shield]][linkedin-url3] Jessica Alvarado
+* [![LinkedIn][linkedin-shield]][linkedin-url4] Robert Rosenzweig
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -100,16 +102,8 @@ Daniel Reese [![LinkedIn][linkedin-shield]][linkedin-url2]
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
-
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-* [Malven's Grid Cheatsheet](https://grid.malven.co/)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
-* [React Icons](https://react-icons.github.io/react-icons/search)
+* This project was inspired by the Grace Shopper project from the Fullstack Academy curriculum.
+* Special thanks to our instructors and teaching assistants for their guidance and support.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -117,5 +111,8 @@ Use this space to list resources you find helpful and would like to give credit 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url1]: https://www.linkedin.com/in/caroline-k-717095195/
+[linkedin-url1]: https://www.linkedin.com/in/caroline-kim98/
 [linkedin-url2]: https://www.linkedin.com/in/daniel-reese-webdev/
+[linkedin-url3]: 
+[linkedin-url4]: https://www.linkedin.com/in/robrosenzweig/
+
