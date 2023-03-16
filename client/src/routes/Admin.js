@@ -2,6 +2,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import AdminCss from '../css/Admin.module.css';
+import { MdDeleteForever } from 'react-icons/md';
+import { TfiEmail } from 'react-icons/tfi';
+import { RiAdminFill } from 'react-icons/ri';
+import { FaRegAddressCard } from 'react-icons/fa';
+import { BsTelephoneFill } from 'react-icons/bs';
 
 const Admin = () => {
   const [change, setChange] = useState('');
@@ -55,10 +60,10 @@ const Admin = () => {
               <th>User Id</th>
               <th>Name</th>
               <th>Username</th>
-              <th>Email</th>
-              <th>Address</th>
-              <th>Phone</th>
-              <th>Delete User</th>
+              <th><TfiEmail /></th>
+              <th><FaRegAddressCard/></th>
+              <th><BsTelephoneFill/></th>
+              <th>Delete</th>
               <th>Admin?</th>
             </tr>
           </thead>
@@ -100,7 +105,7 @@ const Admin = () => {
                         className={AdminCss.deleteButton}
                         onClick={() => killTheUser(id)}
                       >
-                        Delete
+                        <MdDeleteForever/>
                       </button>
                     </td>
                     {is_admin === false ?
