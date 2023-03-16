@@ -17,11 +17,27 @@ import { useState } from 'react';
 import Cookies from 'universal-cookie';
 import 'react-notifications/lib/notifications.css';
 import { NotificationContainer } from 'react-notifications';
+import { showItemsInCart } from './Api.fetches.js';
+import { useEffect } from 'react';
 
 function App() {
   const [prodId, setProdId] = useState(null);
   const cookie = new Cookies();
+  const [quantity,setQuantity] = useState(0)
+  console.log(quantity)
+  const [render,setRender] = useState(null)
 
+  const getCartItems = async () => {
+
+    const cartItems = await showItemsInCart(cookie.get('cartId'))
+    const quan = cartItems.reduce((a, p) => a + p.quantity,0)
+    setQuantity(quan)
+   
+}
+useEffect(() => {
+    getCartItems()
+    // eslint-disable-next-line
+}, [render])
   return (
     <div className='App'>
       <Routes>
@@ -30,7 +46,7 @@ function App() {
           path='/home'
           element={
             <>
-              <Navbar />
+              <Navbar quantity={quantity}/>
               <Home prodId={prodId} setProdId={setProdId} cookie={cookie} />
             </>
           }
@@ -39,7 +55,7 @@ function App() {
           exact path={'/products'}
           element={
             <>
-              <Navbar />
+             <Navbar quantity={quantity}/>
               <Product prodId={prodId} setProdId={setProdId} cookie={cookie} />
             </>
           }
@@ -48,8 +64,9 @@ function App() {
           path='/product-view'
           element={
             <>
-              <Navbar />
-              <SingleProduct cookie={cookie} />
+               <Navbar quantity={quantity}/>
+              <SingleProduct cookie={cookie}
+                              setRender={setRender} />
             </>
           }
         />
@@ -58,7 +75,7 @@ function App() {
           path={'/login'}
           element={
             <>
-              <Navbar />
+              <Navbar quantity={quantity}/>
               <Login cookie={cookie} />
             </>
           }
@@ -68,7 +85,7 @@ function App() {
           path={'/signup'}
           element={
             <>
-              <Navbar />
+              <Navbar quantity={quantity}/>
               <Signup cookie={cookie} />
             </>
           }
@@ -78,7 +95,7 @@ function App() {
           path={'/profile'}
           element={
             <>
-              <Navbar />
+               <Navbar quantity={quantity}/>
               <Profile />
             </>
           }
@@ -88,7 +105,7 @@ function App() {
           path={'/admin'}
           element={
             <>
-              <Navbar />
+              <Navbar quantity={quantity}/>
               <Admin cookie={cookie} />
             </>
           }
@@ -97,8 +114,10 @@ function App() {
           path={'/cart'}
           element={
             <>
-              <Navbar />
-              <Cart cookie={cookie} />
+              <Navbar quantity={quantity}/>
+              <Cart cookie={cookie} setQuantity={setQuantity}
+                render={render} setRender={setRender}
+              />
             </>
           }
         />
@@ -107,7 +126,7 @@ function App() {
           path={'/profile/edit'}
           element={
             <>
-              <Navbar />
+               <Navbar quantity={quantity}/>
               <ProfileEdit />
             </>
           }
@@ -117,7 +136,7 @@ function App() {
           path={'/user/orders'}
           element={
             <>
-              <Navbar />
+              <Navbar quantity={quantity}/>
               <UserOrders cookie={cookie} />
             </>
           }
@@ -127,7 +146,7 @@ function App() {
           path={'/isadmin'}
           element={
             <>
-              <Navbar />
+               <Navbar quantity={quantity}/>
               <IsAdmin />
             </>
           }
@@ -136,7 +155,7 @@ function App() {
         path={'/checkout'}
         element={
           <>
-            <Navbar/>
+            <Navbar quantity={quantity}/>
             <CheckoutPage cookie={cookie}/>
           </>
         }/>

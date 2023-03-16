@@ -1,7 +1,8 @@
 import CartCss from '../css/Cart.module.css'
 import { useState } from 'react'
 import { addProduct } from '../Api.fetches'
-
+import {GoDiffAdded} from 'react-icons/go'
+import {GrSubtractCircle} from "react-icons/gr"
 
 const PriceChanger = ({ cookie, setRender, setEdit }) => {
 
@@ -33,7 +34,9 @@ const PriceChanger = ({ cookie, setRender, setEdit }) => {
                 <button
                     className={CartCss.minusPlus}
                     onClick={() => { addToQuantity() }}
-                >+</button>
+                >
+                  <GoDiffAdded/>
+                </button>
 
                 <div className={CartCss.num}>
                     {quantity + product.quantity >= 0 ?
@@ -43,7 +46,9 @@ const PriceChanger = ({ cookie, setRender, setEdit }) => {
                 <button
                     className={CartCss.minusPlus}
                     onClick={() => { minusFromQuantity() }}
-                >-</button>
+                >
+             <GrSubtractCircle/>
+                </button>
 
             </div>
 

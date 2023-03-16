@@ -135,8 +135,17 @@
 }
 
 .minusPlus {
-    width: 20%;
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    align-items: center;
+    width: 15%;
     font-size: 30px;
+    cursor: pointer;
+    border-radius: 7px;
+    background-color: bisque;
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
+        0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
 }
 
 .minusPlus:hover {
@@ -157,11 +166,19 @@
     margin-right: .5em;
 }
 
-.button {
-    width: 80%;
+.button{
+    font-size: large;
+    width: 50%;
+    border-radius: 7px;
     padding: 6px;
+    background-color: bisque;
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
+        0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
 }
-
-.button:hover {
-    background-color: rgb(202, 168, 127);
+.button:hover{
+  
+    background-color: coral;
+    color: aliceblue;
+    cursor: pointer;
+    box-shadow: none;
 }

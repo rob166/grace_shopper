@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 import NavbarCss from '../css/Navbar.module.css';
+import {FaShoppingCart} from 'react-icons/fa'
+import {IoPersonSharp} from 'react-icons/io5'
+import {RiLoginCircleFill} from 'react-icons/ri'
+import {MdAdminPanelSettings} from 'react-icons/md'
 
-const Navbar = () => {
+const Navbar = ({quantity}) => {
 const jwt = localStorage.getItem('jwt');
 const cookies = new Cookies();
 const admin = cookies.get('isAdmin');
+
 
   return (
     <div className={NavbarCss.body}>
@@ -20,22 +25,28 @@ const admin = cookies.get('isAdmin');
           Products
         </Link>
         <Link className={NavbarCss.link} to="/cart">
-          Cart
+          {<div className={NavbarCss.cart}>
+          <div className={NavbarCss.qNumDiv}>
+          <p className={NavbarCss.qNum}>{quantity}</p>
+          </div>
+          <FaShoppingCart className={NavbarCss.cartLogo}/> 
+         
+          </div>}
         </Link>
         <Link className={NavbarCss.link} to="/login">
-         Login/Logout
+        <RiLoginCircleFill/>
         </Link>
         {jwt &&
         <> 
         <Link className={NavbarCss.link} to="/profile">
-         My Profile
+        <IoPersonSharp/>
         </Link>
         </>
         }
         {(admin === 'true') &&
         <> 
         <Link className={NavbarCss.link} to="/admin">
-         Admin 
+        <MdAdminPanelSettings/>
         </Link>
         </>
         }

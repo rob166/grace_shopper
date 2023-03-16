@@ -26,3 +26,34 @@
     text-decoration: none;
     color: coral;
 }
+.qNum{
+
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  
+    border-radius: 20px;
+    color: white;
+    background-color: crimson;
+    width: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: smaller;
+    position: absolute;
+    margin-left: 1em;
+   
+}
+.qNumDiv{
+    margin-left: 1em;
+    padding-left: 1em;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  
+}
+.cartLogo{
+    font-size: larger;
+    z-index: 9;
+}
+.cart{
+    position: relative;
+}
