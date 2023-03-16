@@ -50,8 +50,6 @@ const Product = ({ cookie }) => {
     }
   }
 
-
-
   return (
     <div className={HomeCss.body}>
       <div className={styles.filterContainer}>
@@ -103,7 +101,9 @@ const Product = ({ cookie }) => {
             {admin === 'true' && (
               <>
                 <span>
+                  <Link to='/product-view/edit' state={p}>
                   <button className={styles.editButton}>Edit</button>
+                  </Link>
                 </span>
                 
                 <span>

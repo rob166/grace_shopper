@@ -114,6 +114,32 @@ const deleteProduct = async (prodId) => {
   }
 }
 
+const updateProduct = async ({ prodId, ...fields }) => {
+  const setString = Object.keys(fields)
+    .map((key, index) => `"${key}"=$${index + 1}`)
+    .join(', ');
+
+  try {
+    if (setString.length > 0) {
+    const {
+      rows: [product],
+    } = await client.query(
+      `
+      UPDATE products
+      SET ${setString}
+      WHERE product_id = $1
+      RETURNING *;
+      `,
+      Object.values(fields)
+    );
+
+    return product;
+    }
+  } catch (error) {
+    throw error;
+  }
+}
+
 module.exports = {
   createProduct,
   getAllProducts,
@@ -122,4 +148,5 @@ module.exports = {
   getAllItemsInCart,
   removeProductsFromCart,
   deleteProduct,
+  updateProduct,
 };

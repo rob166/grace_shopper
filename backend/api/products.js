@@ -1,5 +1,5 @@
 const express = require('express');
-const { getAllProducts, getProductById, addProductToCart, removeProductsFromCart, deleteProduct } = require('../db');
+const { getAllProducts, getProductById, addProductToCart, removeProductsFromCart, deleteProduct, updateProduct } = require('../db');
 const router = express.Router();
 
 router.use((req, res, next) => {
@@ -82,5 +82,28 @@ router.delete('/:prodId', async (req, res, next) => {
     console.log('err', err);
   }
 });
+
+router.patch('/:prodId/edit', async (req, res, next) => {
+  const { prodId } = req.params;
+  const { name, description, price, category } = req.body;
+
+  try {
+    const token = req.headers.authorization;
+
+    if (token) {
+      const editProd = await updateProduct({prodId, name, description, price, category});
+
+      res.send(editProd);
+    } else {
+      res.send({
+        name: 'IncorrectCredentialsError',
+        message: 'Unauthorized to perform this action.',
+      })
+    }
+    
+  } catch (err) {
+    console.log('err', err);
+  }
+})
 
 module.exports = router;
