@@ -1,8 +1,7 @@
 <a name="readme-top"></a>
 
 
-<!-- LOGO -->
-<br />
+<!-- TITLE -->
 <div align="center">
   <h3 align="center">Grace Shopper Buzzed</h3>
   <p align="center">
@@ -12,7 +11,7 @@
 
 
 <!-- TABLE OF CONTENTS -->
-<details style="text-align: center;">
+<details align="center">
   <summary>Table of Contents</summary>
   <ol>
     <li><a href="#built-with">Built With</a></li>
