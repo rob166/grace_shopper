@@ -2,8 +2,11 @@ import { useState } from 'react';
 import SingleProductCss from '../css/SingleProduct.module.css';
 import { addProduct } from '../Api.fetches';
 import { NotificationManager } from 'react-notifications';
+import {GoDiffAdded} from 'react-icons/go'
+import {GrSubtractCircle} from "react-icons/gr"
+import {BsFillCartPlusFill} from 'react-icons/bs'
 
-const SingleProduct = ({ cookie }) => {
+const SingleProduct = ({ cookie ,setRender}) => {
   
 
     const productId = cookie.get('productId')
@@ -43,21 +46,21 @@ const SingleProduct = ({ cookie }) => {
             </div>
 
             <div className={SingleProductCss.buttons}>
-              <div className={SingleProductCss.price}>{product.price}</div>
+              <div className={SingleProductCss.price}>{Number.parseFloat(product.price * quantity).toFixed(2)}</div>
 
               <div className={SingleProductCss.quantity}>
                 <button
                   className={SingleProductCss.minusPlus}
                   onClick={() => addToQuantity()}
                 >
-                  +
+                  <GoDiffAdded/>
                 </button>
                 <div className={SingleProductCss.num}>{quantity}</div>
                 <button
                   className={SingleProductCss.minusPlus}
                   onClick={() => minusFromQuantity()}
                 >
-                  -
+                  <GrSubtractCircle/>
                 </button>
               </div>
 
@@ -70,6 +73,7 @@ const SingleProduct = ({ cookie }) => {
                       quantity,
                       cookie.get('productId')
                     );
+                    setRender(crypto.randomUUID());
                     NotificationManager.success(
                       `${product.name}, has been added to cart`
                     );
@@ -78,7 +82,8 @@ const SingleProduct = ({ cookie }) => {
                   }
                 }}
               >
-                Add to Cart
+                Add to Cart <br/>
+                <BsFillCartPlusFill/>
               </button>
             </div>
           </div>
