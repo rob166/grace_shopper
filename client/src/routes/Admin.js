@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import AdminCss from '../css/Admin.module.css';
 import { MdDeleteForever } from 'react-icons/md';
 import { TfiEmail } from 'react-icons/tfi';
-import { RiAdminFill } from 'react-icons/ri';
 import { FaRegAddressCard } from 'react-icons/fa';
 import { BsTelephoneFill } from 'react-icons/bs';
 
@@ -61,8 +60,8 @@ const Admin = () => {
               <th>Name</th>
               <th>Username</th>
               <th><TfiEmail /></th>
-              <th><FaRegAddressCard/></th>
-              <th><BsTelephoneFill/></th>
+              <th><FaRegAddressCard /></th>
+              <th><BsTelephoneFill /></th>
               <th>Delete</th>
               <th>Admin?</th>
             </tr>

@@ -78,7 +78,6 @@ const ProductEdit = ({cookie}) => {
           <div>
             <Link to='/products'>
               <button 
-              className={styles.deleteButton}
               onClick={() => editThisProduct(productId)}>Submit</button>
             </Link>
           </div>

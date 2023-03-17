@@ -6,6 +6,8 @@ import { NotificationManager } from 'react-notifications';
 import { GoDiffAdded } from 'react-icons/go';
 import { GrSubtractCircle } from 'react-icons/gr';
 import { BsFillCartPlusFill } from 'react-icons/bs';
+import { FaEdit } from 'react-icons/fa';
+import { RiDeleteBin2Fill } from 'react-icons/ri';
 
 const SingleProduct = ({ cookie, setRender }) => {
   const jwt = localStorage.getItem('jwt');
@@ -36,7 +38,7 @@ const SingleProduct = ({ cookie, setRender }) => {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${jwt}`,
+            Authorization: `Bearer ${jwt}`,
           },
         }
       );
@@ -49,21 +51,6 @@ const SingleProduct = ({ cookie, setRender }) => {
 
   return product ? (
     <div className={SingleProductCss.body}>
-      {/* {admin === true && ( */}
-        <div className={SingleProductCss.adminButtons}>
-          <>
-            <Link to='/product-view/edit' state={product}>
-              <button>Edit</button>
-            </Link>
-
-            <Link to='/products'>
-              <button onClick={() => deleteTheProduct(productId)}>
-                Delete
-              </button>
-            </Link>
-          </>
-        </div>
-      {/* )} */}
       <div className={SingleProductCss.container}>
         <div className={SingleProductCss.titleImgDesc}>
           <div className={SingleProductCss.titleImgDiv}>
@@ -76,6 +63,27 @@ const SingleProduct = ({ cookie, setRender }) => {
                 alt='drink'
               />
             </div>
+
+            {/* {(admin === 'true') && ( */}
+            <div className={SingleProductCss.adminButtons}>
+              <>
+                <Link
+                  className={SingleProductCss.edit}
+                  to='/product-view/edit'
+                  state={product}
+                >
+                  <FaEdit />
+                  Edit
+                </Link>
+
+                <Link to='/products'>
+                  <button className={SingleProductCss.delete} onClick={() => deleteTheProduct(productId)}>
+                  <RiDeleteBin2Fill /> Delete
+                  </button>
+                </Link>
+              </>
+            </div>
+            {/* )} */}
           </div>
           <div className={SingleProductCss.priceDesc}>
             <div className={SingleProductCss.descDiv}>
