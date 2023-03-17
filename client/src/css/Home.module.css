@@ -59,7 +59,7 @@
   flex-wrap: wrap;
   height: 90vh;
   margin: none;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
 }
 .image{
   margin-top: 1em;
@@ -86,4 +86,19 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.banner{
+  margin-top: 1em;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+.bannerwords{
+  background-color: rgb(229, 156, 11);
+  font-size: 4em;
+  color: aliceblue;
+  padding: 1em;
+
 }
