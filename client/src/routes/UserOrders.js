@@ -6,7 +6,7 @@ import { DateTime } from 'luxon'
 import { NotificationManager } from 'react-notifications';
 // import { useNavigate } from 'react-router';
 
-const UserOrders = ({ cookie }) => {
+const UserOrders = ({ cookie, setRender }) => {
     const userId = cookie.get('userId')
     const [userOrders, setUserOrders] = useState([])
     console.log(userOrders)
@@ -46,7 +46,10 @@ const UserOrders = ({ cookie }) => {
                             key={crypto.randomUUID()}>
                             <div className={UserOrderCss.dateAndBuy}>
                                 <div>{DateTime.fromISO(uo.date).toLocaleString(DateTime.DATE_MED)}</div>
-                                <button className={UserOrderCss.button} onClick={() => { buyAgain(uo.products) }
+                                <button className={UserOrderCss.button} onClick={() => {
+                                    buyAgain(uo.products)
+                                    setRender(crypto.randomUUID())
+                                }
 
                                 }>order again?</button>
                             </div>
