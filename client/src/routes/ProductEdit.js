@@ -12,10 +12,10 @@ const ProductEdit = () => {
   
   const jwt = localStorage.getItem('jwt');
 
-  async function editThisProduct(prodId) {
+  async function editThisProduct() {
     try {
       const response = await fetch(
-        `http://localhost:3001/api/products/${prodId}/edit`,
+        `http://localhost:3001/api/products/edit`,
         {
           method: 'PATCH',
           headers: {

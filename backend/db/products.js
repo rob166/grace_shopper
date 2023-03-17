@@ -114,27 +114,20 @@ const deleteProduct = async (prodId) => {
   }
 }
 
-const updateProduct = async ({ prodId, ...fields }) => {
-  const setString = Object.keys(fields)
-    .map((key, index) => `"${key}"=$${index + 1}`)
-    .join(', ');
-
+const updateProduct = async ({ prodId, name, description, price, category}) => {
+  
   try {
-    if (setString.length > 0) {
     const {
       rows: [product],
     } = await client.query(
       `
       UPDATE products
-      SET ${setString}
+      SET name=${name}, description=${description}, price=${price}, category=${category}
       WHERE product_id=${prodId}
       RETURNING *;
       `,
-      Object.values(fields)
     );
-      console.log(product)
     return product;
-    }
   } catch (error) {
     throw error;
   }

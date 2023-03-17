@@ -83,7 +83,7 @@ router.delete('/:prodId', async (req, res, next) => {
   }
 });
 
-router.patch('/:prodId/edit', async (req, res, next) => {
+router.patch('/edit', async (req, res, next) => {
   const { prodId } = req.params;
   const { name, description, price, category } = req.body;
 
