@@ -11,7 +11,7 @@ import { RiDeleteBin2Fill } from 'react-icons/ri';
 
 const SingleProduct = ({ cookie, setRender }) => {
   const jwt = localStorage.getItem('jwt');
-  // const admin = cookie.get('isAdmin');
+  const admin = cookie.get('isAdmin');
   const productId = cookie.get('productId');
   const product = cookie.get('product');
   const [quantity, setQuantity] = useState(product.quantity);
@@ -44,6 +44,7 @@ const SingleProduct = ({ cookie, setRender }) => {
       );
       const result = await response.json();
       console.log(result);
+      NotificationManager.info('Product Deleted');
     } catch (error) {
       console.error(error);
     }
@@ -64,7 +65,7 @@ const SingleProduct = ({ cookie, setRender }) => {
               />
             </div>
 
-            {/* {(admin === 'true') && ( */}
+            {(admin === 'true') && ( 
             <div className={SingleProductCss.adminButtons}>
               <>
                 <Link
@@ -83,7 +84,7 @@ const SingleProduct = ({ cookie, setRender }) => {
                 </Link>
               </>
             </div>
-            {/* )} */}
+             )}
           </div>
           <div className={SingleProductCss.priceDesc}>
             <div className={SingleProductCss.descDiv}>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { NotificationManager } from 'react-notifications';
 import { Link, useLocation } from 'react-router-dom';
 import styles from '../css/ProductEdit.module.css';
 
@@ -32,6 +33,7 @@ const ProductEdit = ({cookie}) => {
       );
       const json = await response.json();
       console.log(json);
+      NotificationManager.info('Product Updated');
     } catch (error) {
       console.error(error);
     }
@@ -46,7 +48,7 @@ const ProductEdit = ({cookie}) => {
             e.preventDefault();
           }}
         >
-          <span className={styles.tag}>Product Name: </span>
+          <div className={styles.tag}>Product Name: </div>
           <input
             className={styles.inputName}
             placeholder='Product Name'
@@ -54,7 +56,7 @@ const ProductEdit = ({cookie}) => {
             onChange={(e) => setName(e.target.value)}
           />
           <span className={styles.tag}>Description: </span>
-          <input
+          <textarea
             className={styles.inputDesc}
             placeholder='Description'
             value={description}
@@ -75,9 +77,10 @@ const ProductEdit = ({cookie}) => {
             onChange={(e) => setCategory(e.target.value)}
           />
 
-          <div>
+          <div className={styles.buttonContainer}>
             <Link to='/products'>
               <button 
+              className={styles.editButton}
               onClick={() => editThisProduct(productId)}>Submit</button>
             </Link>
           </div>
