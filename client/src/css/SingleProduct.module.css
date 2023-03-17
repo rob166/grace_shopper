@@ -1,5 +1,6 @@
 .body {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     height: 90vh;
     background-image: url('../img/backgroundLand.jpg');
@@ -8,12 +9,14 @@
     overflow-y: scroll;
     padding-bottom: 2em;
 }
+
 .title{
     font-size: 2em;
     font-family: 'Gloock', serif;
    color: bisque;
     text-decoration: underline;
 }
+
 .titleImgDiv {
     margin-top: 1em;
     display: flex;
@@ -33,13 +36,10 @@
     width: 300px;
     height: 500px;
     overflow: hidden;
-
-
 }
 
 .img {
     height: 500px;
-
 }
 
 .container {
@@ -62,13 +62,12 @@
 }
 
 .num{
-  
     margin:none;
     display: flex;
     justify-content: center;
 }
+
 .descDiv {
-    font-family: 'Gloock', serif;
     font-size: 1.5em;
     margin-top: 1em;
     border-radius: 7px;
@@ -88,15 +87,16 @@
     display: flex;
     flex-direction: column;
     width: 70%;
-  
     align-items: center;
 }
+
 .price{
  color:bisque;
     margin-top: 1em;
     font-size: 1.5em;
     margin-bottom: 1em;
 }
+
 .button{
     font-size: large;
     width: 50%;
@@ -107,11 +107,13 @@
     box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
         0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
 }
+
 .button:hover{
   
     background-color: rgb(30, 76, 78);
     color:bisque;
 }
+
 .buttons{
     margin-top: 2em;
     background-color: bisque;
@@ -125,6 +127,7 @@
     box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
     0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
 }
+
 .buttonPosition{
     display: flex;
     justify-content: flex-end;
@@ -160,3 +163,27 @@
     color:bisque;
 }
 
+.adminButtons {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.edit,
+.delete {
+    color: rgb(30, 76, 78);
+}
+
+.edit {
+    text-decoration: none;
+}
+
+.delete {
+    font-size: medium;
+}
+
+.edit:hover,
+.delete:hover {
+    color: rgb(202, 168, 127);
+    cursor: pointer;
+}

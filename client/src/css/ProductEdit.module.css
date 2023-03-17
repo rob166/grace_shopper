@@ -1,0 +1,72 @@
+.body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    background-image: url('../img/backgroundLand.jpg');
+    background-color: #cccccc;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    border-radius: 7px;
+    padding: 2em;
+    width: 50%;
+    background-color: bisque;
+    height: 40%;
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+}
+
+.tag {
+    font-size: large;
+}
+
+.inputName,
+.inputPrice,
+.inputCat {
+    font-size: medium;
+    width: fit-content;
+    border: solid 2px coral;
+    background-color: rgb(255, 255, 255);
+}
+
+.inputDesc {
+    font-family: 'Gloock', serif;
+    font-size: medium;
+    width: 100%;
+    height: 100%;
+    border: solid 2px coral;
+    size: 900;
+    background-color: rgb(255, 255, 255);
+}
+
+.inputName:focus,
+.inputDesc:focus,
+.inputPrice:focus,
+.inputCat:focus {
+    border: none;
+    background-color: rgb(255, 255, 255);
+}
+
+.buttonContainer {
+    margin: 20px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+.editButton {
+    padding: 5px;
+    background-color: coral;
+    font-size: larger;
+    color:rgb(255, 255, 255);
+    border: solid 2px #ccc;
+    border-radius: 5px;
+}
+
+.editButton:hover {
+    background-color: rgb(202, 168, 127);
+    cursor: pointer;
+}

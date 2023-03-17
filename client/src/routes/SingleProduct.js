@@ -1,23 +1,28 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import SingleProductCss from '../css/SingleProduct.module.css';
 import { addProduct } from '../Api.fetches';
 import { NotificationManager } from 'react-notifications';
-// import {GoDiffAdded} from 'react-icons/go'
-// import {GrSubtractCircle} from "react-icons/gr"
-import {BsFillCartPlusFill} from 'react-icons/bs'
+// import { GoDiffAdded } from 'react-icons/go';
+// import { GrSubtractCircle } from 'react-icons/gr';
+import { BsFillCartPlusFill } from 'react-icons/bs';
+import { FaEdit } from 'react-icons/fa';
+import { RiDeleteBin2Fill } from 'react-icons/ri';
 import {FaRegMinusSquare} from "react-icons/fa"
 import {FaRegPlusSquare} from "react-icons/fa"
 
-const SingleProduct = ({ cookie ,setRender}) => {
-  
+const SingleProduct = ({ cookie, setRender }) => {
+  const jwt = localStorage.getItem('jwt');
+  const admin = cookie.get('isAdmin');
+  const productId = cookie.get('productId');
+  const product = cookie.get('product');
+  const [quantity, setQuantity] = useState(product.quantity);
 
-    const productId = cookie.get('productId')
-    const product = cookie.get('product')
-    const [quantity, setQuantity] = useState(product.quantity)
-    console.log(productId)
-    const addToQuantity = () => {
-        setQuantity(quantity + 1)
-    }
+  console.log(productId);
+
+  const addToQuantity = () => {
+    setQuantity(quantity + 1);
+  };
 
   const minusFromQuantity = () => {
     if (quantity === 0) {
@@ -26,6 +31,26 @@ const SingleProduct = ({ cookie ,setRender}) => {
       setQuantity(quantity - 1);
     }
   };
+
+  async function deleteTheProduct(productId) {
+    try {
+      const response = await fetch(
+        `http://localhost:3001/api/products/${productId}`,
+        {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${jwt}`,
+          },
+        }
+      );
+      const result = await response.json();
+      console.log(result);
+      NotificationManager.info('Product Deleted');
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return product ? (
     <div className={SingleProductCss.body}>
@@ -41,6 +66,27 @@ const SingleProduct = ({ cookie ,setRender}) => {
                 alt='drink'
               />
             </div>
+
+            {(admin === 'true') && ( 
+            <div className={SingleProductCss.adminButtons}>
+              <>
+                <Link
+                  className={SingleProductCss.edit}
+                  to='/product-view/edit'
+                  state={product}
+                >
+                  <FaEdit />
+                  Edit
+                </Link>
+
+                <Link to='/products'>
+                  <button className={SingleProductCss.delete} onClick={() => deleteTheProduct(productId)}>
+                  <RiDeleteBin2Fill /> Delete
+                  </button>
+                </Link>
+              </>
+            </div>
+             )}
           </div>
           <div className={SingleProductCss.priceDesc}>
             <div className={SingleProductCss.descDiv}>
@@ -63,7 +109,7 @@ const SingleProduct = ({ cookie ,setRender}) => {
                   className={SingleProductCss.minusPlus}
                   onClick={() => minusFromQuantity()}
                 >
-                  <FaRegMinusSquare/>
+                 <FaRegMinusSquare/>
                 </button>
               </div>
 
@@ -85,8 +131,8 @@ const SingleProduct = ({ cookie ,setRender}) => {
                   }
                 }}
               >
-                Add to Cart <br/>
-                <BsFillCartPlusFill/>
+                Add to Cart <br />
+                <BsFillCartPlusFill />
               </button>
             </div>
           </div>

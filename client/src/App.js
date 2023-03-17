@@ -19,6 +19,7 @@ import 'react-notifications/lib/notifications.css';
 import { NotificationContainer } from 'react-notifications';
 import { showItemsInCart } from './Api.fetches.js';
 import { useEffect } from 'react';
+import ProductEdit from './routes/ProductEdit.js';
 
 function App() {
   const [prodId, setProdId] = useState(null);
@@ -153,13 +154,23 @@ function App() {
           }
         />
         <Route
-          path={'/checkout'}
+        path={'/checkout'}
+        element={
+          <>
+            <Navbar quantity={quantity}/>
+            <CheckoutPage cookie={cookie} setQuantity={setQuantity}/>
+          </>
+        }/>
+        <Route
+          exact
+          path={'/product-view/edit'}
           element={
             <>
-              <Navbar quantity={quantity} />
-              <CheckoutPage cookie={cookie} setQuantity={setQuantity} />
+              <Navbar />
+              <ProductEdit cookie={cookie} />
             </>
-          } />
+          }
+        />
       </Routes>
       <NotificationContainer />
     </div>
