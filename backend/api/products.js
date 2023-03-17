@@ -83,15 +83,15 @@ router.delete('/:prodId', async (req, res, next) => {
   }
 });
 
-router.patch('/edit', async (req, res, next) => {
-  const { prodId } = req.params;
+router.patch('/edit/:productId', async (req, res, next) => {
+  const { productId } = req.params;
   const { name, description, price, category } = req.body;
 
   try {
     const token = req.headers.authorization;
 
     if (token) {
-      const editProd = await updateProduct({prodId, name, description, price, category});
+      const editProd = await updateProduct(name, description, price, category, productId);
 
       res.send(editProd);
     } else {

@@ -166,7 +166,7 @@ useEffect(() => {
           element={
             <>
               <Navbar />
-              <ProductEdit />
+              <ProductEdit cookie={cookie} />
             </>
           }
         />

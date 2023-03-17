@@ -36,7 +36,7 @@ const SingleProduct = ({ cookie, setRender }) => {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${jwt}`,
+            'Authorization': `Bearer ${jwt}`,
           },
         }
       );

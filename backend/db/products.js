@@ -114,18 +114,18 @@ const deleteProduct = async (prodId) => {
   }
 }
 
-const updateProduct = async ({ prodId, name, description, price, category}) => {
-  
+const updateProduct = async (name, description, price, category, productId) => {
   try {
     const {
       rows: [product],
     } = await client.query(
       `
       UPDATE products
-      SET name=${name}, description=${description}, price=${price}, category=${category}
-      WHERE product_id=${prodId}
+      SET name=$1, description=$2, price=$3, category=$4
+      WHERE product_id=$5
       RETURNING *;
       `,
+      [name, description, price, category, productId]
     );
     return product;
   } catch (error) {

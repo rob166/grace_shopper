@@ -2,25 +2,25 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styles from '../css/ProductEdit.module.css';
 
-const ProductEdit = () => {
+const ProductEdit = ({cookie}) => {
   const location = useLocation();
   const propsData = location.state;
   const [name, setName] = useState(propsData.name);
   const [description, setDescription] = useState(propsData.description);
   const [price, setPrice] = useState(propsData.price);
   const [category, setCategory] = useState(propsData.category);
-  
+  const productId = cookie.get('productId');
   const jwt = localStorage.getItem('jwt');
 
-  async function editThisProduct() {
+  async function editThisProduct(productId) {
     try {
       const response = await fetch(
-        `http://localhost:3001/api/products/edit`,
+        `http://localhost:3001/api/products/edit/${productId}`,
         {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${jwt}`,
+            'Authorization': `Bearer ${jwt}`,
           },
           body: JSON.stringify({
             name: name,
@@ -79,7 +79,7 @@ const ProductEdit = () => {
             <Link to='/products'>
               <button 
               className={styles.deleteButton}
-              onClick={() => editThisProduct()}>Submit</button>
+              onClick={() => editThisProduct(productId)}>Submit</button>
             </Link>
           </div>
         </form>
