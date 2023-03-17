@@ -27,7 +27,7 @@ const Home = ({ cookie }) => {
              and strong enough to live the life you have always imagined.
             </div>
         </div> */}
-        <div className={HomeCss.banner}><h1 className={HomeCss.bannerwords}>Drink More canned cocktails</h1></div>
+        <div className={HomeCss.banner}><h1 className={HomeCss.bannerwords}>Drink More Canned Cocktails</h1></div>
         <div className={styles.productContainer}>
             {products ? products.map(p =>
                 <Link to='/product-view' className={HomeCss.link}

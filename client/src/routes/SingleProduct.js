@@ -2,9 +2,11 @@ import { useState } from 'react';
 import SingleProductCss from '../css/SingleProduct.module.css';
 import { addProduct } from '../Api.fetches';
 import { NotificationManager } from 'react-notifications';
-import {GoDiffAdded} from 'react-icons/go'
-import {GrSubtractCircle} from "react-icons/gr"
+// import {GoDiffAdded} from 'react-icons/go'
+// import {GrSubtractCircle} from "react-icons/gr"
 import {BsFillCartPlusFill} from 'react-icons/bs'
+import {FaRegMinusSquare} from "react-icons/fa"
+import {FaRegPlusSquare} from "react-icons/fa"
 
 const SingleProduct = ({ cookie ,setRender}) => {
   
@@ -46,21 +48,22 @@ const SingleProduct = ({ cookie ,setRender}) => {
             </div>
 
             <div className={SingleProductCss.buttons}>
-              <div className={SingleProductCss.price}>{quantity < 1 ? product.price:Number.parseFloat(product.price * quantity).toFixed(2)}</div>
+              <div className={SingleProductCss.price}>{
+                quantity < 1 ? product.price:Number.parseFloat(product.price * quantity).toFixed(2)}</div>
 
               <div className={SingleProductCss.quantity}>
                 <button
                   className={SingleProductCss.minusPlus}
                   onClick={() => addToQuantity()}
                 >
-                  <GoDiffAdded/>
+                  <FaRegPlusSquare/>
                 </button>
-                <div className={SingleProductCss.num}>{quantity}</div>
+                <div className={SingleProductCss.num}>x : {quantity}</div>
                 <button
                   className={SingleProductCss.minusPlus}
                   onClick={() => minusFromQuantity()}
                 >
-                  <GrSubtractCircle/>
+                  <FaRegMinusSquare/>
                 </button>
               </div>
 

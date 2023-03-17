@@ -9,7 +9,9 @@ import { NotificationManager } from 'react-notifications';
 const UserOrders = ({ cookie, setRender }) => {
     const userId = cookie.get('userId')
     const [userOrders, setUserOrders] = useState([])
-    console.log(userOrders)
+
+
+
     const isInCart = async (product) => {
         const cart = await showItemsInCart(cookie.get('cartId'))
         const newcart = cart.filter(i => i.product_id === product.product_id)
@@ -23,7 +25,7 @@ const UserOrders = ({ cookie, setRender }) => {
     const buyAgain = async (products) => {
 
         await products.map(p => isInCart(p))
-
+       
         NotificationManager.success('Items Added to Cart')
 
     }
@@ -46,12 +48,13 @@ const UserOrders = ({ cookie, setRender }) => {
                             key={crypto.randomUUID()}>
                             <div className={UserOrderCss.dateAndBuy}>
                                 <div>{DateTime.fromISO(uo.date).toLocaleString(DateTime.DATE_MED)}</div>
-                                <button className={UserOrderCss.button} onClick={() => {
+                                <button className={UserOrderCss.button} onMouseDown={() => {
                                     buyAgain(uo.products)
-                                    setRender(crypto.randomUUID())
-                                }
+}
+                              
 
-                                }>order again?</button>
+                                }
+                                onMouseUp={()=>setRender(crypto.randomUUID())}>order again?</button>
                             </div>
                             <div>
                                 {uo.products.map(p => {
