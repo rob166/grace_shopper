@@ -1,5 +1,6 @@
 .body {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     height: 90vh;
     background-image: url('../img/backgroundLand.jpg');
@@ -147,3 +148,4 @@
 .minusPlus:hover {
     background-color: rgb(202, 168, 127);
 }
+

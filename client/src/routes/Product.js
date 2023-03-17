@@ -8,9 +8,6 @@ const Product = ({ cookie }) => {
   const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [sortingOrder, setSortingOrder] = useState('asc');
-  const admin = cookie.get('isAdmin');
-  const jwt = localStorage.getItem('jwt');
-  const [change, setChange] = useState('');
 
   const showProd = async () => {
     const resp = await showProducts();
@@ -19,7 +16,7 @@ const Product = ({ cookie }) => {
 
   useEffect(() => {
     showProd();
-  }, [change]);
+  }, []);
 
   const filteredProducts = selectedCategory
     ? products.filter((p) => p.category === selectedCategory)
@@ -29,26 +26,6 @@ const Product = ({ cookie }) => {
     sortingOrder === 'asc'
       ? [...filteredProducts].sort((a, b) => a.name.localeCompare(b.name))
       : [...filteredProducts].sort((a, b) => b.name.localeCompare(a.name));
-
-  async function deleteTheProduct(prodId) {
-    try {
-      const response = await fetch(
-        `http://localhost:3001/api/products/${prodId}`,
-        {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${jwt}`,
-          },
-        }
-      );
-      const result = await response.json();
-      setProducts(result);
-      setChange(crypto.randomUUID());
-    } catch (error) {
-      console.error(error);
-    }
-  }
 
   return (
     <div className={HomeCss.body}>
@@ -76,7 +53,6 @@ const Product = ({ cookie }) => {
       <div className={styles.productContainer}>
         {sortedProducts ? (
           sortedProducts.map((p) => (
-            <>
             <Link
               to='/product-view'
               className={styles.link}
@@ -97,27 +73,6 @@ const Product = ({ cookie }) => {
                 </div>
               </div>
             </Link>
-            <div className={styles.editAndDelete}>
-            {admin === 'true' && (
-              <>
-                <span>
-                  <Link to='/product-view/edit' state={p}>
-                  <button className={styles.editButton}>Edit</button>
-                  </Link>
-                </span>
-                
-                <span>
-                  <button
-                    className={styles.deleteButton}
-                    onClick={() => deleteTheProduct(p.product_id)}
-                  >
-                    Delete
-                  </button>
-                </span>
-              </>
-            )}
-          </div>
-          </>
           ))
         ) : (
           <div>no work</div>

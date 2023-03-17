@@ -127,12 +127,12 @@ const updateProduct = async ({ prodId, ...fields }) => {
       `
       UPDATE products
       SET ${setString}
-      WHERE product_id = $1
+      WHERE product_id=${prodId}
       RETURNING *;
       `,
       Object.values(fields)
     );
-
+      console.log(product)
     return product;
     }
   } catch (error) {
