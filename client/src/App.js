@@ -24,21 +24,22 @@ import ProductEdit from './routes/ProductEdit.js';
 function App() {
   const [prodId, setProdId] = useState(null);
   const cookie = new Cookies();
-  const [quantity,setQuantity] = useState(0)
+  const [quantity, setQuantity] = useState(0)
   console.log(quantity)
-  const [render,setRender] = useState(null)
+  const [render, setRender] = useState(null)
 
   const getCartItems = async () => {
 
     const cartItems = await showItemsInCart(cookie.get('cartId'))
-    const quan = cartItems.reduce((a, p) => a + p.quantity,0)
+    const quan = cartItems.reduce((a, p) => a + p.quantity, 0)
     setQuantity(quan)
-   
-}
-useEffect(() => {
+
+  }
+  useEffect(() => {
     getCartItems()
     // eslint-disable-next-line
-}, [render])
+  }, [render])
+  
   return (
     <div className='App'>
       <Routes>
@@ -47,7 +48,7 @@ useEffect(() => {
           path='/home'
           element={
             <>
-              <Navbar quantity={quantity}/>
+              <Navbar quantity={quantity} />
               <Home prodId={prodId} setProdId={setProdId} cookie={cookie} />
             </>
           }
@@ -56,7 +57,7 @@ useEffect(() => {
           exact path={'/products'}
           element={
             <>
-             <Navbar quantity={quantity}/>
+              <Navbar quantity={quantity} />
               <Product prodId={prodId} setProdId={setProdId} cookie={cookie} />
             </>
           }
@@ -65,9 +66,9 @@ useEffect(() => {
           path='/product-view'
           element={
             <>
-               <Navbar quantity={quantity}/>
+              <Navbar quantity={quantity} />
               <SingleProduct cookie={cookie}
-                              setRender={setRender} />
+                setRender={setRender} />
             </>
           }
         />
@@ -76,7 +77,7 @@ useEffect(() => {
           path={'/login'}
           element={
             <>
-              <Navbar quantity={quantity}/>
+              <Navbar quantity={quantity} />
               <Login cookie={cookie} />
             </>
           }
@@ -86,7 +87,7 @@ useEffect(() => {
           path={'/signup'}
           element={
             <>
-              <Navbar quantity={quantity}/>
+              <Navbar quantity={quantity} />
               <Signup cookie={cookie} />
             </>
           }
@@ -96,7 +97,7 @@ useEffect(() => {
           path={'/profile'}
           element={
             <>
-               <Navbar quantity={quantity}/>
+              <Navbar quantity={quantity} />
               <Profile />
             </>
           }
@@ -106,7 +107,7 @@ useEffect(() => {
           path={'/admin'}
           element={
             <>
-              <Navbar quantity={quantity}/>
+              <Navbar quantity={quantity} />
               <Admin cookie={cookie} />
             </>
           }
@@ -115,7 +116,7 @@ useEffect(() => {
           path={'/cart'}
           element={
             <>
-              <Navbar quantity={quantity}/>
+              <Navbar quantity={quantity} />
               <Cart cookie={cookie} setQuantity={setQuantity}
                 render={render} setRender={setRender}
               />
@@ -127,7 +128,7 @@ useEffect(() => {
           path={'/profile/edit'}
           element={
             <>
-               <Navbar quantity={quantity}/>
+              <Navbar quantity={quantity} />
               <ProfileEdit />
             </>
           }
@@ -137,7 +138,7 @@ useEffect(() => {
           path={'/user/orders'}
           element={
             <>
-              <Navbar quantity={quantity}/>
+              <Navbar quantity={quantity} />
               <UserOrders setRender={setRender} cookie={cookie} />
             </>
           }
@@ -147,7 +148,7 @@ useEffect(() => {
           path={'/isadmin'}
           element={
             <>
-               <Navbar quantity={quantity}/>
+              <Navbar quantity={quantity} />
               <IsAdmin />
             </>
           }

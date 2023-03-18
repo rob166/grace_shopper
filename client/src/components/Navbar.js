@@ -27,7 +27,7 @@ const admin = cookies.get('isAdmin');
         <Link className={NavbarCss.link} to="/cart">
           {<div className={NavbarCss.cart}>
           <div className={NavbarCss.qNumDiv}>
-          <p className={NavbarCss.qNum}>{quantity}</p>
+          <p className={NavbarCss.qNum}>{quantity>0?quantity:null}</p>
           </div>
           <FaShoppingCart className={NavbarCss.cartLogo}/> 
          
