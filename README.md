@@ -113,6 +113,6 @@ This is a full-stack e-commerce web application built as a group project for a f
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url1]: https://www.linkedin.com/in/caroline-kim98/
 [linkedin-url2]: https://www.linkedin.com/in/daniel-reese-webdev/
-[linkedin-url3]: https://www.linkedin.com/in/daniel-reese-webdev/
+[linkedin-url3]: https://www.linkedin.com/in/jess-anahi-alvarado/
 [linkedin-url4]: https://www.linkedin.com/in/robrosenzweig/
 
