@@ -171,7 +171,7 @@
 
 .edit,
 .delete {
-    color: rgb(30, 76, 78);
+    color: coral;
 }
 
 .edit {
@@ -184,6 +184,6 @@
 
 .edit:hover,
 .delete:hover {
-    color: rgb(202, 168, 127);
+    color: bisque;
     cursor: pointer;
 }
