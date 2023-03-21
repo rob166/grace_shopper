@@ -6,8 +6,8 @@ import { NotificationManager } from 'react-notifications';
 import { BsFillCartPlusFill } from 'react-icons/bs';
 import { FaEdit } from 'react-icons/fa';
 import { RiDeleteBin2Fill } from 'react-icons/ri';
-import {FaRegMinusSquare} from "react-icons/fa"
-import {FaRegPlusSquare} from "react-icons/fa"
+import { FaRegMinusSquare } from 'react-icons/fa';
+import { FaRegPlusSquare } from 'react-icons/fa';
 
 const SingleProduct = ({ cookie, setRender }) => {
   const jwt = localStorage.getItem('jwt');
@@ -65,26 +65,29 @@ const SingleProduct = ({ cookie, setRender }) => {
               />
             </div>
 
-            {(admin === 'true') && ( 
-            <div className={SingleProductCss.adminButtons}>
-              <>
-                <Link
-                  className={SingleProductCss.edit}
-                  to='/product-view/edit'
-                  state={product}
-                >
-                  <FaEdit />
-                  Edit
-                </Link>
+            {admin === 'true' && (
+              <div className={SingleProductCss.adminButtons}>
+                <>
+                  <Link
+                    className={SingleProductCss.edit}
+                    to='/product-view/edit'
+                    state={product}
+                  >
+                    <FaEdit />
+                    Edit
+                  </Link>
 
-                <Link to='/products'>
-                  <button className={SingleProductCss.delete} onClick={() => deleteTheProduct(productId)}>
-                  <RiDeleteBin2Fill /> Delete
-                  </button>
-                </Link>
-              </>
-            </div>
-             )}
+                  <Link to='/products'>
+                    <button
+                      className={SingleProductCss.delete}
+                      onClick={() => deleteTheProduct(productId)}
+                    >
+                      <RiDeleteBin2Fill /> Delete
+                    </button>
+                  </Link>
+                </>
+              </div>
+            )}
           </div>
           <div className={SingleProductCss.priceDesc}>
             <div className={SingleProductCss.descDiv}>
@@ -92,22 +95,25 @@ const SingleProduct = ({ cookie, setRender }) => {
             </div>
 
             <div className={SingleProductCss.buttons}>
-              <div className={SingleProductCss.price}>{
-                quantity < 1 ? product.price:Number.parseFloat(product.price * quantity).toFixed(2)}</div>
+              <div className={SingleProductCss.price}>
+                {quantity < 1
+                  ? product.price
+                  : Number.parseFloat(product.price * quantity).toFixed(2)}
+              </div>
 
               <div className={SingleProductCss.quantity}>
                 <button
                   className={SingleProductCss.minusPlus}
                   onClick={() => addToQuantity()}
                 >
-                  <FaRegPlusSquare/>
+                  <FaRegPlusSquare />
                 </button>
                 <div className={SingleProductCss.num}>x : {quantity}</div>
                 <button
                   className={SingleProductCss.minusPlus}
                   onClick={() => minusFromQuantity()}
                 >
-                 <FaRegMinusSquare/>
+                  <FaRegMinusSquare />
                 </button>
               </div>
 

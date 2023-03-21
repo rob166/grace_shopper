@@ -13,33 +13,30 @@ import UserOrders from './routes/UserOrders.js';
 import Admin from './routes/Admin.js';
 import CheckoutPage from './routes/CheckoutPage.js';
 import IsAdmin from './routes/IsAdmin.js';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Cookies from 'universal-cookie';
 import 'react-notifications/lib/notifications.css';
 import { NotificationContainer } from 'react-notifications';
 import { showItemsInCart } from './Api.fetches.js';
-import { useEffect } from 'react';
 import ProductEdit from './routes/ProductEdit.js';
 
 function App() {
   const [prodId, setProdId] = useState(null);
   const cookie = new Cookies();
-  const [quantity, setQuantity] = useState(0)
-  console.log(quantity)
-  const [render, setRender] = useState(null)
+  const [quantity, setQuantity] = useState(0);
+  console.log(quantity);
+  const [render, setRender] = useState(null);
 
   const getCartItems = async () => {
-
-    const cartItems = await showItemsInCart(cookie.get('cartId'))
-    const quan = cartItems.reduce((a, p) => a + p.quantity, 0)
-    setQuantity(quan)
-
-  }
+    const cartItems = await showItemsInCart(cookie.get('cartId'));
+    const quan = cartItems.reduce((a, p) => a + p.quantity, 0);
+    setQuantity(quan);
+  };
   useEffect(() => {
-    getCartItems()
+    getCartItems();
     // eslint-disable-next-line
-  }, [render])
-  
+  }, [render]);
+
   return (
     <div className='App'>
       <Routes>
@@ -54,7 +51,8 @@ function App() {
           }
         />
         <Route
-          exact path={'/products'}
+          exact
+          path={'/products'}
           element={
             <>
               <Navbar quantity={quantity} />
@@ -67,8 +65,7 @@ function App() {
           element={
             <>
               <Navbar quantity={quantity} />
-              <SingleProduct cookie={cookie}
-                setRender={setRender} />
+              <SingleProduct cookie={cookie} setRender={setRender} />
             </>
           }
         />
@@ -117,8 +114,11 @@ function App() {
           element={
             <>
               <Navbar quantity={quantity} />
-              <Cart cookie={cookie} setQuantity={setQuantity}
-                render={render} setRender={setRender}
+              <Cart
+                cookie={cookie}
+                setQuantity={setQuantity}
+                render={render}
+                setRender={setRender}
               />
             </>
           }
@@ -154,13 +154,14 @@ function App() {
           }
         />
         <Route
-        path={'/checkout'}
-        element={
-          <>
-            <Navbar quantity={quantity}/>
-            <CheckoutPage cookie={cookie} setQuantity={setQuantity}/>
-          </>
-        }/>
+          path={'/checkout'}
+          element={
+            <>
+              <Navbar quantity={quantity} />
+              <CheckoutPage cookie={cookie} setQuantity={setQuantity} />
+            </>
+          }
+        />
         <Route
           exact
           path={'/product-view/edit'}
