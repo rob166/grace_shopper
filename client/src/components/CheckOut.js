@@ -1,6 +1,5 @@
-import { removeAllItems, showItemsInCart } from "../Api.fetches"
+import { showItemsInCart } from "../Api.fetches"
 import CheckoutCss from '../css/Checkout.module.css'
-import ReactDOM from 'react-dom';
 import { React, useState, useEffect } from 'react'
 import { makePurchase, userPurchase, makeNewCart } from "../Api.fetches"
 import { NotificationManager } from 'react-notifications';

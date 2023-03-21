@@ -1,10 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { addProduct, previousUserOrders } from '../Api.fetches';
 import { showItemsInCart } from "../Api.fetches"
 import { useState, useEffect } from 'react';
 import UserOrderCss from "../css/UserOrder.module.css"
 import { DateTime } from 'luxon'
 import { NotificationManager } from 'react-notifications';
-// import { useNavigate } from 'react-router';
 
 const UserOrders = ({ cookie, setRender }) => {
     const userId = cookie.get('userId')
