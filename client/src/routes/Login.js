@@ -24,13 +24,10 @@ const Login = ({ cookie }) => {
       const json = await response.json();
 
       NotificationManager.success(json.message);
-        localStorage.setItem('jwt', json.token);
-        cookie.set('userId', json.user.id);
-        cookie.set('isAdmin', json.user.is_admin);
-        json.user.is_admin===true ?
-        navigate('/admin')
-        :
-        navigate('/home');
+      localStorage.setItem('jwt', json.token);
+      cookie.set('userId', json.user.id);
+      cookie.set('isAdmin', json.user.is_admin);
+      json.user.is_admin === true ? navigate('/admin') : navigate('/home');
     } catch (error) {
       console.error(error);
     }
