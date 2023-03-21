@@ -37,6 +37,7 @@ const UserOrders = ({ cookie, setRender }) => {
 
     useEffect(() => {
         getUserOrders()
+        // eslint-disable-next-line
     }, [])
 
     return (
