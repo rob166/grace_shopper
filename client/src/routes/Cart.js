@@ -2,14 +2,11 @@ import CartCss from "../css/Cart.module.css"
 import { showItemsInCart } from "../Api.fetches"
 import { useState, useEffect } from 'react'
 import PriceChanger from "../components/PriceChanger"
-// import { makePurchase, userPurchase, makeNewCart } from "../Api.fetches"
-// import { NotificationManager } from 'react-notifications';
 import { useNavigate } from "react-router"
 const Cart = ({ cookie ,setQuantity ,render,setRender}) => {
 
     const [cart, setCart] = useState([])
     const [edit, setEdit] = useState(false)
-    // const [render, setRender] = useState(null)
     const navigate = useNavigate()
 
     const getCartItems = async () => {

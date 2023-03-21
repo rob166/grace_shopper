@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import SingleProductCss from '../css/SingleProduct.module.css';
 import { addProduct } from '../Api.fetches';
 import { NotificationManager } from 'react-notifications';
-// import { GoDiffAdded } from 'react-icons/go';
-// import { GrSubtractCircle } from 'react-icons/gr';
 import { BsFillCartPlusFill } from 'react-icons/bs';
 import { FaEdit } from 'react-icons/fa';
 import { RiDeleteBin2Fill } from 'react-icons/ri';
