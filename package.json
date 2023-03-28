@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "concurrently": "^7.6.0",
     "luxon": "^3.3.0",
     "nodemon": "^2.0.20",
     "react-cookie": "^4.1.1",
@@ -9,5 +10,25 @@
     "react-stripe-js": "^1.1.3",
     "stripe": "^11.14.0",
     "universal-cookie": "^4.0.4"
-  }
+  },
+  "name": "grace_shopper",
+  "description": "<a name=\"readme-top\"></a>",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"concurrently \"cd client && npm start\" \"cd backend && npm run start:dev && npm run seed:dev\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rob166/grace_shopper.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rob166/grace_shopper/issues"
+  },
+  "homepage": "https://github.com/rob166/grace_shopper#readme"
 }
