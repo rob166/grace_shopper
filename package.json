@@ -18,7 +18,8 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"concurrently \"cd client && npm start\" \"cd backend && npm run start:dev && npm run seed:dev\""
+    "start":"concurrently \"cd client && npm start\" \"cd backend && npm run start:dev && npm run seed:dev\"",
+    "build":"cd client && npm run build"
   },
   "repository": {
     "type": "git",
