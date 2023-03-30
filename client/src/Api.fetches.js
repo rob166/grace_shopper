@@ -1,6 +1,8 @@
+https://grace-shopper-buzzed-server.onrender.com
+
 export const showProducts = async () => {
     try {
-        const resp = await fetch('http://localhost:3001/api/products', {
+        const resp = await fetch('https://grace-shopper-buzzed-server.onrender.com/api/products', {
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -19,7 +21,7 @@ export const showProducts = async () => {
 
 export const showSingleProd = async (id) => {
     try {
-        const resp = await fetch(`http://localhost:3001/api/products/${id}`, {
+        const resp = await fetch(`https://grace-shopper-buzzed-server.onrender.com/api/products/${id}`, {
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -36,7 +38,7 @@ export const addProduct = async (cartId, quantity, pId) => {
 
 
     try {
-        const resp = await fetch(`http://localhost:3001/api/products/${pId}`, {
+        const resp = await fetch(`https://grace-shopper-buzzed-server.onrender.com/api/products/${pId}`, {
             method: "PATCH",
             headers: {
                 'Content-Type': 'application/json',
@@ -58,7 +60,7 @@ export const addProduct = async (cartId, quantity, pId) => {
 export const makeNewCart = async (sessionId) => {
     try {
         console.log(sessionId)
-        const resp = await fetch('http://localhost:3001/api/cart', {
+        const resp = await fetch('https://grace-shopper-buzzed-server.onrender.com/api/cart', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -80,7 +82,7 @@ export const makeNewCart = async (sessionId) => {
 
 export const showItemsInCart = async (cartId) => {
     try {
-        const resp = await fetch(`http://localhost:3001/api/cart/${cartId}`, {
+        const resp = await fetch(`https://grace-shopper-buzzed-server.onrender.com/api/cart/${cartId}`, {
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -99,7 +101,7 @@ export const showItemsInCart = async (cartId) => {
 
 export const makePurchase = async (quantity, total, cartId) => {
     try {
-        const resp = await fetch(`http://localhost:3001/api/cart/${cartId}`, {
+        const resp = await fetch(`https://grace-shopper-buzzed-server.onrender.com/api/cart/${cartId}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -119,7 +121,7 @@ export const makePurchase = async (quantity, total, cartId) => {
 
 export const userPurchase = async(cartId,userId)=>{
     try{
-        const resp = await fetch(`http://localhost:3001/api/cart/${cartId}`,{
+        const resp = await fetch(`https://grace-shopper-buzzed-server.onrender.com/api/cart/${cartId}`,{
             method:"POST",
             headers:{
                 "Content-Type":"application/json",
@@ -140,7 +142,7 @@ export const userPurchase = async(cartId,userId)=>{
 export const previousUserOrders = async(userId)=>{
     try{
 
-        const resp = await fetch(`http://localhost:3001/api/cart/user/${userId}`,{
+        const resp = await fetch(`https://grace-shopper-buzzed-server.onrender.com/api/cart/user/${userId}`,{
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -158,7 +160,7 @@ export const previousUserOrders = async(userId)=>{
 
 export const removeAllItems = async()=>{
     try{
-        const resp = await fetch('http://localhost:3001/api/products',{
+        const resp = await fetch('https://grace-shopper-buzzed-server.onrender.com/api/products',{
             method:"PATCH",
             headers:{
                 'Content-Type': 'application/json',
