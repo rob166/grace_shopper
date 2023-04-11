@@ -18,7 +18,7 @@ const Admin = () => {
 
   async function fetchAllUsers() {
     try {
-      const response = await fetch('http://localhost:3001/api/users', {
+      const response = await fetch('https://grace-shopper-buzzed.onrender.com/api/users', {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${jwt}`,
@@ -33,7 +33,7 @@ const Admin = () => {
 
   async function killTheUser(id) {
     try {
-      const response = await fetch(`http://localhost:3001/api/users/user/${id}`, {
+      const response = await fetch(`https://grace-shopper-buzzed.onrender.com/api/users/user/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

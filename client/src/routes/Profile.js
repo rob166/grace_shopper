@@ -10,7 +10,7 @@ const Profile = () => {
   useEffect(() => {
     async function showMyUser() {
       try {
-        const response = await fetch('http://localhost:3001/api/users/user', {
+        const response = await fetch('https://grace-shopper-buzzed.onrender.com/api/users/user', {
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${jwt}`,

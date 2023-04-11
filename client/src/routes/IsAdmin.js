@@ -11,7 +11,7 @@ const IsAdmin = () => {
   async function editMyUser() {
     try {
       const response = await fetch(
-        'http://localhost:3001/api/users/user/edit/admin',
+        'https://grace-shopper-buzzed.onrender.com/api/users/user/edit/admin',
         {
           method: 'PATCH',
           headers: {

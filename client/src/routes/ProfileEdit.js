@@ -18,7 +18,7 @@ const ProfileEdit = () => {
   async function editMyUser() {
     try {
       const response = await fetch(
-        'http://localhost:3001/api/users/user/edit',
+        'https://grace-shopper-buzzed.onrender.com/api/users/user/edit',
         {
           method: 'PATCH',
           headers: {

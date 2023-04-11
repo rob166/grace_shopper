@@ -76,7 +76,7 @@ const CheckoutForm = ({ cookie, setLoading, setQuantity }) => {
     if (!error) {
       try {
         const { id } = paymentMethod;
-        const resp = await fetch('http://localhost:3001/api/payment', {
+        const resp = await fetch('https://grace-shopper-buzzed.onrender.com/api/payment', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

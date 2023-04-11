@@ -16,7 +16,7 @@ const ProductEdit = ({cookie}) => {
   async function editThisProduct(productId) {
     try {
       const response = await fetch(
-        `http://localhost:3001/api/products/edit/${productId}`,
+        `https://grace-shopper-buzzed.onrender.com/api/products/edit/${productId}`,
         {
           method: 'PATCH',
           headers: {

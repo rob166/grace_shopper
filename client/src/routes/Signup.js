@@ -31,7 +31,7 @@ const Signup = ({ cookie }) => {
         phone: phone
       });
       const response = await
-        fetch('http://localhost:3001/api/users/register', {
+        fetch('https://grace-shopper-buzzed.onrender.com/api/users/register', {
           method: "POST",
           headers: {
             'Content-Type': 'application/json',

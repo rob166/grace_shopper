@@ -33,7 +33,7 @@ const SingleProduct = ({ cookie, setRender }) => {
   async function deleteTheProduct(productId) {
     try {
       const response = await fetch(
-        `http://localhost:3001/api/products/${productId}`,
+        `https://grace-shopper-buzzed.onrender.com/${productId}`,
         {
           method: 'DELETE',
           headers: {
